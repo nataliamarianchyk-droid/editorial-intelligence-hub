@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import nmLogo from "@/assets/nm-insight-logo.jpg";
+import nmLogo from "@/assets/nm-insight-logo.png";
 
 export const Route = createFileRoute("/")({
   component: ControlRoom,
@@ -195,8 +195,12 @@ function ControlRoom() {
       <header className="border-b border-white/5 bg-[var(--ink-navy)]">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-10">
           <div className="flex items-center gap-3">
-            <img src={nmLogo} alt="NM Insight" className="h-12 w-auto rounded-sm" />
-            <div className="hidden sm:block border-l border-white/15 pl-3">
+            <img src={nmLogo} alt="NM Insight" className="h-12 w-12 object-contain" />
+            <div className="leading-tight">
+              <div className="font-display text-base tracking-[0.08em] text-white">NM INSIGHT</div>
+              <div className="text-[10px] tracking-[0.32em] text-white/60 uppercase">marketing</div>
+            </div>
+            <div className="hidden sm:block ml-3 border-l border-white/15 pl-3">
               <div className="text-[10px] uppercase tracking-[0.18em] text-white/60">Insights Control Room</div>
             </div>
           </div>
