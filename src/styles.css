@@ -22,43 +22,60 @@
   --color-paper-warm: var(--paper-warm);
   --color-ink-navy: var(--ink-navy);
   --color-ink-deep: var(--ink-deep);
-  --font-serif: "Fraunces", ui-serif, Georgia, serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
   --radius: 0.5rem;
-  --ink-navy: #0a1a3f;
-  --ink-deep: #050d24;
-  --paper: #faf8f3;
-  --paper-warm: #f4f1ea;
-  --accent-cyan: #3dd2d6;
+  /* NM Insight brand — cobalt blue from main site */
+  --ink-navy: #1d2a8c;
+  --ink-deep: #141e6b;
+  --paper: #ffffff;
+  --paper-warm: #f4f6ff;
+  --accent-cyan: #a9d8f0;
   --accent-amber: #f2a93b;
 
-  --background: var(--ink-deep);
-  --foreground: #f5f3ee;
-  --card: var(--paper);
+  --background: var(--ink-navy);
+  --foreground: #ffffff;
+  --card: #ffffff;
   --card-foreground: #0f172a;
-  --muted: rgba(255, 255, 255, 0.06);
-  --muted-foreground: #94a3b8;
-  --border: rgba(255, 255, 255, 0.08);
+  --muted: rgba(255, 255, 255, 0.08);
+  --muted-foreground: #c7d2fe;
+  --border: rgba(255, 255, 255, 0.12);
 }
 
 @layer base {
   * { border-color: var(--color-border); }
   html, body {
-    background-color: var(--ink-deep);
+    background-color: var(--ink-navy);
     color: var(--foreground);
     font-family: var(--font-sans);
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
   }
-  .font-display { font-family: var(--font-serif); font-feature-settings: "ss01"; letter-spacing: -0.01em; }
+  .font-display {
+    font-family: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
   .eyebrow {
     font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.18em;
     color: var(--accent-cyan);
     font-weight: 600;
   }
-  .hairline { border-top: 1px solid rgba(255,255,255,0.08); }
+  .hairline { border-top: 1px solid rgba(255,255,255,0.12); }
+  .btn-clarity {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0.75rem 1.75rem;
+    border-radius: 9999px;
+    background: rgba(169, 216, 240, 0.18);
+    border: 1px solid rgba(169, 216, 240, 0.55);
+    color: #ffffff;
+    font-weight: 500;
+    transition: background 0.2s ease;
+  }
+  .btn-clarity:hover { background: rgba(169, 216, 240, 0.30); }
 }
