@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import nmLogo from "@/assets/nm-insight-logo.jpg";
 
 export const Route = createFileRoute("/article")({
   component: ArticlePrototype,
@@ -52,8 +53,8 @@ function ArticlePrototype() {
       {/* Nav */}
       <header className="border-b border-white/8 bg-[var(--ink-deep)]/95 backdrop-blur sticky top-0 z-40">
         <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-          <Link to="/" className="font-display text-lg tracking-tight text-[var(--paper)]">
-            NM <span className="text-[var(--accent-cyan)]">Insight</span>
+          <Link to="/" className="flex items-center gap-2">
+            <img src={nmLogo} alt="NM Insight" className="h-10 w-auto rounded-sm" />
           </Link>
           <nav className="hidden md:flex gap-8 text-sm text-white/70">
             <a href="#" className="hover:text-[var(--accent-cyan)]">Performance</a>
