@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 
-export const Route = createFileRoute("/article")({
+export const Route = createFileRoute("/$category/$slug")({
   component: ArticlePrototype,
   head: () => ({
     meta: [
