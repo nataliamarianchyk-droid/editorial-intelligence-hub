@@ -7,7 +7,7 @@ export function SiteHeader() {
     <header className="border-b border-white/8 bg-[var(--ink-deep)]/95 backdrop-blur sticky top-0 z-40">
       <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between gap-6">
         <Link to="/" className="flex items-center gap-3 shrink-0">
-          <img src={nmLogo} alt="NM Insight" className="h-11 w-11 object-contain" />
+          <img src={nmLogo} alt="NM Insight" width={44} height={44} fetchPriority="high" decoding="async" className="h-11 w-11 object-contain" />
           <div className="leading-tight">
             <div className="font-display text-base tracking-[0.08em] text-white">NM INSIGHT</div>
             <div className="text-[10px] tracking-[0.32em] text-white/60 uppercase">insights</div>
