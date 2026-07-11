@@ -6,17 +6,17 @@ export const Route = createFileRoute("/")({
   component: InsightsHome,
   head: () => ({
     meta: [
-      { title: "NM Insight — Insights on B2B Performance Marketing" },
+      { title: "NM Insight - Insights on B2B Performance Marketing" },
       {
         name: "description",
         content:
-          "Editorial insights from the operational side of B2B performance marketing — acquisition, attribution, content and the systems that connect them.",
+          "Editorial insights from the operational side of B2B performance marketing - acquisition, attribution, content and the systems that connect them.",
       },
-      { property: "og:title", content: "NM Insight — Insights" },
+      { property: "og:title", content: "NM Insight - Insights on B2B Performance Marketing" },
       {
         property: "og:description",
         content:
-          "An editorial hub for operators building the infrastructure between marketing and revenue.",
+          "Editorial insights from the operational side of B2B performance marketing - acquisition, attribution, content and the systems that connect them.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
