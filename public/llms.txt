@@ -1,0 +1,22 @@
+# NM Insight — Insights
+
+> Editorial insights from the operational side of B2B performance marketing — acquisition, attribution, content and the systems that connect them. Published by NM Insight, a Berlin-based B2B performance marketing consultancy.
+
+NM Insight publishes one editorial-grade issue per week for operators building the infrastructure between marketing and revenue. Content is organised into six sections: Performance, Analytics & Tracking, Growth Systems, B2B SaaS, AI & Marketing Operations, and E-commerce.
+
+## Pages
+
+- [Insights homepage](/): Featured issue, section index and upcoming editorial calendar.
+
+## Articles
+
+- [Visibility Is Not Pipeline](/article): Issue 01 — Why marketing activity rarely converts to revenue in specialist markets, and the four structural gaps that close the loop.
+
+## Sections
+
+- [Performance](/category/performance): Paid acquisition, Google Ads, LinkedIn Ads, bidding architecture and creative testing.
+- [Analytics & Tracking](/category/analytics-tracking): GA4, GTM, server-side tagging, attribution and measurement infrastructure.
+- [Growth Systems](/category/growth-systems): Lifecycle design, funnel engineering, lead-first marketing and RevOps.
+- [B2B SaaS](/category/b2b-saas): B2B acquisition, product-led growth, demand generation and account-based marketing.
+- [AI & Marketing Operations](/category/ai-marketing-operations): AI orchestration, marketing operations automation and internal tooling.
+- [E-commerce](/category/ecommerce): DTC growth, Shopify economics, marketplace dynamics and retention systems.
