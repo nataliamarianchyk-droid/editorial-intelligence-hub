@@ -98,7 +98,8 @@ function CategoryPage() {
                 <div>
                   {i.status === "published" ? (
                     <Link
-                      to={i.href}
+                      to="/$category/$slug"
+                      params={{ category: i.category, slug: i.slug }}
                       className="font-display text-2xl md:text-3xl text-[var(--paper)] leading-snug hover:text-[var(--accent-cyan)]"
                     >
                       {i.title}

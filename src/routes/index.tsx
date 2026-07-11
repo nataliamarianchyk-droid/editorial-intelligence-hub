@@ -57,7 +57,7 @@ function InsightsHome() {
         <div className="mx-auto max-w-6xl px-6 py-20 grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-14 items-center">
           <div>
             <p className="eyebrow">{featured.issue} · Featured</p>
-            <Link to={featured.href}>
+            <Link to="/$category/$slug" params={{ category: featured.category, slug: featured.slug }}>
               <h2 className="font-display text-4xl md:text-6xl text-[var(--paper)] leading-[1.05] mt-4 hover:text-[var(--accent-cyan)] transition-colors">
                 {featured.title}
               </h2>
@@ -73,7 +73,8 @@ function InsightsHome() {
               <span>{featured.read}</span>
             </div>
             <Link
-              to={featured.href}
+              to="/$category/$slug"
+              params={{ category: featured.category, slug: featured.slug }}
               className="inline-block mt-10 rounded-full bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-7 py-3 text-sm font-medium hover:brightness-110"
             >
               Read the issue →
