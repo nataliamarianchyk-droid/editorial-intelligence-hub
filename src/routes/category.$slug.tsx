@@ -64,6 +64,7 @@ function CategoryPage() {
   return (
     <div className="min-h-screen bg-[var(--ink-deep)]">
       <SiteHeader />
+      <main>
 
       {/* Category masthead */}
       <section className="border-b border-white/8">
@@ -82,7 +83,7 @@ function CategoryPage() {
       <section className="border-b border-white/8">
         <div className="mx-auto max-w-5xl px-6 py-16">
           {items.length === 0 && (
-            <p className="text-white/45 text-sm">
+            <p className="text-white/65 text-sm">
               No published issues in this section yet. Subscribe below to be notified when the
               first one lands.
             </p>
@@ -90,9 +91,9 @@ function CategoryPage() {
           <div className="divide-y divide-white/8">
             {items.map((i: Insight) => (
               <article key={i.slug} className="py-10 grid grid-cols-1 md:grid-cols-[140px_1fr] gap-6">
-                <div className="text-[11px] uppercase tracking-[0.18em] text-white/40">
+                <div className="text-[11px] uppercase tracking-[0.18em] text-white/65">
                   {i.date}
-                  <div className="mt-1 text-white/30">{i.read} read</div>
+                  <div className="mt-1 text-white/60">{i.read} read</div>
                 </div>
                 <div>
                   {i.status === "published" ? (
@@ -108,7 +109,7 @@ function CategoryPage() {
                     </h2>
                   )}
                   <p className="mt-3 text-white/60 max-w-2xl leading-relaxed">{i.dek}</p>
-                  <div className="mt-4 text-xs text-white/40 flex gap-3">
+                  <div className="mt-4 text-xs text-white/65 flex gap-3">
                     <span>{i.author}</span>
                     {i.status === "upcoming" && (
                       <>
@@ -147,6 +148,7 @@ function CategoryPage() {
         </div>
       </section>
 
+      </main>
       <SiteFooter />
     </div>
   );

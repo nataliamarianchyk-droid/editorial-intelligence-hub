@@ -122,7 +122,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-white/8">
-        <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-white/40 flex justify-between">
+        <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-white/65 flex justify-between">
           <span>© 2026 NM Insight · Berlin</span>
           <span>
             <a href="#" className="hover:text-white/70">Imprint</a>

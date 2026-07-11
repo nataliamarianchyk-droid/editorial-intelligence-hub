@@ -51,6 +51,7 @@ function ArticlePrototype() {
   return (
     <div className="min-h-screen bg-[var(--ink-deep)]">
       <SiteHeader />
+      <main>
 
       {/* Article hero on dark */}
       <section className="mx-auto max-w-3xl px-6 pt-20 pb-12 text-center">
@@ -301,6 +302,7 @@ function ArticlePrototype() {
         </div>
       </section>
 
+      </main>
       <SiteFooter />
     </div>
   );
