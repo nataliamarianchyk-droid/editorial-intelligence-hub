@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
-import { categories } from "@/lib/insights-data";
+import { categories, insights } from "@/lib/insights-data";
 
 const BASE_URL = "https://insights.nm-insight.com";
 
