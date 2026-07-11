@@ -260,7 +260,7 @@ function ArticlePrototype() {
             your pipeline — no pitch, no follow-up sequence.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <a href="#" className="rounded-full bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-7 py-3 text-sm font-medium hover:brightness-110">
+            <a href="https://calendly.com/natalia-marianchyk/strategic-intro-call" target="_blank" rel="noopener noreferrer" className="rounded-full bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-7 py-3 text-sm font-medium hover:brightness-110">
               Book a Clarity Call
             </a>
             <a href="#" className="rounded-full border border-white/25 text-[var(--paper)] px-7 py-3 text-sm hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)]">
