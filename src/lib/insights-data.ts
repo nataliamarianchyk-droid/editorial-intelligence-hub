@@ -73,7 +73,7 @@ export const insights: Insight[] = [
     date: "May 2026",
     read: "7 min",
     issue: "Issue 01",
-    href: "/article",
+    href: "/performance/visibility-is-not-pipeline",
     status: "published",
   },
   {
