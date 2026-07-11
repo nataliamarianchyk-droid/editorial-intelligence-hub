@@ -6,7 +6,7 @@ export const Route = createFileRoute("/control-room")({
   component: ControlRoom,
   head: () => ({
     meta: [
-      { title: "Control Room — Internal" },
+      { title: "Control Room - Internal" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -72,7 +72,7 @@ const categories = [
 const firstArticle = {
   title: "Visibility Is Not Pipeline",
   url: "/performance/visibility-is-not-pipeline/",
-  seoTitle: "Visibility Is Not Pipeline — Why Impressions Don't Build Demand",
+  seoTitle: "Visibility Is Not Pipeline - Why Impressions Don't Build Demand",
   metaDescription:
     "Reach without intent does not produce pipeline. A field guide to separating brand visibility from acquisition velocity in B2B performance marketing.",
   outline: [
@@ -83,8 +83,8 @@ const firstArticle = {
     "The operator's reframe",
   ],
   assets: [
-    { label: "Cover image — 1600×900, navy + cyan + amber", done: false },
-    { label: "OpenGraph card — 1200×630 with category chip", done: false },
+    { label: "Cover image - 1600×900, navy + cyan + amber", done: false },
+    { label: "OpenGraph card - 1200×630 with category chip", done: false },
     { label: "Author headshot & bio block", done: false },
     { label: "Inline diagram: funnel vs intent compounding", done: false },
     { label: "Schema: Article + BreadcrumbList via Rank Math", done: false },
@@ -100,8 +100,8 @@ const firstArticle = {
 const ctaMatrix = [
   { surface: "Masthead (every page)", services: false, calendly: true, linkedin: false },
   { surface: "Homepage CTA band", services: true, calendly: true, linkedin: false },
-  { surface: "Article — end of body", services: true, calendly: false, linkedin: false },
-  { surface: "Article — author bio", services: false, calendly: false, linkedin: true },
+  { surface: "Article - end of body", services: true, calendly: false, linkedin: false },
+  { surface: "Article - author bio", services: false, calendly: false, linkedin: true },
   { surface: "Category archive footer", services: true, calendly: false, linkedin: false },
   { surface: "About page", services: true, calendly: true, linkedin: true },
   { surface: "Site footer", services: false, calendly: false, linkedin: true },
@@ -224,7 +224,7 @@ function ControlRoom() {
       {/* Hero */}
       <section className="border-b border-white/5 bg-[var(--ink-navy)]">
         <div className="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-24">
-          <Eyebrow>Internal — not the public site</Eyebrow>
+          <Eyebrow>Internal - not the public site</Eyebrow>
           <h1 className="font-display mt-4 max-w-4xl text-4xl font-medium leading-[1.1] text-white md:text-6xl">
             The control room behind insights.nm-insight.com.
           </h1>
@@ -664,7 +664,7 @@ function Cell({ on, tone }: { on: boolean; tone: "cyan" | "amber" | "default" })
       {on ? (
         <span className={`inline-block ${color}`}>●</span>
       ) : (
-        <span className="inline-block text-white/15">—</span>
+        <span className="inline-block text-white/15"> - </span>
       )}
     </td>
   );

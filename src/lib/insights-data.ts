@@ -18,7 +18,7 @@ export const categories: Category[] = [
     slug: "analytics-tracking",
     short: "GA4, GTM, server-side, attribution",
     description:
-      "GA4, GTM, server-side tagging, attribution and measurement — the infrastructure behind decisions that actually hold up.",
+      "GA4, GTM, server-side tagging, attribution and measurement - the infrastructure behind decisions that actually hold up.",
   },
   {
     name: "Growth Systems",
@@ -39,7 +39,7 @@ export const categories: Category[] = [
     slug: "ai-marketing-operations",
     short: "AI orchestration, MOps automation",
     description:
-      "AI orchestration, marketing operations automation and internal tooling — the operator's stack behind the modern marketing team.",
+      "AI orchestration, marketing operations automation and internal tooling - the operator's stack behind the modern marketing team.",
   },
   {
     name: "E-commerce",
@@ -67,19 +67,19 @@ export const insights: Insight[] = [
   {
     slug: "visibility-is-not-pipeline",
     title: "Visibility Is Not Pipeline.",
-    dek: "Why marketing activity rarely converts to revenue in specialist markets — and the four structural gaps that close the loop.",
+    dek: "Why marketing activity rarely converts to revenue in specialist markets - and the four structural gaps that close the loop.",
     category: "performance",
     author: "Natalia Marianchyk",
     date: "May 2026",
     read: "7 min",
     issue: "Issue 01",
-    href: "/article",
+    href: "/performance/visibility-is-not-pipeline",
     status: "published",
   },
   {
     slug: "utm-governance",
     title: "UTM Governance Is a Revenue System.",
-    dek: "Tracking is not a plugin. It is the ledger every downstream decision is built on — and most teams keep it in a spreadsheet.",
+    dek: "Tracking is not a plugin. It is the ledger every downstream decision is built on - and most teams keep it in a spreadsheet.",
     category: "analytics-tracking",
     author: "Natalia Marianchyk",
     date: "Upcoming",
@@ -101,7 +101,7 @@ export const insights: Insight[] = [
   {
     slug: "icp-precision",
     title: "ICP Precision in Sub-1,000-Account Markets.",
-    dek: "When your total addressable market fits on one screen, precision is not optional — it is the only viable strategy.",
+    dek: "When your total addressable market fits on one screen, precision is not optional - it is the only viable strategy.",
     category: "b2b-saas",
     author: "Natalia Marianchyk",
     date: "Upcoming",
@@ -123,7 +123,7 @@ export const insights: Insight[] = [
   {
     slug: "dtc-attribution-after-att",
     title: "DTC Attribution After ATT.",
-    dek: "Deterministic attribution is gone. What replaces it is not another dashboard — it is a different way of deciding.",
+    dek: "Deterministic attribution is gone. What replaces it is not another dashboard - it is a different way of deciding.",
     category: "ecommerce",
     author: "Natalia Marianchyk",
     date: "Upcoming",

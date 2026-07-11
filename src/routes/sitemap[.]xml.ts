@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
-import { categories } from "@/lib/insights-data";
+import { categories, insights } from "@/lib/insights-data";
 
 const BASE_URL = "https://insights.nm-insight.com";
 
@@ -16,12 +16,18 @@ export const Route = createFileRoute("/sitemap.xml")({
       GET: async () => {
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
-          { path: "/article", changefreq: "monthly", priority: "0.9" },
           ...categories.map((c) => ({
             path: `/category/${c.slug}`,
             changefreq: "weekly" as const,
             priority: "0.7",
           })),
+          ...insights
+            .filter((i) => i.status === "published")
+            .map((i) => ({
+              path: `/${i.category}/${i.slug}`,
+              changefreq: "monthly" as const,
+              priority: "0.9",
+            })),
         ];
 
         const urls = entries.map((e) =>

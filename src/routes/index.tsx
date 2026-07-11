@@ -43,7 +43,7 @@ function InsightsHome() {
             <span className="italic text-white/60"> infrastructure between marketing and revenue.</span>
           </h1>
           <p className="mt-8 text-white/60 max-w-2xl mx-auto text-base leading-relaxed">
-            A weekly, editorial-grade publication on B2B performance marketing — analysis,
+            A weekly, editorial-grade publication on B2B performance marketing - analysis,
             frameworks and field notes from the operational side of the discipline.
           </p>
           <div className="mt-8 text-xs uppercase tracking-[0.22em] text-white/65">
@@ -57,7 +57,7 @@ function InsightsHome() {
         <div className="mx-auto max-w-6xl px-6 py-20 grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-14 items-center">
           <div>
             <p className="eyebrow">{featured.issue} · Featured</p>
-            <Link to={featured.href}>
+            <Link to="/$category/$slug" params={{ category: featured.category, slug: featured.slug }}>
               <h2 className="font-display text-4xl md:text-6xl text-[var(--paper)] leading-[1.05] mt-4 hover:text-[var(--accent-cyan)] transition-colors">
                 {featured.title}
               </h2>
@@ -73,7 +73,8 @@ function InsightsHome() {
               <span>{featured.read}</span>
             </div>
             <Link
-              to={featured.href}
+              to="/$category/$slug"
+              params={{ category: featured.category, slug: featured.slug }}
               className="inline-block mt-10 rounded-full bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-7 py-3 text-sm font-medium hover:brightness-110"
             >
               Read the issue →
@@ -115,7 +116,7 @@ function InsightsHome() {
               </h2>
             </div>
             <p className="text-sm text-white/50 max-w-md">
-              Six editorial verticals — each written from the operational side, not the promotional one.
+              Six editorial verticals - each written from the operational side, not the promotional one.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
