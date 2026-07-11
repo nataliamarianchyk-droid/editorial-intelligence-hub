@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
-import { categoryBySlug, insightsByCategory, categories } from "@/lib/insights-data";
+import { categoryBySlug, insightsByCategory, categories, type Insight } from "@/lib/insights-data";
 
 export const Route = createFileRoute("/category/$slug")({
   loader: ({ params }) => {
