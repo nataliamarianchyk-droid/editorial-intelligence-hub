@@ -64,7 +64,7 @@ export function SiteFooter() {
             NM <span className="text-[var(--accent-cyan)]">Insight</span>
           </p>
           <p className="mt-3 text-white/55 leading-relaxed">
-            Insights from the operational side of performance marketing — where acquisition,
+            Insights from the operational side of performance marketing - where acquisition,
             attribution, content and systems connect.
           </p>
         </div>

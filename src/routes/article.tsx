@@ -6,10 +6,10 @@ export const Route = createFileRoute("/article")({
   component: ArticlePrototype,
   head: () => ({
     meta: [
-      { title: "Visibility Is Not Pipeline — NM Insight" },
-      { name: "description", content: "Why marketing activity rarely converts to revenue in specialist markets — and the four structural gaps that close the loop." },
+      { title: "Visibility Is Not Pipeline - NM Insight" },
+      { name: "description", content: "Why marketing activity rarely converts to revenue in specialist markets - and the four structural gaps that close the loop." },
       { property: "og:title", content: "Visibility Is Not Pipeline" },
-      { property: "og:description", content: "Editorial prototype — NM Insight." },
+      { property: "og:description", content: "Editorial prototype - NM Insight." },
       { property: "og:type", content: "article" },
     ],
   }),
@@ -112,7 +112,7 @@ function ArticlePrototype() {
             </p>
             <p className="mt-6 text-[17px] leading-[1.85] font-sans text-[#1f2937]">
               This is the most common and least discussed problem in specialist markets. Not a lack
-              of effort. Not a lack of budget. A structural gap between visibility and revenue —
+              of effort. Not a lack of budget. A structural gap between visibility and revenue - 
               and most companies do not even know it exists until the pipeline dries up.
             </p>
 
@@ -130,7 +130,7 @@ function ArticlePrototype() {
               </p>
               <p>
                 According to the CMO Insights Report 2025, nearly half of marketing leaders say
-                they do not have sufficient access to relevant data to achieve their goals — and
+                they do not have sufficient access to relevant data to achieve their goals - and
                 almost a quarter are not confident in the data they do have.
               </p>
             </div>
@@ -143,8 +143,8 @@ function ArticlePrototype() {
               The Four Gaps That Kill Pipeline
             </h2>
             <p className="font-sans text-[17px] leading-[1.85] text-[#1f2937]">
-              In specialist markets — where audiences are small, buying cycles are long, and every
-              conversation matters — four structural gaps appear again and again.
+              In specialist markets - where audiences are small, buying cycles are long, and every
+              conversation matters - four structural gaps appear again and again.
             </p>
 
             <ol className="mt-8 space-y-6">
@@ -175,8 +175,8 @@ function ArticlePrototype() {
             </h2>
             <div className="font-sans text-[17px] leading-[1.85] text-[#1f2937] space-y-5">
               <p>
-                The answer is not more campaigns. It is a system that connects every element —
-                targeting, content, tracking, and CRM — into one coherent flow.
+                The answer is not more campaigns. It is a system that connects every element - 
+                targeting, content, tracking, and CRM - into one coherent flow.
               </p>
               <p>
                 This means starting with a precise ICP definition before touching any channel.
@@ -218,7 +218,7 @@ function ArticlePrototype() {
                 "how do we do more?" It is "where exactly is the system breaking down?"
               </p>
               <p>
-                The answer is almost always structural — not creative, not strategic, not about
+                The answer is almost always structural - not creative, not strategic, not about
                 channel choice. It is about the infrastructure connecting what marketing does to
                 what sales needs.
               </p>
@@ -236,7 +236,7 @@ function ArticlePrototype() {
               <div>
                 <p className="font-display text-lg text-[var(--ink-navy)]">Natalia Marianchyk</p>
                 <p className="mt-1 text-sm text-black/65 font-sans leading-relaxed">
-                  Founder of NM Insight — a Berlin-based B2B performance marketing consultancy
+                  Founder of NM Insight - a Berlin-based B2B performance marketing consultancy
                   focused on the infrastructure between acquisition and revenue.
                 </p>
                 <p className="mt-2 text-xs text-black/45 font-sans">
@@ -257,7 +257,7 @@ function ArticlePrototype() {
           </h2>
           <p className="mt-5 text-white/65 max-w-xl mx-auto">
             A 30-minute Clarity Call mapping the exact gap between your marketing activity and
-            your pipeline — no pitch, no follow-up sequence.
+            your pipeline - no pitch, no follow-up sequence.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <a href="https://calendly.com/natalia-marianchyk/strategic-intro-call" target="_blank" rel="noopener noreferrer" className="rounded-full bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-7 py-3 text-sm font-medium hover:brightness-110">

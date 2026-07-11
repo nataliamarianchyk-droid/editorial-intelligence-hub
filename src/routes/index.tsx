@@ -43,7 +43,7 @@ function InsightsHome() {
             <span className="italic text-white/60"> infrastructure between marketing and revenue.</span>
           </h1>
           <p className="mt-8 text-white/60 max-w-2xl mx-auto text-base leading-relaxed">
-            A weekly, editorial-grade publication on B2B performance marketing — analysis,
+            A weekly, editorial-grade publication on B2B performance marketing - analysis,
             frameworks and field notes from the operational side of the discipline.
           </p>
           <div className="mt-8 text-xs uppercase tracking-[0.22em] text-white/65">
@@ -115,7 +115,7 @@ function InsightsHome() {
               </h2>
             </div>
             <p className="text-sm text-white/50 max-w-md">
-              Six editorial verticals — each written from the operational side, not the promotional one.
+              Six editorial verticals - each written from the operational side, not the promotional one.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

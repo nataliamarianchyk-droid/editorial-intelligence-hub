@@ -12,7 +12,7 @@ export const Route = createFileRoute("/category/$slug")({
     if (!loaderData) {
       return {
         meta: [
-          { title: "Section not found — NM Insight" },
+          { title: "Section not found - NM Insight" },
           { name: "robots", content: "noindex" },
         ],
       };
@@ -20,9 +20,9 @@ export const Route = createFileRoute("/category/$slug")({
     const { category } = loaderData;
     return {
       meta: [
-        { title: `${category.name} — NM Insight` },
+        { title: `${category.name} - NM Insight` },
         { name: "description", content: category.description },
-        { property: "og:title", content: `${category.name} — NM Insight` },
+        { property: "og:title", content: `${category.name} - NM Insight` },
         { property: "og:description", content: category.description },
         { property: "og:type", content: "website" },
       ],
