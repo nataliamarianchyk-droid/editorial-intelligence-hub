@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ControlRoomRouteImport } from './routes/control-room'
 import { Route as ArticleRouteImport } from './routes/article'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ControlRoomRoute = ControlRoomRouteImport.update({
   id: '/control-room',
   path: '/control-room',
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/control-room': typeof ControlRoomRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/category/$slug': typeof CategorySlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/control-room': typeof ControlRoomRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/category/$slug': typeof CategorySlugRoute
 }
 export interface FileRoutesById {
@@ -52,25 +60,45 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/control-room': typeof ControlRoomRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/category/$slug': typeof CategorySlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/article' | '/control-room' | '/category/$slug'
+  fullPaths:
+    | '/'
+    | '/article'
+    | '/control-room'
+    | '/sitemap.xml'
+    | '/category/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/article' | '/control-room' | '/category/$slug'
-  id: '__root__' | '/' | '/article' | '/control-room' | '/category/$slug'
+  to: '/' | '/article' | '/control-room' | '/sitemap.xml' | '/category/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/article'
+    | '/control-room'
+    | '/sitemap.xml'
+    | '/category/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArticleRoute: typeof ArticleRoute
   ControlRoomRoute: typeof ControlRoomRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   CategorySlugRoute: typeof CategorySlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/control-room': {
       id: '/control-room'
       path: '/control-room'
@@ -106,6 +134,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArticleRoute: ArticleRoute,
   ControlRoomRoute: ControlRoomRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   CategorySlugRoute: CategorySlugRoute,
 }
 export const routeTree = rootRouteImport
