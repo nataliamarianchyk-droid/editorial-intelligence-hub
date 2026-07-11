@@ -4,6 +4,12 @@ import nmLogo from "@/assets/nm-insight-logo.png";
 
 export const Route = createFileRoute("/control-room")({
   component: ControlRoom,
+  head: () => ({
+    meta: [
+      { title: "Control Room — Internal" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
+  }),
 });
 
 /* ------------------------------------------------------------------ */
