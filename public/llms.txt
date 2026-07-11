@@ -10,7 +10,7 @@ NM Insight publishes one editorial-grade issue per week for operators building t
 
 ## Articles
 
-- [Visibility Is Not Pipeline](/article): Issue 01 - Why marketing activity rarely converts to revenue in specialist markets, and the four structural gaps that close the loop.
+- [Visibility Is Not Pipeline](/performance/visibility-is-not-pipeline): Issue 01 - Why marketing activity rarely converts to revenue in specialist markets, and the four structural gaps that close the loop.
 
 ## Sections
 
