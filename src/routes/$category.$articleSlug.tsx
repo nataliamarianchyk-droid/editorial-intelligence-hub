@@ -8,7 +8,7 @@ export const Route = createFileRoute("/$category/$articleSlug")({
     const category = categoryBySlug(params.category);
     if (!category) throw notFound();
     const article = insights.find(
-      (i) => i.slug === params.slug && i.category === params.category && i.status === "published",
+      (i) => i.slug === params.articleSlug && i.category === params.category && i.status === "published",
     );
     if (!article) throw notFound();
     return { category, article };
