@@ -27,7 +27,9 @@ export function SiteHeader() {
           ))}
         </nav>
         <a
-          href="https://calendly.com/"
+          href="https://calendly.com/natalia-marianchyk/strategic-intro-call"
+          target="_blank"
+          rel="noopener noreferrer"
           className="hidden md:inline-flex text-xs uppercase tracking-[0.14em] text-[var(--ink-deep)] bg-[var(--accent-cyan)] rounded-full px-4 py-2 hover:brightness-110"
         >
           Clarity Call
@@ -101,7 +103,7 @@ export function SiteFooter() {
               </a>
             </li>
             <li>
-              <a href="https://calendly.com/" className="hover:text-[var(--accent-cyan)]">
+              <a href="https://calendly.com/natalia-marianchyk/strategic-intro-call" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-cyan)]">
                 Clarity Call
               </a>
             </li>
