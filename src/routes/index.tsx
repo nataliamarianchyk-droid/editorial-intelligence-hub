@@ -32,6 +32,7 @@ function InsightsHome() {
   return (
     <div className="min-h-screen bg-[var(--ink-deep)]">
       <SiteHeader />
+      <main>
 
       {/* Masthead */}
       <section className="border-b border-white/8">
@@ -208,6 +209,7 @@ function InsightsHome() {
         </div>
       </section>
 
+      </main>
       <SiteFooter />
     </div>
   );
