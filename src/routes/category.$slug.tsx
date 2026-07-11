@@ -88,7 +88,7 @@ function CategoryPage() {
             </p>
           )}
           <div className="divide-y divide-white/8">
-            {items.map((i) => (
+            {items.map((i: Insight) => (
               <article key={i.slug} className="py-10 grid grid-cols-1 md:grid-cols-[140px_1fr] gap-6">
                 <div className="text-[11px] uppercase tracking-[0.18em] text-white/40">
                   {i.date}
