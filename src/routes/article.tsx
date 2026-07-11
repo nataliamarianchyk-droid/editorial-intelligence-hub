@@ -50,29 +50,7 @@ function ArticlePrototype() {
 
   return (
     <div className="min-h-screen bg-[var(--ink-deep)]">
-      {/* Nav */}
-      <header className="border-b border-white/8 bg-[var(--ink-deep)]/95 backdrop-blur sticky top-0 z-40">
-        <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3">
-            <img src={nmLogo} alt="NM Insight" className="h-11 w-11 object-contain" />
-            <div className="leading-tight">
-              <div className="font-display text-base tracking-[0.08em] text-white">NM INSIGHT</div>
-              <div className="text-[10px] tracking-[0.32em] text-white/60 uppercase">marketing</div>
-            </div>
-          </Link>
-          <nav className="hidden md:flex gap-8 text-sm text-white/70">
-            <a href="#" className="hover:text-[var(--accent-cyan)]">Performance</a>
-            <a href="#" className="hover:text-[var(--accent-cyan)]">Analytics</a>
-            <a href="#" className="hover:text-[var(--accent-cyan)]">Systems</a>
-            <a href="#" className="hover:text-[var(--accent-cyan)]">Strategy</a>
-            <a href="#" className="hover:text-[var(--accent-cyan)]">Content</a>
-            <a href="#" className="hover:text-[var(--accent-cyan)]">Operations</a>
-          </nav>
-          <Link to="/" className="text-xs uppercase tracking-[0.14em] text-[var(--accent-cyan)]">
-            ← Control Room
-          </Link>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* Article hero on dark */}
       <section className="mx-auto max-w-3xl px-6 pt-20 pb-12 text-center">
