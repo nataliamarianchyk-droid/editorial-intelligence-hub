@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import nmLogo from "@/assets/nm-insight-logo.png";
+import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 
 export const Route = createFileRoute("/article")({
   component: ArticlePrototype,
@@ -50,29 +50,7 @@ function ArticlePrototype() {
 
   return (
     <div className="min-h-screen bg-[var(--ink-deep)]">
-      {/* Nav */}
-      <header className="border-b border-white/8 bg-[var(--ink-deep)]/95 backdrop-blur sticky top-0 z-40">
-        <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3">
-            <img src={nmLogo} alt="NM Insight" className="h-11 w-11 object-contain" />
-            <div className="leading-tight">
-              <div className="font-display text-base tracking-[0.08em] text-white">NM INSIGHT</div>
-              <div className="text-[10px] tracking-[0.32em] text-white/60 uppercase">marketing</div>
-            </div>
-          </Link>
-          <nav className="hidden md:flex gap-8 text-sm text-white/70">
-            <a href="#" className="hover:text-[var(--accent-cyan)]">Performance</a>
-            <a href="#" className="hover:text-[var(--accent-cyan)]">Analytics</a>
-            <a href="#" className="hover:text-[var(--accent-cyan)]">Systems</a>
-            <a href="#" className="hover:text-[var(--accent-cyan)]">Strategy</a>
-            <a href="#" className="hover:text-[var(--accent-cyan)]">Content</a>
-            <a href="#" className="hover:text-[var(--accent-cyan)]">Operations</a>
-          </nav>
-          <Link to="/" className="text-xs uppercase tracking-[0.14em] text-[var(--accent-cyan)]">
-            ← Control Room
-          </Link>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* Article hero on dark */}
       <section className="mx-auto max-w-3xl px-6 pt-20 pb-12 text-center">
@@ -323,118 +301,7 @@ function ArticlePrototype() {
         </div>
       </section>
 
-      {/* Mobile + OG previews */}
-      <section className="bg-[var(--ink-deep)] border-t border-white/8">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="eyebrow">Prototype QA</p>
-          <h3 className="font-display text-3xl text-[var(--paper)] mt-2 mb-10">
-            Mobile & social previews
-          </h3>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-            {/* Mobile frame */}
-            <div className="flex justify-center">
-              <div className="w-[320px] rounded-[36px] border border-white/15 bg-black p-3 shadow-2xl">
-                <div className="rounded-[28px] overflow-hidden bg-[var(--ink-deep)] h-[640px] flex flex-col">
-                  <div className="px-5 pt-6 pb-4 border-b border-white/8">
-                    <p className="font-display text-[var(--paper)]">NM <span className="text-[var(--accent-cyan)]">Insight</span></p>
-                  </div>
-                  <div className="px-5 py-5 text-center">
-                    <span className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-cyan)]">Performance</span>
-                    <h4 className="font-display text-2xl text-[var(--paper)] mt-3 leading-tight">
-                      Visibility Is Not Pipeline.
-                    </h4>
-                    <p className="text-white/55 text-[11px] mt-3">Natalia Marianchyk · 7 min</p>
-                  </div>
-                  <div className="flex-1 bg-[var(--paper)] text-[#0f172a] px-5 py-5 overflow-hidden">
-                    <p className="font-serif text-[15px] leading-relaxed">
-                      You launched the product. You hired someone to run LinkedIn. You set up
-                      Google Ads…
-                    </p>
-                    <p className="font-serif text-[15px] leading-relaxed mt-3 font-medium text-[var(--ink-navy)]">
-                      And yet the sales team is still waiting.
-                    </p>
-                    <div className="mt-4 border-l-2 border-[var(--accent-cyan)] pl-3 font-display text-[15px] text-[var(--ink-navy)] italic">
-                      The problem is not the campaigns. It is the infrastructure underneath them.
-                    </div>
-                  </div>
-                  <div className="bg-[var(--ink-navy)] px-5 py-4 text-center">
-                    <a className="inline-block text-[11px] rounded-full bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-4 py-2 font-medium">
-                      Book a Clarity Call
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* OG image */}
-            <div>
-              <p className="text-xs uppercase tracking-[0.14em] text-white/45 mb-3">
-                OG image · 1200 × 630
-              </p>
-              <div className="aspect-[1200/630] w-full rounded-md overflow-hidden border border-white/10 bg-gradient-to-br from-[var(--ink-navy)] to-[var(--ink-deep)] relative flex flex-col justify-between p-10">
-                <div className="flex items-center justify-between">
-                  <span className="font-display text-[var(--paper)] text-lg">NM <span className="text-[var(--accent-cyan)]">Insight</span></span>
-                  <span className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-cyan)]">Performance</span>
-                </div>
-                <div>
-                  <h4 className="font-display text-[var(--paper)] text-4xl md:text-5xl leading-[1.05]">
-                    Visibility Is Not Pipeline.
-                  </h4>
-                  <p className="font-display italic text-white/55 text-2xl md:text-3xl mt-2">
-                    Here is what is.
-                  </p>
-                </div>
-                <div className="flex justify-between items-end">
-                  <p className="text-white/55 text-sm">Natalia Marianchyk · May 2026</p>
-                  <span className="text-[10px] uppercase tracking-[0.22em] text-white/35">
-                    insights.nm-insight.com
-                  </span>
-                </div>
-                <div className="absolute inset-y-0 right-0 w-1 bg-[var(--accent-cyan)]" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-[var(--ink-deep)] border-t border-white/8">
-        <div className="mx-auto max-w-6xl px-6 py-14 grid grid-cols-1 md:grid-cols-4 gap-10 text-sm">
-          <div>
-            <p className="font-display text-[var(--paper)] text-lg">NM <span className="text-[var(--accent-cyan)]">Insight</span></p>
-            <p className="mt-3 text-white/55 leading-relaxed">
-              Insights from the operational side of performance marketing — where acquisition,
-              attribution, content, and systems connect.
-            </p>
-          </div>
-          <div>
-            <p className="eyebrow mb-3">Sections</p>
-            <ul className="space-y-2 text-white/65">
-              <li>Performance</li><li>Analytics</li><li>Systems</li><li>Strategy</li>
-            </ul>
-          </div>
-          <div>
-            <p className="eyebrow mb-3">Company</p>
-            <ul className="space-y-2 text-white/65">
-              <li>Services</li><li>About</li><li>Contact</li><li>Clarity Call</li>
-            </ul>
-          </div>
-          <div>
-            <p className="eyebrow mb-3">Subscribe</p>
-            <p className="text-white/55 mb-3">One insight per week. No noise.</p>
-            <div className="flex">
-              <input className="flex-1 bg-white/5 border border-white/10 px-3 py-2 text-sm text-[var(--paper)] focus:outline-none focus:border-[var(--accent-cyan)]" placeholder="you@company.com" />
-              <button className="bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-4 text-sm font-medium">→</button>
-            </div>
-          </div>
-        </div>
-        <div className="border-t border-white/8">
-          <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-white/40 flex justify-between">
-            <span>© 2026 NM Insight · Berlin</span>
-            <span>Imprint · Privacy</span>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
