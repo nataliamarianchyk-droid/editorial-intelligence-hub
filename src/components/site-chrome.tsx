@@ -115,7 +115,7 @@ export function SiteFooter() {
               className="flex-1 bg-white/5 border border-white/10 px-3 py-2 text-sm text-[var(--paper)] focus:outline-none focus:border-[var(--accent-cyan)]"
               placeholder="you@company.com"
             />
-            <button className="bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-4 text-sm font-medium">
+            <button type="submit" aria-label="Subscribe" className="bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-4 text-sm font-medium">
               →
             </button>
           </form>
