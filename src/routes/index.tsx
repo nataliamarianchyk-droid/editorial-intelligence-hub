@@ -46,7 +46,7 @@ function InsightsHome() {
             A weekly, editorial-grade publication on B2B performance marketing — analysis,
             frameworks and field notes from the operational side of the discipline.
           </p>
-          <div className="mt-8 text-xs uppercase tracking-[0.22em] text-white/40">
+          <div className="mt-8 text-xs uppercase tracking-[0.22em] text-white/65">
             One issue per week · No noise
           </div>
         </div>
@@ -96,7 +96,7 @@ function InsightsHome() {
                 Here is what is.
               </p>
             </div>
-            <p className="text-white/45 text-xs uppercase tracking-[0.22em]">
+            <p className="text-white/65 text-xs uppercase tracking-[0.22em]">
               insights.nm-insight.com
             </p>
             <div className="absolute inset-y-0 right-0 w-1 bg-[var(--accent-cyan)]" />
@@ -165,7 +165,7 @@ function InsightsHome() {
                     <span className="text-[11px] uppercase tracking-[0.18em] text-[var(--accent-cyan)] font-semibold">
                       {cat.name}
                     </span>
-                    <span className="text-[10px] uppercase tracking-[0.14em] text-white/35">
+                    <span className="text-[10px] uppercase tracking-[0.14em] text-white/60">
                       {i.date}
                     </span>
                   </div>
@@ -173,7 +173,7 @@ function InsightsHome() {
                     {i.title}
                   </h3>
                   <p className="mt-3 text-sm text-white/55 leading-relaxed">{i.dek}</p>
-                  <span className="mt-auto pt-6 text-xs text-white/40">{i.read} read</span>
+                  <span className="mt-auto pt-6 text-xs text-white/65">{i.read} read</span>
                 </article>
               );
             })}
