@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import nmLogo from "@/assets/nm-insight-logo.png";
-import { categories } from "@/lib/insights-data";
+
+const CALENDLY = "https://calendly.com/natalia-marianchyk/strategic-intro-call";
 
 export function SiteHeader() {
   return (
@@ -10,24 +11,41 @@ export function SiteHeader() {
           <img src={nmLogo} alt="NM Insight" width={44} height={44} fetchPriority="high" decoding="async" className="h-11 w-11 object-contain" />
           <div className="leading-tight">
             <div className="font-display text-base tracking-[0.08em] text-white">NM INSIGHT</div>
-            <div className="text-[10px] tracking-[0.32em] text-white/60 uppercase">insights</div>
+            <div className="text-[10px] tracking-[0.32em] text-white/60 uppercase">consultancy</div>
           </div>
         </Link>
-        <nav className="hidden lg:flex gap-7 text-sm text-white/70">
-          {categories.map((c) => (
-            <Link
-              key={c.slug}
-              to="/category/$slug"
-              params={{ slug: c.slug }}
-              activeProps={{ className: "text-[var(--accent-cyan)]" }}
-              className="hover:text-[var(--accent-cyan)] transition-colors"
-            >
-              {c.name}
-            </Link>
-          ))}
+        <nav className="hidden md:flex gap-8 text-sm text-white/70">
+          <Link
+            to="/services"
+            activeProps={{ className: "text-[var(--accent-cyan)]" }}
+            className="hover:text-[var(--accent-cyan)] transition-colors"
+          >
+            Services
+          </Link>
+          <Link
+            to="/about"
+            activeProps={{ className: "text-[var(--accent-cyan)]" }}
+            className="hover:text-[var(--accent-cyan)] transition-colors"
+          >
+            About
+          </Link>
+          <a
+            href="https://insights.nm-insight.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[var(--accent-cyan)] transition-colors"
+          >
+            Insights ↗
+          </a>
+          <a
+            href="#contact"
+            className="hover:text-[var(--accent-cyan)] transition-colors"
+          >
+            Contact
+          </a>
         </nav>
         <a
-          href="https://calendly.com/natalia-marianchyk/strategic-intro-call"
+          href={CALENDLY}
           target="_blank"
           rel="noopener noreferrer"
           className="hidden md:inline-flex text-xs uppercase tracking-[0.14em] text-[var(--ink-deep)] bg-[var(--accent-cyan)] rounded-full px-4 py-2 hover:brightness-110"
@@ -35,20 +53,13 @@ export function SiteHeader() {
           Clarity Call
         </a>
       </div>
-      {/* Mobile category strip */}
-      <div className="lg:hidden border-t border-white/8 overflow-x-auto">
-        <div className="mx-auto max-w-7xl px-6 py-3 flex gap-5 text-xs text-white/60 whitespace-nowrap">
-          {categories.map((c) => (
-            <Link
-              key={c.slug}
-              to="/category/$slug"
-              params={{ slug: c.slug }}
-              activeProps={{ className: "text-[var(--accent-cyan)]" }}
-              className="hover:text-[var(--accent-cyan)]"
-            >
-              {c.name}
-            </Link>
-          ))}
+      {/* Mobile strip */}
+      <div className="md:hidden border-t border-white/8 overflow-x-auto">
+        <div className="mx-auto max-w-7xl px-6 py-3 flex gap-6 text-xs text-white/65 whitespace-nowrap">
+          <Link to="/services" activeProps={{ className: "text-[var(--accent-cyan)]" }}>Services</Link>
+          <Link to="/about" activeProps={{ className: "text-[var(--accent-cyan)]" }}>About</Link>
+          <a href="https://insights.nm-insight.com" target="_blank" rel="noopener noreferrer">Insights ↗</a>
+          <a href="#contact">Contact</a>
         </div>
       </div>
     </header>
@@ -57,80 +68,69 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[var(--ink-deep)] border-t border-white/8">
-      <div className="mx-auto max-w-6xl px-6 py-14 grid grid-cols-1 md:grid-cols-4 gap-10 text-sm">
+    <footer id="contact" className="bg-[var(--ink-deep)] border-t border-white/8">
+      <div className="mx-auto max-w-6xl px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-10 text-sm">
         <div>
           <p className="font-display text-[var(--paper)] text-lg">
             NM <span className="text-[var(--accent-cyan)]">Insight</span>
           </p>
-          <p className="mt-3 text-white/55 leading-relaxed">
-            Insights from the operational side of performance marketing — where acquisition,
-            attribution, content and systems connect.
+          <p className="mt-3 text-white/60 leading-relaxed max-w-sm">
+            Berlin-based B2B performance marketing consultancy. The infrastructure between
+            acquisition and revenue.
           </p>
         </div>
         <div>
-          <p className="eyebrow mb-3">Sections</p>
-          <ul className="space-y-2 text-white/65">
-            {categories.slice(0, 4).map((c) => (
-              <li key={c.slug}>
-                <Link
-                  to="/category/$slug"
-                  params={{ slug: c.slug }}
-                  className="hover:text-[var(--accent-cyan)]"
-                >
-                  {c.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p className="eyebrow mb-3">Company</p>
-          <ul className="space-y-2 text-white/65">
-            <li>
-              <a href="https://nm-insight.com" className="hover:text-[var(--accent-cyan)]">
-                Services
-              </a>
-            </li>
-            <li>
-              <a href="https://nm-insight.com/about" className="hover:text-[var(--accent-cyan)]">
-                About
-              </a>
-            </li>
+          <p className="eyebrow mb-3">Contact</p>
+          <ul className="space-y-2 text-white/70">
             <li>
               <a href="mailto:hello@nm-insight.com" className="hover:text-[var(--accent-cyan)]">
-                Contact
+                hello@nm-insight.com
               </a>
             </li>
             <li>
-              <a href="https://calendly.com/natalia-marianchyk/strategic-intro-call" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-cyan)]">
-                Clarity Call
+              <a
+                href="https://www.linkedin.com/company/nm-insight"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[var(--accent-cyan)]"
+              >
+                LinkedIn ↗
+              </a>
+            </li>
+            <li>
+              <a
+                href={CALENDLY}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[var(--accent-cyan)]"
+              >
+                Book a Clarity Call
               </a>
             </li>
           </ul>
         </div>
         <div>
-          <p className="eyebrow mb-3">Subscribe</p>
-          <p className="text-white/55 mb-3">One insight per week. No noise.</p>
-          <form className="flex">
-            <input
-              className="flex-1 bg-white/5 border border-white/10 px-3 py-2 text-sm text-[var(--paper)] focus:outline-none focus:border-[var(--accent-cyan)]"
-              placeholder="you@company.com"
-            />
-            <button type="submit" aria-label="Subscribe" className="bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-4 text-sm font-medium">
-              →
-            </button>
-          </form>
+          <p className="eyebrow mb-3">Explore</p>
+          <ul className="space-y-2 text-white/70">
+            <li><Link to="/services" className="hover:text-[var(--accent-cyan)]">Services</Link></li>
+            <li><Link to="/about" className="hover:text-[var(--accent-cyan)]">About</Link></li>
+            <li>
+              <a
+                href="https://insights.nm-insight.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[var(--accent-cyan)]"
+              >
+                Insights ↗
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
       <div className="border-t border-white/8">
-        <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-white/65 flex justify-between">
-          <span>© 2026 NM Insight · Berlin</span>
-          <span>
-            <a href="#" className="hover:text-white/70">Imprint</a>
-            <span className="mx-2">·</span>
-            <a href="#" className="hover:text-white/70">Privacy</a>
-          </span>
+        <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-white/60 flex justify-between">
+          <span>© NM Insight · Berlin</span>
+          <span>Results First. Buzzwords Later.</span>
         </div>
       </div>
     </footer>
