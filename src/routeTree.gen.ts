@@ -14,7 +14,7 @@ import { Route as ControlRoomRouteImport } from './routes/control-room'
 import { Route as ArticleRouteImport } from './routes/article'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
-import { Route as CategorySlugRouteImport } from './routes/$category.$slug'
+import { Route as CategoryArticleSlugRouteImport } from './routes/$category.$articleSlug'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -41,9 +41,9 @@ const CategorySlugRoute = CategorySlugRouteImport.update({
   path: '/category/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CategorySlugRoute = CategorySlugRouteImport.update({
-  id: '/$category/$slug',
-  path: '/$category/$slug',
+const CategoryArticleSlugRoute = CategoryArticleSlugRouteImport.update({
+  id: '/$category/$articleSlug',
+  path: '/$category/$articleSlug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -52,7 +52,7 @@ export interface FileRoutesByFullPath {
   '/article': typeof ArticleRoute
   '/control-room': typeof ControlRoomRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/$category/$slug': typeof CategorySlugRoute
+  '/$category/$articleSlug': typeof CategoryArticleSlugRoute
   '/category/$slug': typeof CategorySlugRoute
 }
 export interface FileRoutesByTo {
@@ -60,7 +60,7 @@ export interface FileRoutesByTo {
   '/article': typeof ArticleRoute
   '/control-room': typeof ControlRoomRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/$category/$slug': typeof CategorySlugRoute
+  '/$category/$articleSlug': typeof CategoryArticleSlugRoute
   '/category/$slug': typeof CategorySlugRoute
 }
 export interface FileRoutesById {
@@ -69,7 +69,7 @@ export interface FileRoutesById {
   '/article': typeof ArticleRoute
   '/control-room': typeof ControlRoomRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/$category/$slug': typeof CategorySlugRoute
+  '/$category/$articleSlug': typeof CategoryArticleSlugRoute
   '/category/$slug': typeof CategorySlugRoute
 }
 export interface FileRouteTypes {
@@ -79,7 +79,7 @@ export interface FileRouteTypes {
     | '/article'
     | '/control-room'
     | '/sitemap.xml'
-    | '/$category/$slug'
+    | '/$category/$articleSlug'
     | '/category/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -87,7 +87,7 @@ export interface FileRouteTypes {
     | '/article'
     | '/control-room'
     | '/sitemap.xml'
-    | '/$category/$slug'
+    | '/$category/$articleSlug'
     | '/category/$slug'
   id:
     | '__root__'
@@ -95,7 +95,7 @@ export interface FileRouteTypes {
     | '/article'
     | '/control-room'
     | '/sitemap.xml'
-    | '/$category/$slug'
+    | '/$category/$articleSlug'
     | '/category/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -104,7 +104,7 @@ export interface RootRouteChildren {
   ArticleRoute: typeof ArticleRoute
   ControlRoomRoute: typeof ControlRoomRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  CategorySlugRoute: typeof CategorySlugRoute
+  CategoryArticleSlugRoute: typeof CategoryArticleSlugRoute
   CategorySlugRoute: typeof CategorySlugRoute
 }
 
@@ -145,11 +145,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategorySlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/$category/$slug': {
-      id: '/$category/$slug'
-      path: '/$category/$slug'
-      fullPath: '/$category/$slug'
-      preLoaderRoute: typeof CategorySlugRouteImport
+    '/$category/$articleSlug': {
+      id: '/$category/$articleSlug'
+      path: '/$category/$articleSlug'
+      fullPath: '/$category/$articleSlug'
+      preLoaderRoute: typeof CategoryArticleSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -160,7 +160,7 @@ const rootRouteChildren: RootRouteChildren = {
   ArticleRoute: ArticleRoute,
   ControlRoomRoute: ControlRoomRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  CategorySlugRoute: CategorySlugRoute,
+  CategoryArticleSlugRoute: CategoryArticleSlugRoute,
   CategorySlugRoute: CategorySlugRoute,
 }
 export const routeTree = rootRouteImport

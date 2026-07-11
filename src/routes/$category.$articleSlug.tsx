@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { categoryBySlug, insights } from "@/lib/insights-data";
 
-export const Route = createFileRoute("/$category/$slug")({
+export const Route = createFileRoute("/$category/$articleSlug")({
   loader: ({ params }) => {
     const category = categoryBySlug(params.category);
     if (!category) throw notFound();
