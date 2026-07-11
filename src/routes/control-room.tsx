@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import nmLogo from "@/assets/nm-insight-logo.png";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/control-room")({
   component: ControlRoom,
 });
 
