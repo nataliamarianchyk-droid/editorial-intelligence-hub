@@ -1,19 +1,62 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
+import { categoryBySlug, insights } from "@/lib/insights-data";
 
 export const Route = createFileRoute("/$category/$slug")({
+  loader: ({ params }) => {
+    const category = categoryBySlug(params.category);
+    if (!category) throw notFound();
+    const article = insights.find(
+      (i) => i.slug === params.slug && i.category === params.category && i.status === "published",
+    );
+    if (!article) throw notFound();
+    return { category, article };
+  },
+  head: ({ loaderData }) => {
+    if (!loaderData) {
+      return {
+        meta: [
+          { title: "Article not found - NM Insight" },
+          { name: "robots", content: "noindex" },
+        ],
+      };
+    }
+    const { article } = loaderData;
+    return {
+      meta: [
+        { title: `${article.title} - NM Insight` },
+        { name: "description", content: article.dek },
+        { property: "og:title", content: article.title },
+        { property: "og:description", content: article.dek },
+        { property: "og:type", content: "article" },
+      ],
+    };
+  },
   component: ArticlePrototype,
-  head: () => ({
-    meta: [
-      { title: "Visibility Is Not Pipeline - NM Insight" },
-      { name: "description", content: "Why marketing activity rarely converts to revenue in specialist markets - and the four structural gaps that close the loop." },
-      { property: "og:title", content: "Visibility Is Not Pipeline" },
-      { property: "og:description", content: "Editorial prototype - NM Insight." },
-      { property: "og:type", content: "article" },
-    ],
-  }),
+  notFoundComponent: ArticleNotFound,
 });
+
+function ArticleNotFound() {
+  return (
+    <div className="min-h-screen bg-[var(--ink-deep)]">
+      <SiteHeader />
+      <div className="mx-auto max-w-3xl px-6 py-32 text-center">
+        <p className="eyebrow">404</p>
+        <h1 className="font-display text-4xl text-[var(--paper)] mt-4">
+          That article doesn't exist.
+        </h1>
+        <Link
+          to="/"
+          className="inline-block mt-8 rounded-full bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-6 py-2.5 text-sm"
+        >
+          Back to Insights
+        </Link>
+      </div>
+      <SiteFooter />
+    </div>
+  );
+}
 
 const toc = [
   { id: "illusion", label: "The Illusion of Traction" },
