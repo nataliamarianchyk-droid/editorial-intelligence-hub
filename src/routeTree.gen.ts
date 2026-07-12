@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as IssuesRouteImport } from './routes/issues'
 import { Route as ControlRoomRouteImport } from './routes/control-room'
 import { Route as ArticleRouteImport } from './routes/article'
 import { Route as IndexRouteImport } from './routes/index'
@@ -19,6 +20,11 @@ import { Route as CategoryArticleSlugRouteImport } from './routes/$category.$art
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IssuesRoute = IssuesRouteImport.update({
+  id: '/issues',
+  path: '/issues',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ControlRoomRoute = ControlRoomRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/control-room': typeof ControlRoomRoute
+  '/issues': typeof IssuesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/$category/$articleSlug': typeof CategoryArticleSlugRoute
   '/category/$slug': typeof CategorySlugRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/control-room': typeof ControlRoomRoute
+  '/issues': typeof IssuesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/$category/$articleSlug': typeof CategoryArticleSlugRoute
   '/category/$slug': typeof CategorySlugRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/control-room': typeof ControlRoomRoute
+  '/issues': typeof IssuesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/$category/$articleSlug': typeof CategoryArticleSlugRoute
   '/category/$slug': typeof CategorySlugRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/article'
     | '/control-room'
+    | '/issues'
     | '/sitemap.xml'
     | '/$category/$articleSlug'
     | '/category/$slug'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/article'
     | '/control-room'
+    | '/issues'
     | '/sitemap.xml'
     | '/$category/$articleSlug'
     | '/category/$slug'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/article'
     | '/control-room'
+    | '/issues'
     | '/sitemap.xml'
     | '/$category/$articleSlug'
     | '/category/$slug'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArticleRoute: typeof ArticleRoute
   ControlRoomRoute: typeof ControlRoomRoute
+  IssuesRoute: typeof IssuesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   CategoryArticleSlugRoute: typeof CategoryArticleSlugRoute
   CategorySlugRoute: typeof CategorySlugRoute
@@ -115,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/issues': {
+      id: '/issues'
+      path: '/issues'
+      fullPath: '/issues'
+      preLoaderRoute: typeof IssuesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/control-room': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArticleRoute: ArticleRoute,
   ControlRoomRoute: ControlRoomRoute,
+  IssuesRoute: IssuesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   CategoryArticleSlugRoute: CategoryArticleSlugRoute,
   CategorySlugRoute: CategorySlugRoute,
