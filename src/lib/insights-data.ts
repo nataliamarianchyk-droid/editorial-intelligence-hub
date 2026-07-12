@@ -48,13 +48,6 @@ export const categories: Category[] = [
     description:
       "DTC growth, Shopify economics, marketplace dynamics and retention systems in a post-ATT attribution world.",
   },
-  {
-    name: "Strategy",
-    slug: "strategy",
-    short: "Market structure, positioning, allocation",
-    description:
-      "Market structure, budget allocation and positioning - how the advertising economy is actually rebuilding, and what that means for operators.",
-  },
 ];
 
 export type AuthorKey = "natalia" | "editorial";
