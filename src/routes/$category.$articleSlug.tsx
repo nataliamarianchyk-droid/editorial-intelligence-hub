@@ -15,9 +15,8 @@ export const Route = createFileRoute("/$category/$articleSlug")({
         i.status === "published",
     );
     if (!article) throw notFound();
-    const content = articleContent[article.slug];
-    if (!content) throw notFound();
-    return { category, article, content, author: authors[article.authorKey] };
+    if (!articleContent[article.slug]) throw notFound();
+    return { category, article, author: authors[article.authorKey] };
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
@@ -65,7 +64,8 @@ function ArticleNotFound() {
 }
 
 function ArticlePage() {
-  const { category, article, content, author } = Route.useLoaderData();
+  const { category, article, author } = Route.useLoaderData();
+  const content = articleContent[article.slug];
   const [active, setActive] = useState(content.toc[0]?.id ?? "");
 
   useEffect(() => {
