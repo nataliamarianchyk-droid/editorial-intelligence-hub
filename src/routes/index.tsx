@@ -150,7 +150,7 @@ function InsightsHome() {
             <div>
               <p className="eyebrow">The editorial calendar</p>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--paper)] mt-2">
-                Upcoming issues
+                Latest &amp; upcoming issues
               </h2>
             </div>
           </div>
