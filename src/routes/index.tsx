@@ -206,6 +206,9 @@ function InsightsHome() {
         </div>
       </section>
 
+      {/* Updates prompt with latest issues */}
+      <UpdatesSection />
+
       {/* CTA band */}
       <section className="bg-[var(--ink-navy)]">
         <div className="mx-auto max-w-5xl px-6 py-24 text-center">
