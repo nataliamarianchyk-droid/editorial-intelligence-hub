@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { categoryBySlug, insights, authors } from "@/lib/insights-data";
-import { articleContent } from "@/lib/article-content";
+import { articleContent, type TocItem } from "@/lib/article-content";
 
 export const Route = createFileRoute("/$category/$articleSlug")({
   loader: ({ params }) => {
