@@ -26,7 +26,7 @@ export const Route = createFileRoute("/")({
 
 function InsightsHome() {
   const featured = insights.find((i) => i.slug === "german-advertising-market-2026")!;
-  const rest = insights.filter((i) => i.slug !== featured.slug);
+  const rest = insights;
   const featuredCat = categoryBySlug(featured.category)!;
 
   return (
