@@ -64,7 +64,8 @@ function ArticleNotFound() {
 }
 
 function ArticlePage() {
-  const { category, article, content, author } = Route.useLoaderData();
+  const { category, article, author } = Route.useLoaderData();
+  const content = articleContent[article.slug];
   const [active, setActive] = useState(content.toc[0]?.id ?? "");
 
   useEffect(() => {
