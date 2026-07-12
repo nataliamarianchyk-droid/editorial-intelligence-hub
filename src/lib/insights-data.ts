@@ -98,7 +98,7 @@ export const insights: Insight[] = [
     category: "growth-systems",
     authorKey: "editorial",
     author: "NM Editorial Team",
-    date: "November 2026",
+    date: "June 2026",
     read: "10 min",
     issue: "Issue 02",
     href: "/growth-systems/german-advertising-market-2026",
