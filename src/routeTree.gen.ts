@@ -16,6 +16,7 @@ import { Route as ArticleRouteImport } from './routes/article'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 import { Route as CategoryArticleSlugRouteImport } from './routes/$category.$articleSlug'
+import { Route as ApiPublicSubscribeRouteImport } from './routes/api/public/subscribe'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -52,6 +53,11 @@ const CategoryArticleSlugRoute = CategoryArticleSlugRouteImport.update({
   path: '/$category/$articleSlug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicSubscribeRoute = ApiPublicSubscribeRouteImport.update({
+  id: '/api/public/subscribe',
+  path: '/api/public/subscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/$category/$articleSlug': typeof CategoryArticleSlugRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/api/public/subscribe': typeof ApiPublicSubscribeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +77,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/$category/$articleSlug': typeof CategoryArticleSlugRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/api/public/subscribe': typeof ApiPublicSubscribeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +88,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/$category/$articleSlug': typeof CategoryArticleSlugRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/api/public/subscribe': typeof ApiPublicSubscribeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/$category/$articleSlug'
     | '/category/$slug'
+    | '/api/public/subscribe'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/$category/$articleSlug'
     | '/category/$slug'
+    | '/api/public/subscribe'
   id:
     | '__root__'
     | '/'
@@ -109,6 +120,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/$category/$articleSlug'
     | '/category/$slug'
+    | '/api/public/subscribe'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +131,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   CategoryArticleSlugRoute: typeof CategoryArticleSlugRoute
   CategorySlugRoute: typeof CategorySlugRoute
+  ApiPublicSubscribeRoute: typeof ApiPublicSubscribeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoryArticleSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/subscribe': {
+      id: '/api/public/subscribe'
+      path: '/api/public/subscribe'
+      fullPath: '/api/public/subscribe'
+      preLoaderRoute: typeof ApiPublicSubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,7 +203,18 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   CategoryArticleSlugRoute: CategoryArticleSlugRoute,
   CategorySlugRoute: CategorySlugRoute,
+  ApiPublicSubscribeRoute: ApiPublicSubscribeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
