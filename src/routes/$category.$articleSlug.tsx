@@ -15,9 +15,8 @@ export const Route = createFileRoute("/$category/$articleSlug")({
         i.status === "published",
     );
     if (!article) throw notFound();
-    const content = articleContent[article.slug];
-    if (!content) throw notFound();
-    return { category, article, content, author: authors[article.authorKey] };
+    if (!articleContent[article.slug]) throw notFound();
+    return { category, article, author: authors[article.authorKey] };
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
