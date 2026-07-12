@@ -48,13 +48,46 @@ export const categories: Category[] = [
     description:
       "DTC growth, Shopify economics, marketplace dynamics and retention systems in a post-ATT attribution world.",
   },
+  {
+    name: "Strategy",
+    slug: "strategy",
+    short: "Market structure, positioning, allocation",
+    description:
+      "Market structure, budget allocation and positioning - how the advertising economy is actually rebuilding, and what that means for operators.",
+  },
 ];
+
+export type AuthorKey = "natalia" | "editorial";
+
+export type Author = {
+  key: AuthorKey;
+  name: string;
+  bio: string;
+  linkedin: string;
+};
+
+export const authors: Record<AuthorKey, Author> = {
+  natalia: {
+    key: "natalia",
+    name: "Natalia Marianchyk",
+    bio: "Founder of NM Insight - a Berlin-based B2B performance marketing consultancy focused on the infrastructure between acquisition and revenue.",
+    linkedin: "https://www.linkedin.com/in/nmarianchyk/",
+  },
+  editorial: {
+    key: "editorial",
+    name: "NM Editorial Team",
+    bio: "Analysis and market intelligence from NM Insight - a Berlin-based B2B performance marketing consultancy.",
+    linkedin: "https://www.linkedin.com/company/nm-insight/",
+  },
+};
 
 export type Insight = {
   slug: string;
   title: string;
+  titleItalicSub?: string;
   dek: string;
   category: string; // slug
+  authorKey: AuthorKey;
   author: string;
   date: string;
   read: string;
@@ -65,10 +98,26 @@ export type Insight = {
 
 export const insights: Insight[] = [
   {
+    slug: "german-advertising-market-2026",
+    title: "The €51 Billion Question",
+    titleItalicSub: "Where Germany's advertising market is actually heading.",
+    dek: "Germany's ad market crossed €50 billion for the first time. The growth is real - but where the money flows tells a more uncomfortable story about concentration, measurement, and what survives.",
+    category: "strategy",
+    authorKey: "editorial",
+    author: "NM Editorial Team",
+    date: "November 2026",
+    read: "10 min",
+    issue: "Issue 02",
+    href: "/strategy/german-advertising-market-2026",
+    status: "published",
+  },
+  {
     slug: "visibility-is-not-pipeline",
     title: "Visibility Is Not Pipeline.",
+    titleItalicSub: "Here is what is.",
     dek: "Why marketing activity rarely converts to revenue in specialist markets - and the four structural gaps that close the loop.",
     category: "performance",
+    authorKey: "natalia",
     author: "Natalia Marianchyk",
     date: "May 2026",
     read: "7 min",
@@ -81,6 +130,7 @@ export const insights: Insight[] = [
     title: "UTM Governance Is a Revenue System.",
     dek: "Tracking is not a plugin. It is the ledger every downstream decision is built on - and most teams keep it in a spreadsheet.",
     category: "analytics-tracking",
+    authorKey: "natalia",
     author: "Natalia Marianchyk",
     date: "Upcoming",
     read: "6 min",
@@ -92,6 +142,7 @@ export const insights: Insight[] = [
     title: "Your CRM Is the Real Marketing Tool.",
     dek: "The handoff between marketing and sales is where most pipeline dies. The fix is structural, not cultural.",
     category: "growth-systems",
+    authorKey: "natalia",
     author: "Natalia Marianchyk",
     date: "Upcoming",
     read: "8 min",
@@ -103,6 +154,7 @@ export const insights: Insight[] = [
     title: "ICP Precision in Sub-1,000-Account Markets.",
     dek: "When your total addressable market fits on one screen, precision is not optional - it is the only viable strategy.",
     category: "b2b-saas",
+    authorKey: "natalia",
     author: "Natalia Marianchyk",
     date: "Upcoming",
     read: "5 min",
@@ -114,6 +166,7 @@ export const insights: Insight[] = [
     title: "Designing an Internal AI Marketing Stack.",
     dek: "The teams that will compound the fastest are building operator-grade AI systems, not experimenting with prompts.",
     category: "ai-marketing-operations",
+    authorKey: "natalia",
     author: "Natalia Marianchyk",
     date: "Upcoming",
     read: "9 min",
@@ -125,6 +178,7 @@ export const insights: Insight[] = [
     title: "DTC Attribution After ATT.",
     dek: "Deterministic attribution is gone. What replaces it is not another dashboard - it is a different way of deciding.",
     category: "ecommerce",
+    authorKey: "natalia",
     author: "Natalia Marianchyk",
     date: "Upcoming",
     read: "7 min",
