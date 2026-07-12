@@ -23,9 +23,9 @@ export const categories: Category[] = [
   {
     name: "Growth Systems",
     slug: "growth-systems",
-    short: "Lifecycle, funnels, RevOps",
+    short: "Lifecycle, funnels, RevOps, strategy",
     description:
-      "Lifecycle design, funnel engineering, lead-first marketing and the RevOps that connect acquisition to revenue.",
+      "Lifecycle design, funnel engineering, RevOps and market strategy - how acquisition connects to revenue, and how the advertising economy is actually rebuilding around it.",
   },
   {
     name: "B2B SaaS",
