@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { categories, insights, categoryBySlug } from "@/lib/insights-data";
 
@@ -205,6 +206,9 @@ function InsightsHome() {
         </div>
       </section>
 
+      {/* Updates prompt with latest issues */}
+      <UpdatesSection />
+
       {/* CTA band */}
       <section className="bg-[var(--ink-navy)]">
         <div className="mx-auto max-w-5xl px-6 py-24 text-center">
@@ -238,5 +242,126 @@ function InsightsHome() {
       </main>
       <SiteFooter />
     </div>
+  );
+}
+
+function UpdatesSection() {
+  const published = insights
+    .filter((i) => i.status === "published")
+    .slice()
+    .sort((a, b) => (a.issue && b.issue ? b.issue.localeCompare(a.issue) : 0));
+  const [email, setEmail] = useState("");
+  const [state, setState] = useState<"idle" | "loading" | "ok" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!email) return;
+    setState("loading");
+    try {
+      const res = await fetch("/api/public/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { message?: string };
+      if (!res.ok) {
+        setState("error");
+        setMessage(data.message ?? "Something went wrong. Try again.");
+        return;
+      }
+      setState("ok");
+      setMessage(data.message ?? "You're on the list.");
+      setEmail("");
+    } catch {
+      setState("error");
+      setMessage("Network error. Try again.");
+    }
+  }
+
+  return (
+    <section className="border-b border-white/8 bg-[var(--ink-navy)]/40">
+      <div className="mx-auto max-w-6xl px-6 py-20 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-14 items-start">
+        <div>
+          <p className="eyebrow">Get every issue</p>
+          <h2 className="font-display text-3xl md:text-4xl text-[var(--paper)] mt-3 leading-tight">
+            One editorial email per week. No noise.
+          </h2>
+          <p className="mt-5 text-white/65 max-w-md leading-relaxed">
+            Analysis, frameworks and field notes from the operational side of B2B performance
+            marketing - delivered the moment each new issue publishes.
+          </p>
+          <form onSubmit={onSubmit} className="mt-8 flex max-w-md">
+            <label htmlFor="updates-email" className="sr-only">
+              Email address
+            </label>
+            <input
+              id="updates-email"
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@company.com"
+              className="flex-1 bg-white/5 border border-white/10 px-4 py-3 text-sm text-[var(--paper)] focus:outline-none focus:border-[var(--accent-cyan)]"
+            />
+            <button
+              type="submit"
+              disabled={state === "loading"}
+              className="bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-6 text-sm font-medium hover:brightness-110 disabled:opacity-60"
+            >
+              {state === "loading" ? "…" : "Subscribe"}
+            </button>
+          </form>
+          {message && (
+            <p
+              className={`mt-3 text-xs ${
+                state === "ok" ? "text-[var(--accent-cyan)]" : "text-[var(--accent-amber)]"
+              }`}
+            >
+              {message}
+            </p>
+          )}
+          <p className="mt-4 text-[11px] uppercase tracking-[0.18em] text-white/45">
+            Unsubscribe anytime · GDPR-compliant
+          </p>
+        </div>
+
+        <div>
+          <p className="eyebrow">Start with the latest</p>
+          <ul className="mt-6 space-y-4">
+            {published.map((i) => {
+              const cat = categoryBySlug(i.category)!;
+              return (
+                <li key={i.slug}>
+                  <Link
+                    to="/$category/$articleSlug"
+                    params={{ category: i.category, articleSlug: i.slug }}
+                    className="group block rounded-sm border border-white/10 bg-white/[0.03] p-6 hover:border-[var(--accent-cyan)]/40 transition-colors"
+                  >
+                    <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.18em]">
+                      <span className="text-[var(--accent-cyan)]">{i.issue}</span>
+                      <span className="text-white/60">{cat.name}</span>
+                    </div>
+                    <h3 className="mt-3 font-display text-xl md:text-2xl text-[var(--paper)] group-hover:text-[var(--accent-cyan)] leading-snug">
+                      {i.title}
+                    </h3>
+                    <div className="mt-3 flex items-center justify-between text-xs text-white/60">
+                      <span>{i.read} read · {i.date}</span>
+                      <span className="text-[var(--accent-cyan)]">Read →</span>
+                    </div>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+          <Link
+            to="/issues"
+            className="inline-block mt-5 text-xs uppercase tracking-[0.18em] text-white/60 hover:text-[var(--accent-cyan)]"
+          >
+            Browse the full archive →
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }
