@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
 });
 
 function InsightsHome() {
-  const featured = insights.find((i) => i.slug === "visibility-is-not-pipeline")!;
+  const featured = insights.find((i) => i.slug === "german-advertising-market-2026")!;
   const rest = insights.filter((i) => i.slug !== featured.slug);
   const featuredCat = categoryBySlug(featured.category)!;
 
