@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { categories, insights, categoryBySlug } from "@/lib/insights-data";
 
