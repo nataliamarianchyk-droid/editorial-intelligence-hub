@@ -89,13 +89,31 @@ export function SiteFooter() {
           <p className="eyebrow mb-3">Company</p>
           <ul className="space-y-2 text-white/65">
             <li>
-              <a href="https://nm-insight.com" className="hover:text-[var(--accent-cyan)]">
-                Services
+              <a
+                href="https://nm-insight.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[var(--accent-cyan)]"
+              >
+                nm-insight.com
               </a>
             </li>
             <li>
-              <a href="https://nm-insight.com/about" className="hover:text-[var(--accent-cyan)]">
-                About
+              <a
+                href="https://www.linkedin.com/company/nm-insight/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[var(--accent-cyan)] inline-flex items-center gap-1.5"
+                aria-label="NM Insight on LinkedIn"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  className="h-3.5 w-3.5 fill-current"
+                >
+                  <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.24 8h4.53v14H.24V8zm7.36 0h4.34v1.92h.06c.6-1.14 2.08-2.34 4.28-2.34 4.57 0 5.42 3 5.42 6.9V22h-4.53v-6.14c0-1.46-.03-3.34-2.04-3.34-2.04 0-2.35 1.6-2.35 3.24V22H7.6V8z" />
+                </svg>
+                LinkedIn
               </a>
             </li>
             <li>
@@ -104,7 +122,12 @@ export function SiteFooter() {
               </a>
             </li>
             <li>
-              <a href="https://calendly.com/natalia-marianchyk/strategic-intro-call" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-cyan)]">
+              <a
+                href="https://calendly.com/natalia-marianchyk/strategic-intro-call"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[var(--accent-cyan)]"
+              >
                 Clarity Call
               </a>
             </li>

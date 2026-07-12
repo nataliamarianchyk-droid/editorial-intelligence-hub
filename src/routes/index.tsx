@@ -150,31 +150,52 @@ function InsightsHome() {
             <div>
               <p className="eyebrow">The editorial calendar</p>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--paper)] mt-2">
-                Upcoming issues
+                Latest &amp; upcoming issues
               </h2>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {rest.map((i) => {
               const cat = categoryBySlug(i.category)!;
-              return (
-                <article
-                  key={i.slug}
-                  className="bg-white/[0.03] border border-white/8 rounded-sm p-7 flex flex-col min-h-[220px]"
-                >
+              const inner = (
+                <>
                   <div className="flex items-center justify-between">
                     <span className="text-[11px] uppercase tracking-[0.18em] text-[var(--accent-cyan)] font-semibold">
                       {cat.name}
                     </span>
                     <span className="text-[10px] uppercase tracking-[0.14em] text-white/60">
-                      {i.date}
+                      {i.status === "published" && i.issue ? i.issue : i.date}
                     </span>
                   </div>
-                  <h3 className="font-display text-xl mt-4 leading-snug text-[var(--paper)]">
+                  <h3 className="font-display text-xl mt-4 leading-snug text-[var(--paper)] group-hover:text-[var(--accent-cyan)] transition-colors">
                     {i.title}
                   </h3>
                   <p className="mt-3 text-sm text-white/55 leading-relaxed">{i.dek}</p>
-                  <span className="mt-auto pt-6 text-xs text-white/65">{i.read} read</span>
+                  <span className="mt-auto pt-6 text-xs text-white/65 flex justify-between">
+                    <span>{i.read} read</span>
+                    {i.status === "published" ? (
+                      <span className="text-[var(--accent-cyan)]">Read →</span>
+                    ) : (
+                      <span>Upcoming</span>
+                    )}
+                  </span>
+                </>
+              );
+              return i.status === "published" ? (
+                <Link
+                  key={i.slug}
+                  to="/$category/$articleSlug"
+                  params={{ category: i.category, articleSlug: i.slug }}
+                  className="group bg-white/[0.03] border border-white/8 rounded-sm p-7 flex flex-col min-h-[220px] hover:border-[var(--accent-cyan)]/40 transition-colors"
+                >
+                  {inner}
+                </Link>
+              ) : (
+                <article
+                  key={i.slug}
+                  className="group bg-white/[0.03] border border-white/8 rounded-sm p-7 flex flex-col min-h-[220px]"
+                >
+                  {inner}
                 </article>
               );
             })}
