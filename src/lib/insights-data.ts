@@ -23,9 +23,9 @@ export const categories: Category[] = [
   {
     name: "Growth Systems",
     slug: "growth-systems",
-    short: "Lifecycle, funnels, RevOps",
+    short: "Lifecycle, funnels, RevOps, strategy",
     description:
-      "Lifecycle design, funnel engineering, lead-first marketing and the RevOps that connect acquisition to revenue.",
+      "Lifecycle design, funnel engineering, RevOps and market strategy - how acquisition connects to revenue, and how the advertising economy is actually rebuilding around it.",
   },
   {
     name: "B2B SaaS",
@@ -47,13 +47,6 @@ export const categories: Category[] = [
     short: "DTC, Shopify, retention",
     description:
       "DTC growth, Shopify economics, marketplace dynamics and retention systems in a post-ATT attribution world.",
-  },
-  {
-    name: "Strategy",
-    slug: "strategy",
-    short: "Market structure, positioning, allocation",
-    description:
-      "Market structure, budget allocation and positioning - how the advertising economy is actually rebuilding, and what that means for operators.",
   },
 ];
 
@@ -102,13 +95,13 @@ export const insights: Insight[] = [
     title: "The €51 Billion Question",
     titleItalicSub: "Where Germany's advertising market is actually heading.",
     dek: "Germany's ad market crossed €50 billion for the first time. The growth is real - but where the money flows tells a more uncomfortable story about concentration, measurement, and what survives.",
-    category: "strategy",
+    category: "growth-systems",
     authorKey: "editorial",
     author: "NM Editorial Team",
     date: "November 2026",
     read: "10 min",
     issue: "Issue 02",
-    href: "/strategy/german-advertising-market-2026",
+    href: "/growth-systems/german-advertising-market-2026",
     status: "published",
   },
   {

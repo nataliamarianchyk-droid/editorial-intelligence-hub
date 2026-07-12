@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
 });
 
 function InsightsHome() {
-  const featured = insights.find((i) => i.slug === "visibility-is-not-pipeline")!;
+  const featured = insights.find((i) => i.slug === "german-advertising-market-2026")!;
   const rest = insights.filter((i) => i.slug !== featured.slug);
   const featuredCat = categoryBySlug(featured.category)!;
 
@@ -91,11 +91,13 @@ function InsightsHome() {
             </div>
             <div>
               <h3 className="font-display text-[var(--paper)] text-3xl md:text-5xl leading-[1.05]">
-                Visibility Is Not Pipeline.
+                {featured.title}
               </h3>
-              <p className="font-display italic text-white/55 text-xl md:text-2xl mt-2">
-                Here is what is.
-              </p>
+              {featured.titleItalicSub && (
+                <p className="font-display italic text-white/55 text-xl md:text-2xl mt-2">
+                  {featured.titleItalicSub}
+                </p>
+              )}
             </div>
             <p className="text-white/65 text-xs uppercase tracking-[0.22em]">
               insights.nm-insight.com
