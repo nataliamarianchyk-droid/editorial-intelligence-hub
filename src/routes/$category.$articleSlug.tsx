@@ -77,7 +77,7 @@ function ArticlePage() {
       },
       { rootMargin: "-30% 0px -60% 0px" },
     );
-    content.toc.forEach((t) => {
+    content.toc.forEach((t: TocItem) => {
       const el = document.getElementById(t.id);
       if (el) obs.observe(el);
     });
@@ -132,7 +132,7 @@ function ArticlePage() {
               <div className="sticky top-28">
                 <p className="eyebrow !text-[#7a5e2a] mb-4">In this insight</p>
                 <ul className="space-y-3 text-sm">
-                  {content.toc.map((t) => (
+                  {content.toc.map((t: TocItem) => (
                     <li key={t.id}>
                       <a
                         href={`#${t.id}`}
