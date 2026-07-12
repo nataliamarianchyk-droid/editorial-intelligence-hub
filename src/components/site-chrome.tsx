@@ -26,6 +26,13 @@ export function SiteHeader() {
               {c.name}
             </Link>
           ))}
+          <Link
+            to="/issues"
+            activeProps={{ className: "text-[var(--accent-cyan)]" }}
+            className="hover:text-[var(--accent-cyan)] transition-colors"
+          >
+            Issues
+          </Link>
         </nav>
         <a
           href="https://calendly.com/natalia-marianchyk/strategic-intro-call"
