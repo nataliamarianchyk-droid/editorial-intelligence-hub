@@ -18,7 +18,7 @@ export const Route = createFileRoute("/$category/$articleSlug")({
     if (!articleContent[article.slug]) throw notFound();
     return { category, article, author: authors[article.authorKey] };
   },
-  head: ({ loaderData }) => {
+  head: ({ loaderData, params }) => {
     if (!loaderData) {
       return {
         meta: [
@@ -27,7 +27,28 @@ export const Route = createFileRoute("/$category/$articleSlug")({
         ],
       };
     }
-    const { article } = loaderData;
+    const { article, category, author } = loaderData;
+    const url = `https://insights.nm-insight.com/${params.category}/${params.articleSlug}`;
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: article.title,
+      description: article.dek,
+      articleSection: category.name,
+      inLanguage: "en",
+      datePublished: article.date,
+      author: {
+        "@type": "Person",
+        name: author?.name ?? article.author,
+        ...(author?.linkedin ? { url: author.linkedin } : {}),
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "NM Insight",
+        url: "https://nm-insight.com",
+      },
+      mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    };
     return {
       meta: [
         { title: `${article.title} - NM Insight` },
@@ -35,6 +56,14 @@ export const Route = createFileRoute("/$category/$articleSlug")({
         { property: "og:title", content: article.title },
         { property: "og:description", content: article.dek },
         { property: "og:type", content: "article" },
+        { property: "og:url", content: url },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify(jsonLd),
+        },
       ],
     };
   },
