@@ -116,6 +116,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap",
       },
     ],
+    scripts: [
+      { src: `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`, async: true },
+      { children: GA_CONSENT_INIT },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -145,6 +149,7 @@ function RootComponent() {
       <ConsentProvider>
         <Outlet />
         <LinkedInInsightTag />
+        <ConsentBanner />
       </ConsentProvider>
     </QueryClientProvider>
   );
