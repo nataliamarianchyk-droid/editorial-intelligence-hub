@@ -821,7 +821,10 @@ function CrmBody() {
       </div>
 
       <Infographic
-        label="The Feedback Loop - closed vs severed"
+        src={crmFeedbackLoop.url}
+        width={1600}
+        height={1008}
+        alt="Two circular diagrams comparing a severed feedback loop, where sales rejections return no reason to marketing, with a closed loop, where mandatory rejection reasons flow back to marketing."
         caption="Marketing can only learn from rejections it can see."
       />
 
