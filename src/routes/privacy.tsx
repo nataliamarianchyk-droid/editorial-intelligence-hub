@@ -10,14 +10,15 @@ export const Route = createFileRoute("/privacy")({
         content:
           "Datenschutzerklärung von NM Insight: Verantwortlicher, Rechtsgrundlagen, Cookies, Google Analytics 4, HubSpot-Formulare und Ihre Rechte nach DSGVO.",
       },
-      { name: "robots", content: "noindex" },
       { property: "og:title", content: "Datenschutzerklärung — NM Insight" },
       {
         property: "og:description",
         content:
           "Wie NM Insight personenbezogene Daten verarbeitet: Hosting, Server-Logs, Consent, Analytics und Ihre Betroffenenrechte.",
       },
+      { property: "og:url", content: "https://insights.nm-insight.com/privacy" },
     ],
+    links: [{ rel: "canonical", href: "https://insights.nm-insight.com/privacy" }],
   }),
   component: PrivacyPage,
 });
