@@ -671,7 +671,10 @@ function CrmBody() {
       <P>None of these is a culture problem. Each is a missing or broken object in the CRM.</P>
 
       <Infographic
-        label="Four Structural Failures - 2x2 grid"
+        src={crmStructuralFailures.url}
+        width={1600}
+        height={1200}
+        alt="2x2 grid of the four structural failures in marketing-to-sales handoff: no shared lead definition, no automated routing, no context transfer, no feedback loop."
         caption="None of these is a culture problem."
       />
 
