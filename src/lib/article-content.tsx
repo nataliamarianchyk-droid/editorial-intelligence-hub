@@ -578,7 +578,10 @@ function CrmBody() {
       </p>
 
       <Infographic
-        label="Where the Pipeline Dies - leakage funnel"
+        src={crmPipelineDies.url}
+        width={1600}
+        height={1008}
+        alt="Funnel showing where B2B pipeline leaks — most attrition happens at the marketing-to-sales handoff, where average response time is 47 hours."
         caption="The biggest leak isn't at the top. It's the handoff."
       />
 
