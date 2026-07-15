@@ -158,9 +158,9 @@ export function SiteFooter() {
         <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-white/65 flex justify-between">
           <span>© 2026 NM Insight · Berlin</span>
           <span>
-            <a href="#" className="hover:text-white/70">Imprint</a>
+            <Link to="/impressum" className="hover:text-white/70">Imprint</Link>
             <span className="mx-2">·</span>
-            <a href="#" className="hover:text-white/70">Privacy</a>
+            <Link to="/privacy" className="hover:text-white/70">Privacy</Link>
             <span className="mx-2">·</span>
             <CookieSettingsButton />
           </span>
