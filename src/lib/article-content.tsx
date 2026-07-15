@@ -1,4 +1,10 @@
 import type { ReactNode } from "react";
+import crmPipelineDies from "@/assets/insights/crm/pipeline-dies.png.asset.json";
+import crmStructuralFailures from "@/assets/insights/crm/structural-failures.png.asset.json";
+import crmOperationalFlow from "@/assets/insights/crm/operational-flow.png.asset.json";
+import crmLeadScoring from "@/assets/insights/crm/lead-scoring.png.asset.json";
+import crmFeedbackLoop from "@/assets/insights/crm/feedback-loop.png.asset.json";
+import crmExecutiveScoreboard from "@/assets/insights/crm/executive-scoreboard.png.asset.json";
 
 export type TocItem = { id: string; label: string };
 
@@ -518,14 +524,30 @@ const crmToc: TocItem[] = [
   { id: "playbook", label: "Operator's Playbook" },
 ];
 
-function Infographic({ label, caption }: { label: string; caption: string }) {
+function Infographic({
+  src,
+  width,
+  height,
+  alt,
+  caption,
+}: {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  caption: string;
+}) {
   return (
-    <figure className="my-12 rounded-sm border border-[var(--ink-navy)]/15 bg-[var(--ink-navy)] text-[var(--paper)] p-8">
-      <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--accent-cyan)]">
-        Infographic
-      </p>
-      <p className="mt-3 font-display text-2xl leading-snug">{label}</p>
-      <figcaption className="mt-4 text-sm text-white/65 font-sans italic">
+    <figure className="my-12 -mx-2 md:-mx-6 lg:-mx-10">
+      <img
+        src={src}
+        width={width}
+        height={height}
+        alt={alt}
+        loading="lazy"
+        className="w-full h-auto rounded-sm block"
+      />
+      <figcaption className="mt-4 text-sm text-black/60 font-sans italic text-center">
         {caption}
       </figcaption>
     </figure>
@@ -556,7 +578,10 @@ function CrmBody() {
       </p>
 
       <Infographic
-        label="Where the Pipeline Dies - leakage funnel"
+        src={crmPipelineDies.url}
+        width={1600}
+        height={1008}
+        alt="Funnel showing where B2B pipeline leaks — most attrition happens at the marketing-to-sales handoff, where average response time is 47 hours."
         caption="The biggest leak isn't at the top. It's the handoff."
       />
 
@@ -646,7 +671,10 @@ function CrmBody() {
       <P>None of these is a culture problem. Each is a missing or broken object in the CRM.</P>
 
       <Infographic
-        label="Four Structural Failures - 2x2 grid"
+        src={crmStructuralFailures.url}
+        width={1600}
+        height={1200}
+        alt="2x2 grid of the four structural failures in marketing-to-sales handoff: no shared lead definition, no automated routing, no context transfer, no feedback loop."
         caption="None of these is a culture problem."
       />
 
@@ -713,7 +741,10 @@ function CrmBody() {
       </div>
 
       <Infographic
-        label="What Happens After the Form - 9-step operational flow"
+        src={crmOperationalFlow.url}
+        width={1600}
+        height={1008}
+        alt="Nine-step operational flow from form-fill to forecast: lifecycle stages, MQL definition, automated transitions, owner rotation, SLA timer, follow-up task, Slack notification, mandatory rejection reasons, weekly MQL to SQL report."
         caption="Nine steps between a form-fill and a forecast."
       />
 
@@ -769,7 +800,10 @@ function CrmBody() {
       </ol>
 
       <Infographic
-        label="The Lead Scoring Model"
+        src={crmLeadScoring.url}
+        width={1600}
+        height={1104}
+        alt="Lead scoring model: pricing-page visit +25, demo request +40, Director+ title +20, ICP fit +30, student or free email domain -50. MQL threshold at 80 points."
         caption="A demo request plus a free Gmail address is not a lead."
       />
 
@@ -787,7 +821,10 @@ function CrmBody() {
       </div>
 
       <Infographic
-        label="The Feedback Loop - closed vs severed"
+        src={crmFeedbackLoop.url}
+        width={1600}
+        height={1008}
+        alt="Two circular diagrams comparing a severed feedback loop, where sales rejections return no reason to marketing, with a closed loop, where mandatory rejection reasons flow back to marketing."
         caption="Marketing can only learn from rejections it can see."
       />
 
@@ -846,7 +883,10 @@ function CrmBody() {
       <H2 id="kpis">The Five Numbers a CRO Should Watch</H2>
 
       <Infographic
-        label="The Executive Scoreboard"
+        src={crmExecutiveScoreboard.url}
+        width={1600}
+        height={1008}
+        alt="Executive scoreboard dashboard of five CRO metrics: MQL to SQL rate, lead response time, SQL acceptance rate, pipeline velocity, and closed-won from marketing-sourced leads."
         caption="Four of these are worthless without the fifth."
       />
 
