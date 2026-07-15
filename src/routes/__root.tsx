@@ -11,6 +11,21 @@ import {
 import appCss from "../styles.css?url";
 import { ConsentProvider } from "@/lib/consent";
 import { LinkedInInsightTag } from "@/components/linkedin-insight-tag";
+import { ConsentBanner } from "@/components/consent-banner";
+
+const GA_MEASUREMENT_ID = "G-62DJNGTDWT";
+const GA_CONSENT_INIT = `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.gtag = gtag;
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: 'denied',
+  wait_for_update: 500
+});
+gtag('js', new Date());
+gtag('config', '${GA_MEASUREMENT_ID}', { anonymize_ip: true });`;
 
 function NotFoundComponent() {
   return (
@@ -101,6 +116,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap",
       },
     ],
+    scripts: [
+      { src: `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`, async: true },
+      { children: GA_CONSENT_INIT },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -130,6 +149,7 @@ function RootComponent() {
       <ConsentProvider>
         <Outlet />
         <LinkedInInsightTag />
+        <ConsentBanner />
       </ConsentProvider>
     </QueryClientProvider>
   );
