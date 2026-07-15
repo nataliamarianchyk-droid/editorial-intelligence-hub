@@ -26,11 +26,12 @@ export const Route = createFileRoute("/")({
 });
 
 function InsightsHome() {
-  const featured = insights.find((i) => i.slug === "german-advertising-market-2026")!;
+  const featured = insights.find((i) => i.slug === "your-crm-is-the-real-marketing-tool")!;
   const issue1 = insights.find((i) => i.slug === "visibility-is-not-pipeline")!;
   const issue2 = insights.find((i) => i.slug === "german-advertising-market-2026")!;
+  const issue3 = insights.find((i) => i.slug === "your-crm-is-the-real-marketing-tool")!;
   const upcoming = insights.filter((i) => i.status === "upcoming");
-  const rest = [issue1, issue2, ...upcoming];
+  const rest = [issue3, issue2, issue1, ...upcoming];
   const featuredCat = categoryBySlug(featured.category)!;
 
   return (
