@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as IssuesRouteImport } from './routes/issues'
+import { Route as ImpressumRouteImport } from './routes/impressum'
 import { Route as ControlRoomRouteImport } from './routes/control-room'
 import { Route as ArticleRouteImport } from './routes/article'
 import { Route as IndexRouteImport } from './routes/index'
@@ -32,6 +33,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const IssuesRoute = IssuesRouteImport.update({
   id: '/issues',
   path: '/issues',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpressumRoute = ImpressumRouteImport.update({
+  id: '/impressum',
+  path: '/impressum',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ControlRoomRoute = ControlRoomRouteImport.update({
@@ -69,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/control-room': typeof ControlRoomRoute
+  '/impressum': typeof ImpressumRoute
   '/issues': typeof IssuesRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/control-room': typeof ControlRoomRoute
+  '/impressum': typeof ImpressumRoute
   '/issues': typeof IssuesRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/article': typeof ArticleRoute
   '/control-room': typeof ControlRoomRoute
+  '/impressum': typeof ImpressumRoute
   '/issues': typeof IssuesRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/'
     | '/article'
     | '/control-room'
+    | '/impressum'
     | '/issues'
     | '/privacy'
     | '/sitemap.xml'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/'
     | '/article'
     | '/control-room'
+    | '/impressum'
     | '/issues'
     | '/privacy'
     | '/sitemap.xml'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/'
     | '/article'
     | '/control-room'
+    | '/impressum'
     | '/issues'
     | '/privacy'
     | '/sitemap.xml'
@@ -139,6 +151,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArticleRoute: typeof ArticleRoute
   ControlRoomRoute: typeof ControlRoomRoute
+  ImpressumRoute: typeof ImpressumRoute
   IssuesRoute: typeof IssuesRoute
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -168,6 +181,13 @@ declare module '@tanstack/react-router' {
       path: '/issues'
       fullPath: '/issues'
       preLoaderRoute: typeof IssuesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impressum': {
+      id: '/impressum'
+      path: '/impressum'
+      fullPath: '/impressum'
+      preLoaderRoute: typeof ImpressumRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/control-room': {
@@ -219,6 +239,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArticleRoute: ArticleRoute,
   ControlRoomRoute: ControlRoomRoute,
+  ImpressumRoute: ImpressumRoute,
   IssuesRoute: IssuesRoute,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
