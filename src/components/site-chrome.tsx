@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import nmLogo from "@/assets/nm-insight-logo.png";
 import { categories } from "@/lib/insights-data";
-import { useConsent } from "@/lib/consent";
+import { openConsentPreferences } from "@/components/consent-banner";
 
 export function SiteHeader() {
   return (
@@ -171,11 +171,10 @@ export function SiteFooter() {
 }
 
 function CookieSettingsButton() {
-  const { openPreferences } = useConsent();
   return (
     <button
       type="button"
-      onClick={openPreferences}
+      onClick={openConsentPreferences}
       className="hover:text-white/70"
     >
       Cookie settings

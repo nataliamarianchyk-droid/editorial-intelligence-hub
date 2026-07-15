@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 const COOKIE_NAME = "nm_consent";
 const COOKIE_DAYS = 180;
+const REOPEN_EVENT = "nm-consent:reopen";
+const CHANGE_EVENT = "nm-consent:change";
 
 type Decision = "granted" | "denied";
 
@@ -30,31 +32,48 @@ function applyConsent(decision: Decision) {
   });
 }
 
+export function getConsentDecision(): Decision | null {
+  const v = readCookie(COOKIE_NAME);
+  return v === "granted" || v === "denied" ? v : null;
+}
+
+export function openConsentPreferences() {
+  if (typeof window === "undefined") return;
+  window.dispatchEvent(new Event(REOPEN_EVENT));
+}
+
+export function useConsentDecision(): Decision | null {
+  const [decision, setDecision] = useState<Decision | null>(null);
+  useEffect(() => {
+    setDecision(getConsentDecision());
+    const onChange = () => setDecision(getConsentDecision());
+    window.addEventListener(CHANGE_EVENT, onChange);
+    return () => window.removeEventListener(CHANGE_EVENT, onChange);
+  }, []);
+  return decision;
+}
+
 export function ConsentBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const existing = readCookie(COOKIE_NAME);
+    const existing = getConsentDecision();
     if (existing === "granted") {
       applyConsent("granted");
-      return;
+    } else if (existing === null) {
+      setVisible(true);
     }
-    if (existing === "denied") {
-      return;
-    }
-    setVisible(true);
+    const onReopen = () => setVisible(true);
+    window.addEventListener(REOPEN_EVENT, onReopen);
+    return () => window.removeEventListener(REOPEN_EVENT, onReopen);
   }, []);
 
   if (!visible) return null;
 
-  const handleAccept = () => {
-    writeCookie(COOKIE_NAME, "granted", COOKIE_DAYS);
-    applyConsent("granted");
-    setVisible(false);
-  };
-
-  const handleDecline = () => {
-    writeCookie(COOKIE_NAME, "denied", COOKIE_DAYS);
+  const finish = (decision: Decision) => {
+    writeCookie(COOKIE_NAME, decision, COOKIE_DAYS);
+    applyConsent(decision);
+    window.dispatchEvent(new Event(CHANGE_EVENT));
     setVisible(false);
   };
 
@@ -100,7 +119,7 @@ export function ConsentBanner() {
         <div style={{ display: "flex", gap: 8 }}>
           <button
             type="button"
-            onClick={handleDecline}
+            onClick={() => finish("denied")}
             style={{
               padding: "10px 20px",
               borderRadius: 9999,
@@ -118,7 +137,7 @@ export function ConsentBanner() {
           </button>
           <button
             type="button"
-            onClick={handleAccept}
+            onClick={() => finish("granted")}
             style={{
               padding: "10px 20px",
               borderRadius: 9999,
