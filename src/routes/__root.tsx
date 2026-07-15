@@ -9,7 +9,6 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
-import { ConsentProvider } from "@/lib/consent";
 import { LinkedInInsightTag } from "@/components/linkedin-insight-tag";
 import { ConsentBanner } from "@/components/consent-banner";
 
@@ -146,11 +145,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ConsentProvider>
-        <Outlet />
-        <LinkedInInsightTag />
-        <ConsentBanner />
-      </ConsentProvider>
+      <Outlet />
+      <LinkedInInsightTag />
+      <ConsentBanner />
     </QueryClientProvider>
   );
 }

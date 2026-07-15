@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useConsent } from "@/lib/consent";
+import { useConsentDecision } from "@/components/consent-banner";
 
 // Set your LinkedIn Partner ID here (Campaign Manager → Account Assets → Insight Tag).
 // Leave empty to disable. Also readable from VITE_LINKEDIN_PARTNER_ID at build time.
@@ -17,8 +17,8 @@ declare global {
 }
 
 export function LinkedInInsightTag() {
-  const { consent } = useConsent();
-  const enabled = consent.marketing && PARTNER_ID.length > 0;
+  const decision = useConsentDecision();
+  const enabled = decision === "granted" && PARTNER_ID.length > 0;
 
   useEffect(() => {
     if (!enabled) return;
@@ -48,7 +48,6 @@ export function LinkedInInsightTag() {
     document.body.appendChild(noscript);
   }, [enabled]);
 
-  // If consent is withdrawn later, remove the loaded script so it stops running on next nav.
   useEffect(() => {
     if (enabled) return;
     document.getElementById(SCRIPT_ID)?.remove();
