@@ -670,14 +670,6 @@ function CrmBody() {
       <H2 id="failures">The Four Structural Failures</H2>
       <P>None of these is a culture problem. Each is a missing or broken object in the CRM.</P>
 
-      <Infographic
-        src={crmStructuralFailures.url}
-        width={1600}
-        height={1200}
-        alt="2x2 grid of the four structural failures in marketing-to-sales handoff: no shared lead definition, no automated routing, no context transfer, no feedback loop."
-        caption="None of these is a culture problem."
-      />
-
       <ol className="mt-8 space-y-6">
         {[
           [
@@ -708,6 +700,14 @@ function CrmBody() {
           </li>
         ))}
       </ol>
+
+      <Infographic
+        src={crmStructuralFailures.url}
+        width={1600}
+        height={1200}
+        alt="2x2 grid of the four structural failures in marketing-to-sales handoff: no shared lead definition, no automated routing, no context transfer, no feedback loop."
+        caption="None of these is a culture problem."
+      />
 
       <p className="mt-8 font-sans text-[17px] leading-[1.85] text-[#1f2937]">
         Add a slow-acting accelerant: B2B contact data decays fast. Dun &amp; Bradstreet's
@@ -882,14 +882,6 @@ function CrmBody() {
 
       <H2 id="kpis">The Five Numbers a CRO Should Watch</H2>
 
-      <Infographic
-        src={crmExecutiveScoreboard.url}
-        width={1600}
-        height={1008}
-        alt="Executive scoreboard dashboard of five CRO metrics: MQL to SQL rate, lead response time, SQL acceptance rate, pipeline velocity, and closed-won from marketing-sourced leads."
-        caption="Four of these are worthless without the fifth."
-      />
-
       <ol className="mt-8 space-y-6">
         {[
           [
@@ -924,6 +916,14 @@ function CrmBody() {
           </li>
         ))}
       </ol>
+
+      <Infographic
+        src={crmExecutiveScoreboard.url}
+        width={1600}
+        height={1008}
+        alt="Executive scoreboard dashboard of five CRO metrics: MQL to SQL rate, lead response time, SQL acceptance rate, pipeline velocity, and closed-won from marketing-sourced leads."
+        caption="Four of these are worthless without the fifth."
+      />
 
       <H2 id="reframe">The Reframe</H2>
       <div className="space-y-5">
