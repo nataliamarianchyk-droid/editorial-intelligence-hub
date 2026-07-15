@@ -882,14 +882,6 @@ function CrmBody() {
 
       <H2 id="kpis">The Five Numbers a CRO Should Watch</H2>
 
-      <Infographic
-        src={crmExecutiveScoreboard.url}
-        width={1600}
-        height={1008}
-        alt="Executive scoreboard dashboard of five CRO metrics: MQL to SQL rate, lead response time, SQL acceptance rate, pipeline velocity, and closed-won from marketing-sourced leads."
-        caption="Four of these are worthless without the fifth."
-      />
-
       <ol className="mt-8 space-y-6">
         {[
           [
@@ -924,6 +916,14 @@ function CrmBody() {
           </li>
         ))}
       </ol>
+
+      <Infographic
+        src={crmExecutiveScoreboard.url}
+        width={1600}
+        height={1008}
+        alt="Executive scoreboard dashboard of five CRO metrics: MQL to SQL rate, lead response time, SQL acceptance rate, pipeline velocity, and closed-won from marketing-sourced leads."
+        caption="Four of these are worthless without the fifth."
+      />
 
       <H2 id="reframe">The Reframe</H2>
       <div className="space-y-5">
