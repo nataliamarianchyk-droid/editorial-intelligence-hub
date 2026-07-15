@@ -800,7 +800,10 @@ function CrmBody() {
       </ol>
 
       <Infographic
-        label="The Lead Scoring Model"
+        src={crmLeadScoring.url}
+        width={1600}
+        height={1104}
+        alt="Lead scoring model: pricing-page visit +25, demo request +40, Director+ title +20, ICP fit +30, student or free email domain -50. MQL threshold at 80 points."
         caption="A demo request plus a free Gmail address is not a lead."
       />
 
