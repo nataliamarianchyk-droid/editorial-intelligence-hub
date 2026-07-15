@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as IssuesRouteImport } from './routes/issues'
 import { Route as ControlRoomRouteImport } from './routes/control-room'
 import { Route as ArticleRouteImport } from './routes/article'
@@ -21,6 +22,11 @@ import { Route as ApiPublicSubscribeRouteImport } from './routes/api/public/subs
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IssuesRoute = IssuesRouteImport.update({
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/article': typeof ArticleRoute
   '/control-room': typeof ControlRoomRoute
   '/issues': typeof IssuesRoute
+  '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/$category/$articleSlug': typeof CategoryArticleSlugRoute
   '/category/$slug': typeof CategorySlugRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/article': typeof ArticleRoute
   '/control-room': typeof ControlRoomRoute
   '/issues': typeof IssuesRoute
+  '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/$category/$articleSlug': typeof CategoryArticleSlugRoute
   '/category/$slug': typeof CategorySlugRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/article': typeof ArticleRoute
   '/control-room': typeof ControlRoomRoute
   '/issues': typeof IssuesRoute
+  '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/$category/$articleSlug': typeof CategoryArticleSlugRoute
   '/category/$slug': typeof CategorySlugRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/article'
     | '/control-room'
     | '/issues'
+    | '/privacy'
     | '/sitemap.xml'
     | '/$category/$articleSlug'
     | '/category/$slug'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/article'
     | '/control-room'
     | '/issues'
+    | '/privacy'
     | '/sitemap.xml'
     | '/$category/$articleSlug'
     | '/category/$slug'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/article'
     | '/control-room'
     | '/issues'
+    | '/privacy'
     | '/sitemap.xml'
     | '/$category/$articleSlug'
     | '/category/$slug'
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   ArticleRoute: typeof ArticleRoute
   ControlRoomRoute: typeof ControlRoomRoute
   IssuesRoute: typeof IssuesRoute
+  PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   CategoryArticleSlugRoute: typeof CategoryArticleSlugRoute
   CategorySlugRoute: typeof CategorySlugRoute
@@ -141,6 +154,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/issues': {
@@ -200,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   ArticleRoute: ArticleRoute,
   ControlRoomRoute: ControlRoomRoute,
   IssuesRoute: IssuesRoute,
+  PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   CategoryArticleSlugRoute: CategoryArticleSlugRoute,
   CategorySlugRoute: CategorySlugRoute,
