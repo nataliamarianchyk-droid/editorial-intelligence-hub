@@ -883,7 +883,10 @@ function CrmBody() {
       <H2 id="kpis">The Five Numbers a CRO Should Watch</H2>
 
       <Infographic
-        label="The Executive Scoreboard"
+        src={crmExecutiveScoreboard.url}
+        width={1600}
+        height={1008}
+        alt="Executive scoreboard dashboard of five CRO metrics: MQL to SQL rate, lead response time, SQL acceptance rate, pipeline velocity, and closed-won from marketing-sourced leads."
         caption="Four of these are worthless without the fifth."
       />
 
