@@ -30,8 +30,7 @@ export const Route = createFileRoute("/sitemap.xml")({
             })),
           // Legal pages — low priority, rarely change.
           { path: "/privacy", changefreq: "yearly", priority: "0.2" },
-          // TODO: uncomment when /impressum route is added.
-          // { path: "/impressum", changefreq: "yearly", priority: "0.2" },
+          { path: "/impressum", changefreq: "yearly", priority: "0.2" },
         ];
 
         const urls = entries.map((e) =>
