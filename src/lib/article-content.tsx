@@ -741,7 +741,10 @@ function CrmBody() {
       </div>
 
       <Infographic
-        label="What Happens After the Form - 9-step operational flow"
+        src={crmOperationalFlow.url}
+        width={1600}
+        height={1008}
+        alt="Nine-step operational flow from form-fill to forecast: lifecycle stages, MQL definition, automated transitions, owner rotation, SLA timer, follow-up task, Slack notification, mandatory rejection reasons, weekly MQL to SQL report."
         caption="Nine steps between a form-fill and a forecast."
       />
 
