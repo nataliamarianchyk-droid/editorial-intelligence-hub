@@ -1,40 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
-const COOKIE_NAME = "nm_consent";
-const COOKIE_DAYS = 180;
-const REOPEN_EVENT = "nm-consent:reopen";
 const CHANGE_EVENT = "nm-consent:change";
+const REOPEN_EVENT = "nm-consent:reopen";
 
 type Decision = "granted" | "denied";
 
-function readCookie(name: string): string | null {
+function readDecision(): Decision | null {
   if (typeof document === "undefined") return null;
-  const match = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith(`${name}=`));
-  return match ? decodeURIComponent(match.split("=")[1]) : null;
-}
-
-function writeCookie(name: string, value: string, days: number) {
-  if (typeof document === "undefined") return;
-  const expires = new Date(Date.now() + days * 864e5).toUTCString();
-  document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
-}
-
-function applyConsent(decision: Decision) {
-  const w = window as unknown as { gtag?: (...args: unknown[]) => void };
-  if (typeof w.gtag !== "function") return;
-  w.gtag("consent", "update", {
-    ad_storage: decision,
-    ad_user_data: decision,
-    ad_personalization: decision,
-    analytics_storage: decision,
-  });
+  const c = document.cookie.match(/(?:^|;\s*)nm_consent=(granted|denied)/);
+  return c ? (c[1] as Decision) : null;
 }
 
 export function getConsentDecision(): Decision | null {
-  const v = readCookie(COOKIE_NAME);
-  return v === "granted" || v === "denied" ? v : null;
+  return readDecision();
 }
 
 export function openConsentPreferences() {
@@ -45,8 +23,8 @@ export function openConsentPreferences() {
 export function useConsentDecision(): Decision | null {
   const [decision, setDecision] = useState<Decision | null>(null);
   useEffect(() => {
-    setDecision(getConsentDecision());
-    const onChange = () => setDecision(getConsentDecision());
+    setDecision(readDecision());
+    const onChange = () => setDecision(readDecision());
     window.addEventListener(CHANGE_EVENT, onChange);
     return () => window.removeEventListener(CHANGE_EVENT, onChange);
   }, []);
@@ -54,107 +32,59 @@ export function useConsentDecision(): Decision | null {
 }
 
 export function ConsentBanner() {
-  const [visible, setVisible] = useState(false);
+  const [decided, setDecided] = useState(true);
 
   useEffect(() => {
-    const existing = getConsentDecision();
-    if (existing === "granted") {
-      applyConsent("granted");
-    } else if (existing === null) {
-      setVisible(true);
-    }
-    const onReopen = () => setVisible(true);
+    const c = document.cookie.match(/(?:^|;\s*)nm_consent=(granted|denied)/);
+    if (!c) setDecided(false);
+    else if (c[1] === "granted") grant();
+
+    const onReopen = () => setDecided(false);
     window.addEventListener(REOPEN_EVENT, onReopen);
     return () => window.removeEventListener(REOPEN_EVENT, onReopen);
   }, []);
 
-  if (!visible) return null;
+  function grant() {
+    (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag?.("consent", "update", {
+      ad_storage: "granted",
+      ad_user_data: "granted",
+      ad_personalization: "granted",
+      analytics_storage: "granted",
+    });
+  }
 
-  const finish = (decision: Decision) => {
-    writeCookie(COOKIE_NAME, decision, COOKIE_DAYS);
-    applyConsent(decision);
+  function choose(v: Decision) {
+    document.cookie = `nm_consent=${v};path=/;max-age=15552000;SameSite=Lax`; // 180 days
+    if (v === "granted") grant();
     window.dispatchEvent(new Event(CHANGE_EVENT));
-    setVisible(false);
-  };
+    setDecided(true);
+  }
+
+  if (decided) return null;
 
   return (
-    <div
-      role="dialog"
-      aria-live="polite"
-      aria-label="Cookie consent"
-      style={{
-        position: "fixed",
-        left: 0,
-        right: 0,
-        bottom: 0,
-        zIndex: 1000,
-        backgroundColor: "#1a1f3a",
-        color: "#ffffff",
-        fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
-        borderTop: "1px solid rgba(94, 200, 240, 0.35)",
-        padding: "16px 20px",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          gap: 16,
-          justifyContent: "space-between",
-        }}
-      >
-        <p style={{ margin: 0, fontSize: 14, lineHeight: 1.5, flex: "1 1 320px" }}>
-          We use cookies to measure audience and improve editorial reach. See our{" "}
-          <a
-            href="/privacy"
-            style={{ color: "#5ec8f0", textDecoration: "underline" }}
-          >
-            privacy notice
-          </a>
-          .
-        </p>
-        <div style={{ display: "flex", gap: 8 }}>
-          <button
-            type="button"
-            onClick={() => finish("denied")}
-            style={{
-              padding: "10px 20px",
-              borderRadius: 9999,
-              border: "1px solid rgba(255,255,255,0.25)",
-              background: "transparent",
-              color: "#ffffff",
-              fontFamily: "inherit",
-              fontSize: 12,
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              cursor: "pointer",
-            }}
-          >
-            Decline
-          </button>
-          <button
-            type="button"
-            onClick={() => finish("granted")}
-            style={{
-              padding: "10px 20px",
-              borderRadius: 9999,
-              border: "1px solid #5ec8f0",
-              background: "#5ec8f0",
-              color: "#1a1f3a",
-              fontFamily: "inherit",
-              fontSize: 12,
-              fontWeight: 600,
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              cursor: "pointer",
-            }}
-          >
-            Accept
-          </button>
-        </div>
+    <div style={{
+      position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 9999,
+      background: "#1a1f3a", color: "#fff", padding: "16px 20px",
+      display: "flex", gap: 16, alignItems: "center", justifyContent: "center",
+      flexWrap: "wrap", fontFamily: "Montserrat, sans-serif", fontSize: 14,
+    }}>
+      <span style={{ maxWidth: 640 }}>
+        We use analytics cookies to understand how the Intelligence Hub is read.
+        You decide.{" "}
+        <a href="/privacy" style={{ color: "#5ec8f0", textDecoration: "underline" }}>
+          Privacy
+        </a>
+      </span>
+      <div style={{ display: "flex", gap: 10 }}>
+        <button onClick={() => choose("denied")} style={{
+          padding: "8px 16px", borderRadius: 8, border: "1px solid #5ec8f0",
+          background: "transparent", color: "#5ec8f0", cursor: "pointer",
+        }}>Decline</button>
+        <button onClick={() => choose("granted")} style={{
+          padding: "8px 16px", borderRadius: 8, border: "none",
+          background: "#5ec8f0", color: "#1a1f3a", fontWeight: 600, cursor: "pointer",
+        }}>Accept</button>
       </div>
     </div>
   );
