@@ -518,14 +518,30 @@ const crmToc: TocItem[] = [
   { id: "playbook", label: "Operator's Playbook" },
 ];
 
-function Infographic({ label, caption }: { label: string; caption: string }) {
+function Infographic({
+  src,
+  width,
+  height,
+  alt,
+  caption,
+}: {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  caption: string;
+}) {
   return (
-    <figure className="my-12 rounded-sm border border-[var(--ink-navy)]/15 bg-[var(--ink-navy)] text-[var(--paper)] p-8">
-      <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--accent-cyan)]">
-        Infographic
-      </p>
-      <p className="mt-3 font-display text-2xl leading-snug">{label}</p>
-      <figcaption className="mt-4 text-sm text-white/65 font-sans italic">
+    <figure className="my-12 -mx-2 md:-mx-6 lg:-mx-10">
+      <img
+        src={src}
+        width={width}
+        height={height}
+        alt={alt}
+        loading="lazy"
+        className="w-full h-auto rounded-sm block"
+      />
+      <figcaption className="mt-4 text-sm text-black/60 font-sans italic text-center">
         {caption}
       </figcaption>
     </figure>
