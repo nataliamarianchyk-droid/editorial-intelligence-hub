@@ -670,14 +670,6 @@ function CrmBody() {
       <H2 id="failures">The Four Structural Failures</H2>
       <P>None of these is a culture problem. Each is a missing or broken object in the CRM.</P>
 
-      <Infographic
-        src={crmStructuralFailures.url}
-        width={1600}
-        height={1200}
-        alt="2x2 grid of the four structural failures in marketing-to-sales handoff: no shared lead definition, no automated routing, no context transfer, no feedback loop."
-        caption="None of these is a culture problem."
-      />
-
       <ol className="mt-8 space-y-6">
         {[
           [
@@ -708,6 +700,14 @@ function CrmBody() {
           </li>
         ))}
       </ol>
+
+      <Infographic
+        src={crmStructuralFailures.url}
+        width={1600}
+        height={1200}
+        alt="2x2 grid of the four structural failures in marketing-to-sales handoff: no shared lead definition, no automated routing, no context transfer, no feedback loop."
+        caption="None of these is a culture problem."
+      />
 
       <p className="mt-8 font-sans text-[17px] leading-[1.85] text-[#1f2937]">
         Add a slow-acting accelerant: B2B contact data decays fast. Dun &amp; Bradstreet's
