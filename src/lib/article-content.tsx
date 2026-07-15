@@ -1,4 +1,10 @@
 import type { ReactNode } from "react";
+import crmPipelineDies from "@/assets/insights/crm/pipeline-dies.png.asset.json";
+import crmStructuralFailures from "@/assets/insights/crm/structural-failures.png.asset.json";
+import crmOperationalFlow from "@/assets/insights/crm/operational-flow.png.asset.json";
+import crmLeadScoring from "@/assets/insights/crm/lead-scoring.png.asset.json";
+import crmFeedbackLoop from "@/assets/insights/crm/feedback-loop.png.asset.json";
+import crmExecutiveScoreboard from "@/assets/insights/crm/executive-scoreboard.png.asset.json";
 
 export type TocItem = { id: string; label: string };
 
