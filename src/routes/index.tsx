@@ -20,8 +20,10 @@ export const Route = createFileRoute("/")({
           "Editorial insights from the operational side of B2B performance marketing - acquisition, attribution, content and the systems that connect them.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://insights.nm-insight.com/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://insights.nm-insight.com/" }],
   }),
 });
 

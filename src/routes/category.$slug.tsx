@@ -8,7 +8,7 @@ export const Route = createFileRoute("/category/$slug")({
     if (!category) throw notFound();
     return { category, items: insightsByCategory(params.slug) };
   },
-  head: ({ loaderData }) => {
+  head: ({ loaderData, params }) => {
     if (!loaderData) {
       return {
         meta: [
@@ -17,7 +17,48 @@ export const Route = createFileRoute("/category/$slug")({
         ],
       };
     }
-    const { category } = loaderData;
+    const { category, items } = loaderData;
+    const url = `https://insights.nm-insight.com/category/${params.slug}`;
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "CollectionPage",
+          "@id": `${url}#collectionpage`,
+          url,
+          name: `${category.name} - NM Insight`,
+          description: category.description,
+          inLanguage: "en",
+          isPartOf: { "@id": "https://insights.nm-insight.com/#website" },
+          hasPart: items
+            .filter((i) => i.status === "published")
+            .map((i) => ({
+              "@type": "Article",
+              headline: i.title,
+              url: `https://insights.nm-insight.com${i.href}`,
+              datePublished: i.date,
+              author: { "@type": "Person", name: i.author },
+            })),
+        },
+        {
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Insights",
+              item: "https://insights.nm-insight.com/",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: category.name,
+              item: url,
+            },
+          ],
+        },
+      ],
+    };
     return {
       meta: [
         { title: `${category.name} - NM Insight` },
@@ -25,6 +66,11 @@ export const Route = createFileRoute("/category/$slug")({
         { property: "og:title", content: `${category.name} - NM Insight` },
         { property: "og:description", content: category.description },
         { property: "og:type", content: "website" },
+        { property: "og:url", content: url },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        { type: "application/ld+json", children: JSON.stringify(jsonLd) },
       ],
     };
   },
