@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import nmLogo from "@/assets/nm-insight-logo.png";
 import { categories } from "@/lib/insights-data";
@@ -143,15 +144,7 @@ export function SiteFooter() {
         <div>
           <p className="eyebrow mb-3">Subscribe</p>
           <p className="text-white/55 mb-3">One insight per week. No noise.</p>
-          <form className="flex">
-            <input
-              className="flex-1 bg-white/5 border border-white/10 px-3 py-2 text-sm text-[var(--paper)] focus:outline-none focus:border-[var(--accent-cyan)]"
-              placeholder="you@company.com"
-            />
-            <button type="submit" aria-label="Subscribe" className="bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-4 text-sm font-medium">
-              →
-            </button>
-          </form>
+          <FooterSubscribeForm />
         </div>
       </div>
       <div className="border-t border-white/8">
@@ -169,6 +162,62 @@ export function SiteFooter() {
     </footer>
   );
 }
+
+function FooterSubscribeForm() {
+  const [email, setEmail] = useState("");
+  const [state, setState] = useState<"idle" | "loading" | "ok" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!email) return;
+    setState("loading");
+    try {
+      const { submitSubscribe } = await import("@/lib/subscribe-client");
+      const result = await submitSubscribe({ email });
+      setState(result.ok ? "ok" : "error");
+      setMessage(result.message);
+      if (result.ok) setEmail("");
+    } catch {
+      setState("error");
+      setMessage("Network error. Try again.");
+    }
+  }
+
+  return (
+    <>
+      <form onSubmit={onSubmit} className="flex">
+        <input
+          type="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="flex-1 bg-white/5 border border-white/10 px-3 py-2 text-sm text-[var(--paper)] focus:outline-none focus:border-[var(--accent-cyan)]"
+          placeholder="you@company.com"
+          disabled={state === "loading" || state === "ok"}
+        />
+        <button
+          type="submit"
+          disabled={state === "loading" || state === "ok"}
+          aria-label="Subscribe"
+          className="bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-4 text-sm font-medium disabled:opacity-60"
+        >
+          {state === "loading" ? "…" : state === "ok" ? "✓" : "→"}
+        </button>
+      </form>
+      {message && (
+        <p
+          className={`mt-2 text-[11px] ${
+            state === "ok" ? "text-[var(--accent-cyan)]" : "text-[var(--accent-amber)]"
+          }`}
+        >
+          {message}
+        </p>
+      )}
+    </>
+  );
+}
+
 
 function CookieSettingsButton() {
   return (

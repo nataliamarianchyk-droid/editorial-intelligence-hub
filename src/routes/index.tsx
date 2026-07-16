@@ -263,19 +263,15 @@ function UpdatesSection() {
     if (!email) return;
     setState("loading");
     try {
-      const res = await fetch("/api/public/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      const data = (await res.json().catch(() => ({}))) as { message?: string };
-      if (!res.ok) {
+      const { submitSubscribe } = await import("@/lib/subscribe-client");
+      const result = await submitSubscribe({ email });
+      if (!result.ok) {
         setState("error");
-        setMessage(data.message ?? "Something went wrong. Try again.");
+        setMessage(result.message);
         return;
       }
       setState("ok");
-      setMessage(data.message ?? "You're on the list.");
+      setMessage(result.message);
       setEmail("");
     } catch {
       setState("error");
