@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "sdk_version": "0.22.2",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "nm-insight-mcp",
+      "version": "0.1.0",
+      "title": "NM Insight"
+    },
+    "tools": [
+      {
+        "name": "list_categories",
+        "title": "List categories",
+        "description": "List the editorial categories on NM Insight (Performance, Analytics & Tracking, Growth Systems, B2B SaaS, AI & Marketing Operations, E-commerce) with their slugs and descriptions.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_insights",
+        "title": "List insights",
+        "description": "List NM Insight articles with title, dek (summary), category, author, date, read time, issue, and status. Optionally filter by category slug and/or status.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "category": {
+              "description": "Optional category slug (e.g. 'performance', 'analytics-tracking').",
+              "type": "string"
+            },
+            "status": {
+              "description": "Optional publication status filter.",
+              "type": "string",
+              "enum": [
+                "published",
+                "upcoming"
+              ]
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_insight",
+        "title": "Get insight",
+        "description": "Get metadata for a single NM Insight article by its slug, including title, dek (summary), category, author bio, date, read time, and canonical URL. Returns article metadata; the full body lives on the public web page at the returned URL.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string",
+              "minLength": 1,
+              "description": "The article slug, e.g. 'visibility-is-not-pipeline'."
+            }
+          },
+          "required": [
+            "slug"
+          ]
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
