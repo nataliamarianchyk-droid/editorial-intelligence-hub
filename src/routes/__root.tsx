@@ -119,6 +119,37 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     scripts: [
       { src: `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`, async: true },
       { children: GA_CONSENT_INIT },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebSite",
+              "@id": "https://insights.nm-insight.com/#website",
+              url: "https://insights.nm-insight.com/",
+              name: "NM Insight",
+              alternateName: "NM Insight - Insights",
+              description:
+                "Editorial insights on B2B performance marketing - the operational side of acquisition, attribution, content and the systems that connect them.",
+              inLanguage: "en",
+              publisher: { "@id": "https://insights.nm-insight.com/#organization" },
+            },
+            {
+              "@type": "Organization",
+              "@id": "https://insights.nm-insight.com/#organization",
+              name: "NM Insight",
+              url: "https://nm-insight.com",
+              description:
+                "Berlin-based B2B performance marketing consultancy publishing weekly editorial insights for operators building the infrastructure between marketing and revenue.",
+              sameAs: [
+                "https://www.linkedin.com/company/nm-insight/",
+                "https://nm-insight.com",
+              ],
+            },
+          ],
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
