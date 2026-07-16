@@ -213,21 +213,10 @@ function FooterSubscribeForm() {
           {message}
         </p>
       )}
-      <div className="border-t border-white/8">
-        <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-white/65 flex justify-between">
-          <span>© 2026 NM Insight · Berlin</span>
-          <span>
-            <Link to="/impressum" className="hover:text-white/70">Imprint</Link>
-            <span className="mx-2">·</span>
-            <Link to="/privacy" className="hover:text-white/70">Privacy</Link>
-            <span className="mx-2">·</span>
-            <CookieSettingsButton />
-          </span>
-        </div>
-      </div>
-    </footer>
+    </>
   );
 }
+
 
 function CookieSettingsButton() {
   return (
