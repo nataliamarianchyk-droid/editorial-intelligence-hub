@@ -1,8 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import nmLogo from "@/assets/nm-insight-logo.png";
+import { requireControlRoomAccess } from "@/lib/gate.functions";
 
 export const Route = createFileRoute("/control-room")({
+  // Server-side access gate: throws a redirect to /unlock when the session
+  // cookie is missing or not unlocked. Runs before the component or any
+  // route data is served.
+  beforeLoad: () => requireControlRoomAccess(),
   component: ControlRoom,
   head: () => ({
     meta: [
