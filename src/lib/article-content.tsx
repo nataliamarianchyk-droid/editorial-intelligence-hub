@@ -994,11 +994,279 @@ function CrmBody() {
   );
 }
 
+/* ------------- B2B Performance Marketing Infrastructure Audit ------------ */
+
+const auditToc: TocItem[] = [
+  { id: "premise", label: "The Premise" },
+  { id: "layers", label: "The Four Infrastructure Layers" },
+  { id: "tracking", label: "1. Tracking & Tagging" },
+  { id: "attribution", label: "2. Attribution & Reporting" },
+  { id: "routing", label: "3. Routing & Handoff" },
+  { id: "feedback", label: "4. Feedback & Learning" },
+  { id: "scoring", label: "How to Score the Audit" },
+  { id: "sequence", label: "The Fix Sequence" },
+];
+
+function ChecklistBlock({
+  title,
+  items,
+}: {
+  title: string;
+  items: string[];
+}) {
+  return (
+    <div className="my-8 border border-black/10 bg-[#FDFBF6] p-6 md:p-8">
+      <p className="eyebrow text-[var(--ink-navy)]">{title}</p>
+      <ul className="mt-4 space-y-3 font-sans text-[16px] leading-[1.7] text-[#1f2937]">
+        {items.map((it, i) => (
+          <li key={i} className="flex gap-3">
+            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent-cyan)]" />
+            <span>{it}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function AuditBody() {
+  return (
+    <>
+      <p className="text-xl md:text-2xl leading-relaxed text-[#0f172a]">
+        Most B2B marketing teams do not have a targeting problem or a creative problem. They have
+        an infrastructure problem - and they cannot see it, because the dashboards keep loading.
+      </p>
+      <p className="mt-6 text-xl md:text-2xl leading-relaxed font-medium text-[var(--ink-navy)]">
+        Before you rewrite ads, rebuild the plumbing.
+      </p>
+
+      <H2 id="premise">The Premise</H2>
+      <div className="space-y-5">
+        <P>
+          Performance marketing in B2B is not a single discipline. It is four layers of
+          infrastructure stacked on top of each other: how you tag traffic, how you attribute
+          revenue, how leads are routed to sales, and how the outcome flows back into the system
+          that spends the money. When any layer is weak, everything above it inherits the noise.
+        </P>
+        <P>
+          Teams usually notice the top of the stack first - the creative, the targeting, the
+          budget split - because that is what is visible in the platform UI. But when a campaign
+          "underperforms," the cause is almost never the campaign. It is a UTM that never landed
+          in the CRM, an offline conversion that was never uploaded, a lead that sat unrouted for
+          nine days, or a "closed lost" reason field that nobody fills in.
+        </P>
+        <PullQuote>
+          You do not have a marketing performance problem. You have a marketing infrastructure
+          problem the dashboards are too polite to name.
+        </PullQuote>
+      </div>
+
+      <H2 id="layers">The Four Infrastructure Layers</H2>
+      <div className="space-y-5">
+        <P>
+          The audit below covers the four layers in order of causality. Fixing layer 1 without
+          layer 2 gives you clean data no one uses. Fixing layer 3 without layer 1 routes garbage
+          faster. Work top-down.
+        </P>
+        <ol className="space-y-3 font-sans text-[17px] leading-[1.85] text-[#1f2937] list-decimal pl-6">
+          <li>
+            <strong>Tracking &amp; Tagging</strong> - the ledger. If it is wrong here, nothing
+            downstream is trustworthy.
+          </li>
+          <li>
+            <strong>Attribution &amp; Reporting</strong> - how spend is connected to revenue,
+            including offline conversions and consent-gated signal.
+          </li>
+          <li>
+            <strong>Routing &amp; Handoff</strong> - the operational moment where marketing hands
+            a person to sales. Most pipeline dies here.
+          </li>
+          <li>
+            <strong>Feedback &amp; Learning</strong> - whether the outcome ever reaches the
+            channel that spent the money. Without it, optimisation is fiction.
+          </li>
+        </ol>
+      </div>
+
+      <H2 id="tracking">1. Tracking &amp; Tagging</H2>
+      <div className="space-y-5">
+        <P>
+          The tracking layer is the ledger every other decision is built on. Two questions matter:
+          can you tell where a session came from, and does that answer still hold when the record
+          reaches your CRM?
+        </P>
+      </div>
+      <ChecklistBlock
+        title="Tracking checklist (10 points)"
+        items={[
+          "A written UTM convention exists and every paid channel follows it - lowercase, no spaces, controlled vocabularies for source/medium/campaign.",
+          "utm_content and utm_term are used consistently for ad-level and keyword-level granularity, not left to platform auto-tagging alone.",
+          "GA4 is deployed via GTM, with server-side tagging or Enhanced Measurement configured deliberately, not by default.",
+          "Consent Mode v2 is live with all four signals (ad_storage, ad_user_data, ad_personalization, analytics_storage) and default state matches your legal posture.",
+          "First-party identifiers (email hash, user_id) are captured on form submit and passed to GA4, Google Ads and LinkedIn where consent allows.",
+          "LinkedIn Insight Tag, Meta Pixel and Google Ads tag fire only after marketing consent is granted, not on page load.",
+          "UTM parameters are written to hidden fields on every form and persisted to the CRM contact record - not dropped at submission.",
+          "A cross-domain measurement plan exists if traffic moves between marketing site, product, and a separate booking or checkout host.",
+          "404s, redirects and campaign landing pages are monitored - a broken UTM link is a silent budget leak.",
+          "You can answer 'where did this closed-won deal originate?' from the CRM alone, without opening an ad platform.",
+        ]}
+      />
+
+      <H2 id="attribution">2. Attribution &amp; Reporting</H2>
+      <div className="space-y-5">
+        <P>
+          Attribution in B2B is not last-click and not a model - it is a decision about which
+          signals you trust the ad platforms to optimise against. Since ATT, iOS 17 link
+          stripping, and Consent Mode, the reliable path is fewer, higher-quality conversions fed
+          back to the platforms deliberately.
+        </P>
+      </div>
+      <ChecklistBlock
+        title="Attribution checklist (10 points)"
+        items={[
+          "A single source of truth exists for pipeline and revenue - CRM, not a spreadsheet, not a BI tool disconnected from the CRM.",
+          "Offline conversions (MQL, SQL, Opportunity, Closed Won) are uploaded to Google Ads and LinkedIn on a defined cadence - daily or better.",
+          "Enhanced Conversions for Leads is configured in Google Ads with hashed email/phone from the CRM, not just from the form.",
+          "LinkedIn Conversions API is live where the account qualifies, replacing pixel-only signal.",
+          "Attribution windows are documented per channel and match the actual sales cycle (30/60/90 day is not one-size-fits-all).",
+          "Self-reported attribution ('How did you hear about us?') is captured on the demo form and reconciled quarterly with platform-reported data.",
+          "A weekly report shows spend, MQLs, SQLs, Opps and Closed Won by channel - not just CPC and CTR.",
+          "The reporting distinguishes new-business pipeline from expansion/renewal, and paid from organic influence.",
+          "Someone owns the reconciliation between CRM totals and BI totals - and the delta is under 5%.",
+          "The team knows the CAC and payback period per channel, and can defend both numbers with primary data.",
+        ]}
+      />
+
+      <H2 id="routing">3. Routing &amp; Handoff</H2>
+      <div className="space-y-5">
+        <P>
+          Routing is the physical moment where marketing hands a person to sales. It is boring,
+          under-instrumented, and where most pipeline dies. Speed to lead, ownership, and
+          lifecycle discipline decide whether a working funnel actually produces meetings.
+        </P>
+      </div>
+      <ChecklistBlock
+        title="Routing checklist (10 points)"
+        items={[
+          "Lifecycle stages are defined in writing with entry and exit criteria - not left to sales reps' interpretation.",
+          "An MQL-to-SQL SLA exists and is measured: median first-touch time, percentage responded within 5 minutes, percentage abandoned.",
+          "Round-robin, territory or account-based routing rules are automated in the CRM, not manual assignment via Slack.",
+          "Every inbound demo request triggers an immediate notification to the assigned rep - email, Slack and mobile push, not just an email.",
+          "Duplicate detection runs on email and company domain before a new lead is created - no split pipeline across two records.",
+          "Lead scoring exists and is calibrated against actual SQL and Closed Won outcomes, not vibes - and it is reviewed quarterly.",
+          "'Working' vs 'not working' status is visible in the CRM within 48 hours of assignment; stalled leads route to a nurture path automatically.",
+          "Disqualification reasons are a required, controlled-vocabulary field on lead status change - not a free text.",
+          "Contact data enrichment (firmographic + role) runs on lead creation, not manually by the SDR.",
+          "A daily or weekly funnel report shows conversion rates between every stage - and someone is accountable for each rate.",
+        ]}
+      />
+
+      <H2 id="feedback">4. Feedback &amp; Learning</H2>
+      <div className="space-y-5">
+        <P>
+          The last layer is the one that closes the loop: whether the outcome of a lead ever
+          reaches the platform that spent the money to acquire it. Without this, ad platforms
+          optimise for form fills - and you get more form fills instead of more revenue.
+        </P>
+      </div>
+      <ChecklistBlock
+        title="Feedback checklist (10 points)"
+        items={[
+          "Google Ads and LinkedIn campaigns bid on SQL or Opportunity events, not on form submits, wherever conversion volume supports it.",
+          "A negative-signal pipeline exists: disqualified and closed-lost leads are excluded or suppressed from lookalikes and retargeting.",
+          "Closed-won accounts are excluded from prospecting campaigns automatically, via matched audiences or company-list exclusions.",
+          "Sales notes and disqualification reasons are read by the marketing team on a defined cadence (weekly at minimum).",
+          "Marketing sits in on a sample of sales calls or has access to call recordings monthly - qualitative signal beats another dashboard.",
+          "Content and creative are informed by 'closed lost' reason distribution, not only by 'closed won' testimonials.",
+          "A/B tests run on landing pages against downstream metrics (SQL, pipeline) - not only against form-fill rate.",
+          "Budget reallocation between channels happens on a defined cadence (monthly or better) using the same reconciled numbers everyone else uses.",
+          "New campaign proposals include a hypothesis, a target funnel-stage metric, and a kill criterion - not just a creative brief.",
+          "The team can name three things it stopped doing in the last quarter because the data said so. If it cannot, the feedback layer is broken.",
+        ]}
+      />
+
+      <H2 id="scoring">How to Score the Audit</H2>
+      <div className="space-y-5">
+        <P>
+          Count the boxes you can check honestly. The distribution tells you where to start - not
+          the total.
+        </P>
+        <ul className="space-y-2 font-sans text-[17px] leading-[1.85] text-[#1f2937] list-disc pl-6">
+          <li>
+            <strong>35-40:</strong> mature infrastructure. Optimise creative, targeting and
+            offer. Marginal gains are real.
+          </li>
+          <li>
+            <strong>25-34:</strong> functional but leaky. One or two layers are dragging the rest
+            down; identify which and fix in sequence.
+          </li>
+          <li>
+            <strong>15-24:</strong> partial infrastructure. Any spend increase here amplifies
+            noise, not results. Pause new experiments and rebuild.
+          </li>
+          <li>
+            <strong>Below 15:</strong> the dashboards are decorative. Stop optimising and start
+            instrumenting - in that order.
+          </li>
+        </ul>
+      </div>
+
+      <H2 id="sequence">The Fix Sequence</H2>
+      <div className="space-y-5">
+        <P>
+          The order matters. Every fix upstream compounds; every fix downstream is temporary
+          until the upstream fix lands.
+        </P>
+        <ol className="space-y-3 font-sans text-[17px] leading-[1.85] text-[#1f2937] list-decimal pl-6">
+          <li>
+            <strong>Tracking first.</strong> Nothing else is trustworthy without it. A week of
+            UTM governance work saves a quarter of misattributed budget.
+          </li>
+          <li>
+            <strong>Routing second.</strong> A fast, disciplined handoff turns existing MQL
+            volume into more SQLs without any new spend.
+          </li>
+          <li>
+            <strong>Feedback third.</strong> Once tracking and routing hold, feeding real
+            outcomes back to the ad platforms is the single largest lever on CAC.
+          </li>
+          <li>
+            <strong>Attribution reporting last.</strong> A report built on the first three layers
+            is worth reading. Built on none of them, it is theatre.
+          </li>
+        </ol>
+        <PullQuote>
+          Fix the plumbing before you paint the walls. Every layer above depends on every layer
+          below.
+        </PullQuote>
+        <P>
+          A working infrastructure is not glamorous. It does not photograph well for a board
+          slide. But it is the difference between marketing that is active and marketing that
+          produces revenue - and in specialist B2B markets, that difference is the entire game.
+        </P>
+      </div>
+
+      <div className="mt-14 border-t border-black/10 pt-6 text-sm text-black/55 font-sans leading-relaxed">
+        <p>
+          <span className="uppercase tracking-[0.14em] text-black/45 text-xs">Further reading</span>
+          <br />
+          Google Ads Enhanced Conversions for Leads documentation; LinkedIn Conversions API
+          reference; Google Consent Mode v2 (mandatory March 2024); Forrester 2024 Sales &amp;
+          Marketing Alignment Survey; HubSpot lifecycle stage and lead scoring documentation;
+          NM Insight, "Your CRM Is the Real Marketing Tool" (Issue 03).
+        </p>
+      </div>
+    </>
+  );
+}
+
 /* ------------------------------- Registry -------------------------------- */
 
 export const articleContent: Record<string, ArticleContent> = {
   "visibility-is-not-pipeline": { toc: visibilityToc, Body: VisibilityBody },
   "german-advertising-market-2026": { toc: germanMarketToc, Body: GermanMarketBody },
   "your-crm-is-the-real-marketing-tool": { toc: crmToc, Body: CrmBody },
+  "b2b-performance-marketing-infrastructure-audit": { toc: auditToc, Body: AuditBody },
 };
+
 
