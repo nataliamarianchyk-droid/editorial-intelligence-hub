@@ -119,6 +119,20 @@ export const insights: Insight[] = [
     status: "published",
   },
   {
+    slug: "b2b-performance-marketing-infrastructure-audit",
+    title: "The B2B Performance Marketing Infrastructure Audit",
+    titleItalicSub: "A field checklist for the plumbing under your pipeline.",
+    dek: "Before you fix targeting or creative, audit the infrastructure - tracking, attribution, routing, feedback. A 40-point field audit for B2B teams whose marketing is active but whose pipeline is not.",
+    category: "growth-systems",
+    authorKey: "editorial",
+    author: "NM Editorial Team",
+    date: "July 2026",
+    read: "9 min",
+    issue: "Issue 04",
+    href: "/growth-systems/b2b-performance-marketing-infrastructure-audit",
+    status: "published",
+  },
+  {
     slug: "utm-governance",
     title: "UTM Governance Is a Revenue System.",
     dek: "Tracking is not a plugin. It is the ledger every downstream decision is built on - and most teams keep it in a spreadsheet.",
@@ -130,6 +144,7 @@ export const insights: Insight[] = [
     href: "#",
     status: "upcoming",
   },
+
   {
     slug: "your-crm-is-the-real-marketing-tool",
     title: "Your CRM Is the Real Marketing Tool",
