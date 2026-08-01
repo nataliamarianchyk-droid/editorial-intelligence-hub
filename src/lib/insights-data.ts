@@ -133,6 +133,21 @@ export const insights: Insight[] = [
     status: "published",
   },
   {
+    slug: "ai-found-66000-buyers",
+    title: "AI Found 66,000 Buyers in Seconds. That Was the Easy Part.",
+    titleItalicSub:
+      "Building an AI-assisted outbound system for B2B doesn't remove the hard work. It moves it somewhere you can't automate.",
+    dek: "AI collapses the cost of finding buyers - and relocates the entire bottleneck to qualification. What Apollo and HubSpot actually did well, what they quietly got wrong, and the part no AI SDR pitch mentions.",
+    category: "ai-marketing-operations",
+    authorKey: "natalia",
+    author: "Natalia Marianchyk",
+    date: "August 2026",
+    read: "7 min",
+    issue: "Issue 05",
+    href: "/ai-marketing-operations/ai-found-66000-buyers",
+    status: "published",
+  },
+  {
     slug: "utm-governance",
     title: "UTM Governance Is a Revenue System.",
     dek: "Tracking is not a plugin. It is the ledger every downstream decision is built on - and most teams keep it in a spreadsheet.",
