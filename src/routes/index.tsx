@@ -28,13 +28,13 @@ export const Route = createFileRoute("/")({
 });
 
 function InsightsHome() {
-  const featured = insights.find((i) => i.slug === "your-crm-is-the-real-marketing-tool")!;
+  const featured = insights.find((i) => i.slug === "ai-found-66000-buyers")!;
   const issue1 = insights.find((i) => i.slug === "visibility-is-not-pipeline")!;
   const issue2 = insights.find((i) => i.slug === "german-advertising-market-2026")!;
+  const issue3 = insights.find((i) => i.slug === "your-crm-is-the-real-marketing-tool")!;
   const issue4 = insights.find((i) => i.slug === "b2b-performance-marketing-infrastructure-audit")!;
-  const issue5 = insights.find((i) => i.slug === "ai-found-66000-buyers")!;
   const upcoming = insights.filter((i) => i.status === "upcoming" && i.slug !== "utm-governance");
-  const rest = [issue5, issue4, issue2, issue1, ...upcoming];
+  const rest = [issue3, issue4, issue2, issue1, ...upcoming];
   const featuredCat = categoryBySlug(featured.category)!;
 
   return (
