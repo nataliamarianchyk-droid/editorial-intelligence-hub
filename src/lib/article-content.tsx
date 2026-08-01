@@ -1260,6 +1260,177 @@ function AuditBody() {
   );
 }
 
+/* ---------------------- AI outbound article (Issue 05) -------------------- */
+
+const aiOutboundToc: TocItem[] = [
+  { id: "promise", label: "The Promise, Stated Plainly" },
+  { id: "compressed", label: "What AI Actually Compressed" },
+  { id: "bottleneck", label: "Where the Bottleneck Went" },
+  { id: "plumbing", label: "The Plumbing Beats the Prompt" },
+  { id: "break", label: "Where the Tools Break" },
+  { id: "verdict", label: "The Verdict" },
+  { id: "playbook", label: "The Operator's Playbook" },
+];
+
+function AiOutboundBody() {
+  return (
+    <>
+      <p className="text-xl md:text-2xl leading-relaxed text-[#0f172a]">
+        The pitch for AI in B2B marketing is that it does the boring part for you. Point a tool at
+        your market, let it find the buyers, let it write the emails, let it follow up.
+      </p>
+      <p className="mt-6 text-xl md:text-2xl leading-relaxed font-medium text-[var(--ink-navy)]">
+        Half of that is true. The half that isn't is the half that matters.
+      </p>
+
+      <H2 id="promise">The Promise, Stated Plainly</H2>
+      <div className="space-y-5">
+        <P>
+          The mechanical grind of outbound - finding companies, finding the right person, getting a
+          working email, sequencing the follow-ups - collapses into an afternoon. That is the
+          promise, and it is worth taking seriously rather than dismissing.
+        </P>
+        <P>
+          I rebuilt NM Insight's outbound from scratch using Apollo and HubSpot. Not as a demo - as
+          the actual system I run to find clients. Here is what the tools did well, what they
+          quietly got wrong, and the part no one selling you an "AI SDR" mentions.
+        </P>
+      </div>
+
+      <H2 id="compressed">What AI Actually Compressed</H2>
+      <div className="space-y-5">
+        <P>
+          Start with the genuinely impressive part. In Apollo, a search with the right filters -
+          country, headcount, industry, a stack of seniority-level job titles - returned 66,700
+          people in the time it takes to read this sentence. Add geography, tighten headcount to
+          10-200, layer in a handful of B2B verticals, and the same search drops to roughly a
+          thousand relevant contacts. Enrichment fills in the emails. A three-step sequence handles
+          the follow-ups on a schedule. Sync pushes every contact into the CRM without a manual
+          export.
+        </P>
+        <P>
+          Ten years ago that was a junior researcher's month. Now it's a filter panel. The cost of
+          finding people has gone to nearly zero. That is real - and if you're still building lists
+          by hand, you're spending your one non-renewable resource on work a tool now does for free.
+        </P>
+        <P>
+          But notice what actually happened: the tool didn't find me clients. It found me names
+          that match a description I wrote. Those are not the same thing, and the gap between them
+          is the whole job.
+        </P>
+      </div>
+
+      <H2 id="bottleneck">Where the Bottleneck Went</H2>
+      <div className="space-y-5">
+        <P>Here is the moment the hype skips.</P>
+        <P>
+          My filtered list came back looking clean - right size, right countries, right titles. Then
+          I read it. A large share of the "prospects" were digital agencies that sell performance
+          marketing as a service. My competitors, not my clients. They'd matched because I'd used
+          keywords like "performance marketing" and "demand generation" - terms that describe both
+          the companies who need the work and the companies who do it.
+        </P>
+        <P>
+          No AI caught that. It couldn't. The line between "a company with a marketing problem" and
+          "a company that solves marketing problems for others" isn't in the filter fields - it's in
+          judgment about what your offer is and who it's for. The machine optimised for match. Only
+          a human optimises for fit.
+        </P>
+        <PullQuote>
+          AI collapses the cost of finding, which relocates the entire bottleneck to qualification.
+        </PullQuote>
+        <P>
+          When lists were expensive, the scarce skill was building them. Now that lists are free,
+          the scarce skill is reading them - knowing who to cross off, and why. The volume the tool
+          hands you isn't a gift. It's a test of whether you know your own market well enough to
+          throw most of it away.
+        </P>
+      </div>
+
+      <H2 id="plumbing">The Plumbing Beats the Prompt</H2>
+      <div className="space-y-5">
+        <P>
+          The least glamorous part of this build mattered more than any AI feature.
+        </P>
+        <P>
+          What makes outbound work isn't the model that drafts the email. It's whether the finding
+          tool and the CRM are wired together so nothing falls through: a contact enters, gets a
+          status, and moves through stages - new, contacted, replied, call booked, proposal, won or
+          lost - with every one of them carrying a next action and a follow-up date. That's the
+          system. The "AI" is one component inside a boring pipeline, and the boring pipeline is
+          what turns activity into revenue.
+        </P>
+        <P>
+          I've watched marketers - myself included, on a bad day - treat the clever tool as the
+          point and the plumbing as an afterthought. It's backwards. A mediocre email into a clean
+          pipeline beats a brilliant email into a black hole. If you connect one thing this
+          quarter, connect your prospecting tool to your CRM and define the stages. The AI can
+          wait.
+        </P>
+      </div>
+
+      <H2 id="break">Where the Tools Break</H2>
+      <div className="space-y-5">
+        <P>Nobody's launch video shows you this, so I will.</P>
+        <P>
+          Free plans are a demo, not a workflow. Enrichment and sequence credits run out fast - a
+          couple of dozen contacts, not a couple of thousand. You'll hit the wall mid-task, usually
+          at the exact moment you're ready to move. The honest options are two: work in small daily
+          batches that fit the free tier, or pay for the month you actually run the campaign and
+          treat it as a cost of doing business. What doesn't work is pretending the free tier
+          scales.
+        </P>
+        <P>
+          And save your work obsessively. I once spent an hour narrowing a search to something
+          genuinely good, went to add it to a sequence, hit a credit limit - and lost the entire
+          session, filters and all. The lesson is dull and non-negotiable: save the search the
+          instant it's good, before you touch anything else. These tools are powerful, and they're
+          brittle in ways that will cost you an afternoon if you trust them too far.
+        </P>
+      </div>
+
+      <H2 id="verdict">The Verdict</H2>
+      <div className="space-y-5">
+        <P>
+          AI in B2B outbound is neither the revolution its sellers claim nor the gimmick its
+          skeptics dismiss. It's leverage - and leverage multiplies whatever you point it at. Point
+          it at a sharp definition of your buyer and it saves you weeks. Point it at a fuzzy one and
+          it will efficiently, tirelessly, at scale, hand you a list of the wrong people.
+        </P>
+        <P>
+          The teams that win with these tools in 2026 won't be the ones with the best prompts.
+          They'll be the ones who did the unglamorous thinking first: who exactly this is for, what
+          disqualifies them, and what happens to a lead after it replies.
+        </P>
+        <PullQuote>AI does the finding. You still have to do the knowing.</PullQuote>
+      </div>
+
+      <H2 id="playbook">The Operator's Playbook</H2>
+      <ChecklistBlock
+        title="Six moves before you send another sequence"
+        items={[
+          "Write your disqualifiers before your filters. List who should not appear - competitors, wrong size, wrong buyer - and build the exclusions in from the start.",
+          "Read the first 30 by hand. Before you enrich or send anything, eyeball the raw list. If more than a few are wrong, your filters are wrong.",
+          "Connect the tool to the CRM before you send. No sync, no system. Every contact needs a stage, a next action, and a follow-up date.",
+          "Treat free tiers as a trial, not a plan. Batch within the limits or pay for the month you run. Don't architect around credits.",
+          "Save the search the moment it's good. Then save it again. Brittle tools punish the confident.",
+          "Keep one human gate. Let AI find and draft; never let it decide who's worth your time. That call stays yours.",
+        ]}
+      />
+
+      <div className="mt-14 border-t border-black/10 pt-6 text-sm text-black/55 font-sans leading-relaxed">
+        <p>
+          <span className="uppercase tracking-[0.14em] text-black/45 text-xs">Further reading</span>
+          <br />
+          Apollo.io search, enrichment and sequence documentation; HubSpot lifecycle stage and deal
+          pipeline documentation; NM Insight, "Your CRM Is the Real Marketing Tool" (Issue 03); NM
+          Insight, "The B2B Performance Marketing Infrastructure Audit" (Issue 04).
+        </p>
+      </div>
+    </>
+  );
+}
+
 /* ------------------------------- Registry -------------------------------- */
 
 export const articleContent: Record<string, ArticleContent> = {
@@ -1267,6 +1438,7 @@ export const articleContent: Record<string, ArticleContent> = {
   "german-advertising-market-2026": { toc: germanMarketToc, Body: GermanMarketBody },
   "your-crm-is-the-real-marketing-tool": { toc: crmToc, Body: CrmBody },
   "b2b-performance-marketing-infrastructure-audit": { toc: auditToc, Body: AuditBody },
+  "ai-found-66000-buyers": { toc: aiOutboundToc, Body: AiOutboundBody },
 };
 
 
