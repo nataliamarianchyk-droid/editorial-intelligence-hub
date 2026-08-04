@@ -70,7 +70,7 @@ function Unlock() {
               autoFocus
               required
               disabled={busy}
-              className="mt-2 w-full rounded-md border border-[var(--ink-deep)]/15 bg-white/[0.04] px-3 py-2.5 text-sm text-[var(--ink-deep)] placeholder-white/30 outline-none focus:border-[var(--accent-cyan)]/60 focus:ring-1 focus:ring-[var(--accent-cyan)]/40"
+              className="mt-2 w-full rounded-md border border-[var(--ink-deep)]/15 bg-[var(--ink-deep)]/[0.04] px-3 py-2.5 text-sm text-[var(--ink-deep)] placeholder-[var(--ink-deep)]/30 outline-none focus:border-[var(--accent-cyan)]/60 focus:ring-1 focus:ring-[var(--accent-cyan)]/40"
             />
           </div>
           {error && (

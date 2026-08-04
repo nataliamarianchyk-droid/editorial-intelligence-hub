@@ -196,14 +196,14 @@ function InsightsHome() {
                   key={i.slug}
                   to="/$category/$articleSlug"
                   params={{ category: i.category, articleSlug: i.slug }}
-                  className="group bg-white/[0.03] border border-[var(--ink-deep)]/8 rounded-sm p-7 flex flex-col min-h-[220px] hover:border-[var(--accent-cyan)]/40 transition-colors"
+                  className="group bg-[var(--ink-deep)]/[0.03] border border-[var(--ink-deep)]/8 rounded-sm p-7 flex flex-col min-h-[220px] hover:border-[var(--accent-cyan)]/40 transition-colors"
                 >
                   {inner}
                 </Link>
               ) : (
                 <article
                   key={i.slug}
-                  className="group bg-white/[0.03] border border-[var(--ink-deep)]/8 rounded-sm p-7 flex flex-col min-h-[220px]"
+                  className="group bg-[var(--ink-deep)]/[0.03] border border-[var(--ink-deep)]/8 rounded-sm p-7 flex flex-col min-h-[220px]"
                 >
                   {inner}
                 </article>
@@ -339,7 +339,7 @@ function UpdatesSection() {
                   <Link
                     to="/$category/$articleSlug"
                     params={{ category: i.category, articleSlug: i.slug }}
-                    className="group block rounded-sm border border-[var(--ink-deep)]/10 bg-white/[0.03] p-6 hover:border-[var(--accent-cyan)]/40 transition-colors"
+                    className="group block rounded-sm border border-[var(--ink-deep)]/10 bg-[var(--ink-deep)]/[0.03] p-6 hover:border-[var(--accent-cyan)]/40 transition-colors"
                   >
                     <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.18em]">
                       <span className="text-[var(--accent-cyan)]">{i.issue}</span>

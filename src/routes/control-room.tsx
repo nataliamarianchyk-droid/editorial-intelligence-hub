@@ -256,7 +256,7 @@ function ControlRoom() {
             lede="Sequenced phases from hosting to first published article. Click a status chip to advance it."
           />
 
-          <div className="mb-8 rounded-xl border border-[var(--ink-deep)]/10 bg-white/[0.02] p-5">
+          <div className="mb-8 rounded-xl border border-[var(--ink-deep)]/10 bg-[var(--ink-deep)]/[0.02] p-5">
             <div className="flex items-center justify-between text-sm text-[var(--ink-deep)]/60">
               <span>Overall launch progress</span>
               <span className="font-medium text-[var(--ink-deep)]">{progress}%</span>
@@ -275,7 +275,7 @@ function ControlRoom() {
                 <span className="absolute -left-[29px] top-4">
                   <StatusDot status={step.status} />
                 </span>
-                <div className="flex flex-col gap-3 rounded-lg border border-[var(--ink-deep)]/10 bg-white/[0.02] p-4 md:flex-row md:items-center md:justify-between">
+                <div className="flex flex-col gap-3 rounded-lg border border-[var(--ink-deep)]/10 bg-[var(--ink-deep)]/[0.02] p-4 md:flex-row md:items-center md:justify-between">
                   <div>
                     <div className="flex items-center gap-2">
                       <Pill>{step.phase}</Pill>
@@ -290,7 +290,7 @@ function ControlRoom() {
                         ? "border-[var(--accent-cyan)]/40 bg-[var(--accent-cyan)]/10 text-[var(--accent-cyan)]"
                         : step.status === "doing"
                         ? "border-[var(--accent-amber)]/40 bg-[var(--accent-amber)]/10 text-[var(--accent-amber)]"
-                        : "border-[var(--ink-deep)]/15 bg-white/[0.02] text-[var(--ink-deep)]/60 hover:border-[var(--ink-deep)]/30"
+                        : "border-[var(--ink-deep)]/15 bg-[var(--ink-deep)]/[0.02] text-[var(--ink-deep)]/60 hover:border-[var(--ink-deep)]/30"
                     }`}
                   >
                     <StatusDot status={step.status} />
@@ -419,7 +419,7 @@ function ControlRoom() {
             lede="Single source of truth for the inaugural piece. Everything ships from this card."
           />
 
-          <div className="overflow-hidden rounded-2xl border border-[var(--ink-deep)]/10 bg-white/[0.02]">
+          <div className="overflow-hidden rounded-2xl border border-[var(--ink-deep)]/10 bg-[var(--ink-deep)]/[0.02]">
             <div className="border-b border-[var(--ink-deep)]/10 p-8 md:p-10">
               <Pill tone="cyan">Performance</Pill>
               <h3 className="font-display mt-4 text-3xl font-medium leading-tight text-[var(--ink-deep)] md:text-4xl">
@@ -474,7 +474,7 @@ function ControlRoom() {
 
           <div className="overflow-hidden rounded-xl border border-[var(--ink-deep)]/10">
             <table className="w-full text-sm">
-              <thead className="bg-white/[0.04] text-[10px] uppercase tracking-[0.14em] text-[var(--ink-deep)]/50">
+              <thead className="bg-[var(--ink-deep)]/[0.04] text-[10px] uppercase tracking-[0.14em] text-[var(--ink-deep)]/50">
                 <tr>
                   <th className="px-4 py-3 text-left font-medium">Surface</th>
                   <th className="px-4 py-3 text-center font-medium">Services</th>
@@ -484,7 +484,7 @@ function ControlRoom() {
               </thead>
               <tbody>
                 {ctaMatrix.map((row, i) => (
-                  <tr key={row.surface} className={i % 2 === 1 ? "bg-white/[0.015]" : ""}>
+                  <tr key={row.surface} className={i % 2 === 1 ? "bg-[var(--ink-deep)]/[0.015]" : ""}>
                     <td className="px-4 py-3 text-[var(--ink-deep)]/80">{row.surface}</td>
                     <Cell on={row.services} tone="cyan" />
                     <Cell on={row.calendly} tone="amber" />
@@ -508,7 +508,7 @@ function ControlRoom() {
 
           <div className="grid gap-4 md:grid-cols-2">
             {techChecklist.map((group) => (
-              <div key={group.group} className="rounded-xl border border-[var(--ink-deep)]/10 bg-white/[0.02] p-6">
+              <div key={group.group} className="rounded-xl border border-[var(--ink-deep)]/10 bg-[var(--ink-deep)]/[0.02] p-6">
                 <div className="font-display text-lg font-medium text-[var(--ink-deep)]">{group.group}</div>
                 <ul className="mt-4 space-y-2">
                   {group.items.map((item) => {
@@ -565,7 +565,7 @@ function Divider() {
 
 function Stat({ label, value, accent, small }: { label: string; value: string; accent?: boolean; small?: boolean }) {
   return (
-    <div className="rounded-xl border border-[var(--ink-deep)]/10 bg-white/[0.02] p-5">
+    <div className="rounded-xl border border-[var(--ink-deep)]/10 bg-[var(--ink-deep)]/[0.02] p-5">
       <div className="text-[10px] uppercase tracking-[0.14em] text-[var(--ink-deep)]/45">{label}</div>
       <div
         className={`font-display mt-2 font-medium ${
@@ -644,7 +644,7 @@ function CtaCard({
   tone: "cyan" | "amber" | "default";
 }) {
   return (
-    <div className="rounded-xl border border-[var(--ink-deep)]/10 bg-white/[0.02] p-5">
+    <div className="rounded-xl border border-[var(--ink-deep)]/10 bg-[var(--ink-deep)]/[0.02] p-5">
       <Pill tone={tone}>CTA</Pill>
       <div className="font-display mt-3 text-lg font-medium text-[var(--ink-deep)]">{title}</div>
       <div className="mt-3 space-y-1.5 text-xs">
