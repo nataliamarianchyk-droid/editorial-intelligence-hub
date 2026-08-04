@@ -15,14 +15,14 @@ export function SiteHeader() {
             <div className="text-[10px] tracking-[0.32em] text-[var(--ink-deep)]/60 uppercase">insights</div>
           </div>
         </Link>
-        <nav className="hidden lg:flex gap-7 text-sm text-[var(--ink-deep)]/70">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-6 text-[13px] xl:text-sm text-[var(--ink-deep)]/70">
           {categories.map((c) => (
             <Link
               key={c.slug}
               to="/category/$slug"
               params={{ slug: c.slug }}
               activeProps={{ className: "text-[var(--accent-cyan)]" }}
-              className="hover:text-[var(--accent-cyan)] transition-colors"
+              className="whitespace-nowrap hover:text-[var(--accent-cyan)] transition-colors"
             >
               {c.name}
             </Link>
@@ -30,11 +30,12 @@ export function SiteHeader() {
           <Link
             to="/issues"
             activeProps={{ className: "text-[var(--accent-cyan)]" }}
-            className="hover:text-[var(--accent-cyan)] transition-colors"
+            className="whitespace-nowrap hover:text-[var(--accent-cyan)] transition-colors"
           >
             Issues
           </Link>
         </nav>
+
         <a
           href="https://calendly.com/natalia-marianchyk/strategic-intro-call"
           target="_blank"
