@@ -76,16 +76,16 @@ export const Route = createFileRoute("/category/$slug")({
   },
   component: CategoryPage,
   notFoundComponent: () => (
-    <div className="min-h-screen bg-[var(--ink-deep)]">
+    <div className="min-h-screen bg-[var(--cream)]">
       <SiteHeader />
       <div className="mx-auto max-w-3xl px-6 py-32 text-center">
         <p className="eyebrow">404</p>
-        <h1 className="font-display text-4xl text-[var(--paper)] mt-4">
+        <h1 className="font-display text-4xl text-[var(--ink-deep)] mt-4">
           That section doesn't exist.
         </h1>
         <Link
           to="/"
-          className="inline-block mt-8 rounded-full bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-6 py-2.5 text-sm"
+          className="inline-block mt-8 rounded-full bg-[var(--accent-cyan)] text-[var(--cream)] px-6 py-2.5 text-sm"
         >
           Back to Insights
         </Link>
@@ -94,9 +94,9 @@ export const Route = createFileRoute("/category/$slug")({
     </div>
   ),
   errorComponent: () => (
-    <div className="min-h-screen bg-[var(--ink-deep)]">
+    <div className="min-h-screen bg-[var(--cream)]">
       <SiteHeader />
-      <div className="mx-auto max-w-3xl px-6 py-32 text-center text-white/70">
+      <div className="mx-auto max-w-3xl px-6 py-32 text-center text-[var(--ink-deep)]/70">
         Something went wrong loading this section.
       </div>
       <SiteFooter />
@@ -108,55 +108,55 @@ function CategoryPage() {
   const { category, items } = Route.useLoaderData();
 
   return (
-    <div className="min-h-screen bg-[var(--ink-deep)]">
+    <div className="min-h-screen bg-[var(--cream)]">
       <SiteHeader />
       <main>
 
       {/* Category masthead */}
-      <section className="border-b border-white/8">
+      <section className="border-b border-[var(--ink-deep)]/8">
         <div className="mx-auto max-w-5xl px-6 pt-20 pb-16">
           <p className="eyebrow">Section</p>
-          <h1 className="font-display mt-4 text-5xl md:text-6xl text-[var(--paper)] leading-[1.05]">
+          <h1 className="font-display mt-4 text-5xl md:text-6xl text-[var(--ink-deep)] leading-[1.05]">
             {category.name}
           </h1>
-          <p className="mt-6 text-white/60 text-lg leading-relaxed max-w-2xl">
+          <p className="mt-6 text-[var(--ink-deep)]/60 text-lg leading-relaxed max-w-2xl">
             {category.description}
           </p>
         </div>
       </section>
 
       {/* Article list */}
-      <section className="border-b border-white/8">
+      <section className="border-b border-[var(--ink-deep)]/8">
         <div className="mx-auto max-w-5xl px-6 py-16">
           {items.length === 0 && (
-            <p className="text-white/65 text-sm">
+            <p className="text-[var(--ink-deep)]/65 text-sm">
               No published issues in this section yet. Subscribe below to be notified when the
               first one lands.
             </p>
           )}
-          <div className="divide-y divide-white/8">
+          <div className="divide-y divide-[var(--ink-deep)]/8">
             {items.map((i: Insight) => (
               <article key={i.slug} className="py-10 grid grid-cols-1 md:grid-cols-[140px_1fr] gap-6">
-                <div className="text-[11px] uppercase tracking-[0.18em] text-white/65">
+                <div className="text-[11px] uppercase tracking-[0.18em] text-[var(--ink-deep)]/65">
                   {i.date}
-                  <div className="mt-1 text-white/60">{i.read} read</div>
+                  <div className="mt-1 text-[var(--ink-deep)]/60">{i.read} read</div>
                 </div>
                 <div>
                   {i.status === "published" ? (
                     <Link
                       to="/$category/$articleSlug"
                       params={{ category: i.category, articleSlug: i.slug }}
-                      className="font-display text-2xl md:text-3xl text-[var(--paper)] leading-snug hover:text-[var(--accent-cyan)]"
+                      className="font-display text-2xl md:text-3xl text-[var(--ink-deep)] leading-snug hover:text-[var(--accent-cyan)]"
                     >
                       {i.title}
                     </Link>
                   ) : (
-                    <h2 className="font-display text-2xl md:text-3xl text-white/55 leading-snug">
+                    <h2 className="font-display text-2xl md:text-3xl text-[var(--ink-deep)]/55 leading-snug">
                       {i.title}
                     </h2>
                   )}
-                  <p className="mt-3 text-white/60 max-w-2xl leading-relaxed">{i.dek}</p>
-                  <div className="mt-4 text-xs text-white/65 flex gap-3">
+                  <p className="mt-3 text-[var(--ink-deep)]/60 max-w-2xl leading-relaxed">{i.dek}</p>
+                  <div className="mt-4 text-xs text-[var(--ink-deep)]/65 flex gap-3">
                     <span>{i.author}</span>
                     {i.status === "upcoming" && (
                       <>
@@ -175,7 +175,7 @@ function CategoryPage() {
       </section>
 
       {/* Other sections */}
-      <section className="border-b border-white/8">
+      <section className="border-b border-[var(--ink-deep)]/8">
         <div className="mx-auto max-w-5xl px-6 py-16">
           <p className="eyebrow">Other sections</p>
           <div className="mt-6 flex flex-wrap gap-3">
@@ -186,7 +186,7 @@ function CategoryPage() {
                   key={c.slug}
                   to="/category/$slug"
                   params={{ slug: c.slug }}
-                  className="rounded-full border border-white/15 px-4 py-2 text-sm text-white/70 hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)]"
+                  className="rounded-full border border-[var(--ink-deep)]/15 px-4 py-2 text-sm text-[var(--ink-deep)]/70 hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)]"
                 >
                   {c.name}
                 </Link>
