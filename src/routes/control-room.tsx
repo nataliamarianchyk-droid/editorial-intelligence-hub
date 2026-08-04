@@ -133,8 +133,8 @@ function SectionHeader({ index, title, lede }: { index: string; title: string; l
   return (
     <div className="mb-10 max-w-3xl">
       <Eyebrow>Module {index}</Eyebrow>
-      <h2 className="font-display mt-3 text-4xl font-medium text-white md:text-5xl">{title}</h2>
-      <p className="mt-3 text-[15px] leading-relaxed text-white/60">{lede}</p>
+      <h2 className="font-display mt-3 text-4xl font-medium text-[var(--ink-deep)] md:text-5xl">{title}</h2>
+      <p className="mt-3 text-[15px] leading-relaxed text-[var(--ink-deep)]/60">{lede}</p>
     </div>
   );
 }
@@ -145,7 +145,7 @@ function StatusDot({ status }: { status: Status }) {
       ? "bg-[var(--accent-cyan)]"
       : status === "doing"
       ? "bg-[var(--accent-amber)]"
-      : "bg-white/20";
+      : "bg-[var(--ink-deep)]/20";
   return <span className={`inline-block h-2 w-2 rounded-full ${color}`} />;
 }
 
@@ -155,7 +155,7 @@ function Pill({ children, tone = "default" }: { children: React.ReactNode; tone?
       ? "border-[var(--accent-cyan)]/40 text-[var(--accent-cyan)]"
       : tone === "amber"
       ? "border-[var(--accent-amber)]/40 text-[var(--accent-amber)]"
-      : "border-white/15 text-white/60";
+      : "border-[var(--ink-deep)]/15 text-[var(--ink-deep)]/60";
   return (
     <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-[0.12em] ${cls}`}>
       {children}
@@ -201,39 +201,39 @@ function ControlRoom() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--ink-deep)] text-white">
+    <div className="min-h-screen bg-[var(--cream)] text-[var(--ink-deep)]">
       {/* Masthead */}
-      <header className="border-b border-white/5 bg-[var(--ink-navy)]">
+      <header className="border-b border-[var(--ink-deep)]/5 bg-[var(--cream-deep)]">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-10">
           <div className="flex items-center gap-3">
             <img src={nmLogo} alt="NM Insight" className="h-12 w-12 object-contain" />
             <div className="leading-tight">
-              <div className="font-display text-base tracking-[0.08em] text-white">NM INSIGHT</div>
-              <div className="text-[10px] tracking-[0.32em] text-white/60 uppercase">marketing</div>
+              <div className="font-display text-base tracking-[0.08em] text-[var(--ink-deep)]">NM INSIGHT</div>
+              <div className="text-[10px] tracking-[0.32em] text-[var(--ink-deep)]/60 uppercase">marketing</div>
             </div>
-            <div className="hidden sm:block ml-3 border-l border-white/15 pl-3">
-              <div className="text-[10px] uppercase tracking-[0.18em] text-white/60">Insights Control Room</div>
+            <div className="hidden sm:block ml-3 border-l border-[var(--ink-deep)]/15 pl-3">
+              <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--ink-deep)]/60">Insights Control Room</div>
             </div>
           </div>
-          <div className="hidden items-center gap-6 text-sm text-white/60 md:flex">
-            <a href="#roadmap" className="hover:text-white">Roadmap</a>
-            <a href="#pipeline" className="hover:text-white">Pipeline</a>
-            <a href="#categories" className="hover:text-white">Categories</a>
-            <a href="#first-article" className="hover:text-white">First article</a>
-            <a href="#cta" className="hover:text-white">CTAs</a>
-            <a href="#tech" className="hover:text-white">Technical</a>
+          <div className="hidden items-center gap-6 text-sm text-[var(--ink-deep)]/60 md:flex">
+            <a href="#roadmap" className="hover:text-[var(--ink-deep)]">Roadmap</a>
+            <a href="#pipeline" className="hover:text-[var(--ink-deep)]">Pipeline</a>
+            <a href="#categories" className="hover:text-[var(--ink-deep)]">Categories</a>
+            <a href="#first-article" className="hover:text-[var(--ink-deep)]">First article</a>
+            <a href="#cta" className="hover:text-[var(--ink-deep)]">CTAs</a>
+            <a href="#tech" className="hover:text-[var(--ink-deep)]">Technical</a>
           </div>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="border-b border-white/5 bg-[var(--ink-navy)]">
+      <section className="border-b border-[var(--ink-deep)]/5 bg-[var(--cream-deep)]">
         <div className="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-24">
           <Eyebrow>Internal - not the public site</Eyebrow>
-          <h1 className="font-display mt-4 max-w-4xl text-4xl font-medium leading-[1.1] text-white md:text-6xl">
+          <h1 className="font-display mt-4 max-w-4xl text-4xl font-medium leading-[1.1] text-[var(--ink-deep)] md:text-6xl">
             The control room behind insights.nm-insight.com.
           </h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/65 md:text-lg">
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--ink-deep)]/65 md:text-lg">
             Planning surface for the WordPress Insights hub launch and the editorial cadence behind it.
             The public hub stays on WordPress. This is where the work gets coordinated.
           </p>
@@ -256,12 +256,12 @@ function ControlRoom() {
             lede="Sequenced phases from hosting to first published article. Click a status chip to advance it."
           />
 
-          <div className="mb-8 rounded-xl border border-white/10 bg-white/[0.02] p-5">
-            <div className="flex items-center justify-between text-sm text-white/60">
+          <div className="mb-8 rounded-xl border border-[var(--ink-deep)]/10 bg-white/[0.02] p-5">
+            <div className="flex items-center justify-between text-sm text-[var(--ink-deep)]/60">
               <span>Overall launch progress</span>
-              <span className="font-medium text-white">{progress}%</span>
+              <span className="font-medium text-[var(--ink-deep)]">{progress}%</span>
             </div>
-            <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+            <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-[var(--ink-deep)]/10">
               <div
                 className="h-full rounded-full bg-[var(--accent-cyan)] transition-all duration-500"
                 style={{ width: `${progress}%` }}
@@ -269,19 +269,19 @@ function ControlRoom() {
             </div>
           </div>
 
-          <ol className="relative space-y-3 border-l border-white/10 pl-6">
+          <ol className="relative space-y-3 border-l border-[var(--ink-deep)]/10 pl-6">
             {roadmapState.map((step) => (
               <li key={step.id} className="relative">
                 <span className="absolute -left-[29px] top-4">
                   <StatusDot status={step.status} />
                 </span>
-                <div className="flex flex-col gap-3 rounded-lg border border-white/10 bg-white/[0.02] p-4 md:flex-row md:items-center md:justify-between">
+                <div className="flex flex-col gap-3 rounded-lg border border-[var(--ink-deep)]/10 bg-white/[0.02] p-4 md:flex-row md:items-center md:justify-between">
                   <div>
                     <div className="flex items-center gap-2">
                       <Pill>{step.phase}</Pill>
-                      <span className="font-display text-base font-medium text-white">{step.title}</span>
+                      <span className="font-display text-base font-medium text-[var(--ink-deep)]">{step.title}</span>
                     </div>
-                    <div className="mt-1.5 text-sm text-white/55">{step.detail}</div>
+                    <div className="mt-1.5 text-sm text-[var(--ink-deep)]/55">{step.detail}</div>
                   </div>
                   <button
                     onClick={() => cycleStatus(step.id)}
@@ -290,7 +290,7 @@ function ControlRoom() {
                         ? "border-[var(--accent-cyan)]/40 bg-[var(--accent-cyan)]/10 text-[var(--accent-cyan)]"
                         : step.status === "doing"
                         ? "border-[var(--accent-amber)]/40 bg-[var(--accent-amber)]/10 text-[var(--accent-amber)]"
-                        : "border-white/15 bg-white/[0.02] text-white/60 hover:border-white/30"
+                        : "border-[var(--ink-deep)]/15 bg-white/[0.02] text-[var(--ink-deep)]/60 hover:border-[var(--ink-deep)]/30"
                     }`}
                   >
                     <StatusDot status={step.status} />
@@ -319,14 +319,14 @@ function ControlRoom() {
                 return (
                   <div key={stage.id} className="w-[260px] shrink-0">
                     <div className="mb-3 flex items-center justify-between">
-                      <div className="text-xs font-semibold uppercase tracking-[0.14em] text-white/70">
+                      <div className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--ink-deep)]/70">
                         {stage.label}
                       </div>
-                      <span className="text-xs text-white/40">{items.length}</span>
+                      <span className="text-xs text-[var(--ink-deep)]/40">{items.length}</span>
                     </div>
                     <div className="flex flex-col gap-2.5">
                       {items.length === 0 && (
-                        <div className="rounded-lg border border-dashed border-white/10 p-4 text-xs text-white/30">
+                        <div className="rounded-lg border border-dashed border-[var(--ink-deep)]/10 p-4 text-xs text-[var(--ink-deep)]/30">
                           Empty
                         </div>
                       )}
@@ -419,13 +419,13 @@ function ControlRoom() {
             lede="Single source of truth for the inaugural piece. Everything ships from this card."
           />
 
-          <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02]">
-            <div className="border-b border-white/10 p-8 md:p-10">
+          <div className="overflow-hidden rounded-2xl border border-[var(--ink-deep)]/10 bg-white/[0.02]">
+            <div className="border-b border-[var(--ink-deep)]/10 p-8 md:p-10">
               <Pill tone="cyan">Performance</Pill>
-              <h3 className="font-display mt-4 text-3xl font-medium leading-tight text-white md:text-4xl">
+              <h3 className="font-display mt-4 text-3xl font-medium leading-tight text-[var(--ink-deep)] md:text-4xl">
                 {firstArticle.title}
               </h3>
-              <code className="mt-3 inline-block text-xs text-white/50">
+              <code className="mt-3 inline-block text-xs text-[var(--ink-deep)]/50">
                 insights.nm-insight.com{firstArticle.url}
               </code>
 
@@ -437,7 +437,7 @@ function ControlRoom() {
 
             <div className="grid gap-0 md:grid-cols-3">
               <Block title="H2 outline">
-                <ol className="space-y-2 text-sm text-white/70">
+                <ol className="space-y-2 text-sm text-[var(--ink-deep)]/70">
                   {firstArticle.outline.map((h, i) => (
                     <li key={h} className="flex gap-3">
                       <span className="font-display text-[var(--accent-cyan)]">0{i + 1}</span>
@@ -472,9 +472,9 @@ function ControlRoom() {
             <CtaCard title="Connect on LinkedIn" event="cta_linkedin_click" href="LinkedIn profile" tone="default" />
           </div>
 
-          <div className="overflow-hidden rounded-xl border border-white/10">
+          <div className="overflow-hidden rounded-xl border border-[var(--ink-deep)]/10">
             <table className="w-full text-sm">
-              <thead className="bg-white/[0.04] text-[10px] uppercase tracking-[0.14em] text-white/50">
+              <thead className="bg-white/[0.04] text-[10px] uppercase tracking-[0.14em] text-[var(--ink-deep)]/50">
                 <tr>
                   <th className="px-4 py-3 text-left font-medium">Surface</th>
                   <th className="px-4 py-3 text-center font-medium">Services</th>
@@ -485,7 +485,7 @@ function ControlRoom() {
               <tbody>
                 {ctaMatrix.map((row, i) => (
                   <tr key={row.surface} className={i % 2 === 1 ? "bg-white/[0.015]" : ""}>
-                    <td className="px-4 py-3 text-white/80">{row.surface}</td>
+                    <td className="px-4 py-3 text-[var(--ink-deep)]/80">{row.surface}</td>
                     <Cell on={row.services} tone="cyan" />
                     <Cell on={row.calendly} tone="amber" />
                     <Cell on={row.linkedin} tone="default" />
@@ -508,8 +508,8 @@ function ControlRoom() {
 
           <div className="grid gap-4 md:grid-cols-2">
             {techChecklist.map((group) => (
-              <div key={group.group} className="rounded-xl border border-white/10 bg-white/[0.02] p-6">
-                <div className="font-display text-lg font-medium text-white">{group.group}</div>
+              <div key={group.group} className="rounded-xl border border-[var(--ink-deep)]/10 bg-white/[0.02] p-6">
+                <div className="font-display text-lg font-medium text-[var(--ink-deep)]">{group.group}</div>
                 <ul className="mt-4 space-y-2">
                   {group.items.map((item) => {
                     const key = `${group.group}::${item}`;
@@ -518,13 +518,13 @@ function ControlRoom() {
                       <li key={key}>
                         <button
                           onClick={() => setTechState((p) => ({ ...p, [key]: !p[key] }))}
-                          className="flex w-full items-start gap-3 text-left text-sm text-white/70 hover:text-white"
+                          className="flex w-full items-start gap-3 text-left text-sm text-[var(--ink-deep)]/70 hover:text-[var(--ink-deep)]"
                         >
                           <span
                             className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border ${
                               checked
-                                ? "border-[var(--accent-cyan)] bg-[var(--accent-cyan)] text-[var(--ink-deep)]"
-                                : "border-white/25"
+                                ? "border-[var(--accent-cyan)] bg-[var(--accent-cyan)] text-[var(--cream)]"
+                                : "border-[var(--ink-deep)]/25"
                             }`}
                           >
                             {checked && (
@@ -545,8 +545,8 @@ function ControlRoom() {
         </section>
       </main>
 
-      <footer className="border-t border-white/5 bg-[var(--ink-navy)]">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-8 text-xs text-white/40 md:flex-row md:items-center md:justify-between md:px-10">
+      <footer className="border-t border-[var(--ink-deep)]/5 bg-[var(--cream-deep)]">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-8 text-xs text-[var(--ink-deep)]/40 md:flex-row md:items-center md:justify-between md:px-10">
           <div>NM Insight · Insights Control Room · Internal planning surface</div>
           <div>Public hub: insights.nm-insight.com (WordPress)</div>
         </div>
@@ -560,16 +560,16 @@ function ControlRoom() {
 /* ------------------------------------------------------------------ */
 
 function Divider() {
-  return <div className="my-20 h-px w-full bg-white/5 md:my-28" />;
+  return <div className="my-20 h-px w-full bg-[var(--ink-deep)]/5 md:my-28" />;
 }
 
 function Stat({ label, value, accent, small }: { label: string; value: string; accent?: boolean; small?: boolean }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
-      <div className="text-[10px] uppercase tracking-[0.14em] text-white/45">{label}</div>
+    <div className="rounded-xl border border-[var(--ink-deep)]/10 bg-white/[0.02] p-5">
+      <div className="text-[10px] uppercase tracking-[0.14em] text-[var(--ink-deep)]/45">{label}</div>
       <div
         className={`font-display mt-2 font-medium ${
-          small ? "text-base text-white" : accent ? "text-3xl text-[var(--accent-cyan)]" : "text-3xl text-white"
+          small ? "text-base text-[var(--ink-deep)]" : accent ? "text-3xl text-[var(--accent-cyan)]" : "text-3xl text-[var(--ink-deep)]"
         }`}
       >
         {value}
@@ -581,16 +581,16 @@ function Stat({ label, value, accent, small }: { label: string; value: string; a
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <dt className="text-[10px] uppercase tracking-[0.14em] text-white/45">{label}</dt>
-      <dd className="mt-2 text-sm leading-relaxed text-white/80">{children}</dd>
+      <dt className="text-[10px] uppercase tracking-[0.14em] text-[var(--ink-deep)]/45">{label}</dt>
+      <dd className="mt-2 text-sm leading-relaxed text-[var(--ink-deep)]/80">{children}</dd>
     </div>
   );
 }
 
 function Block({ title, children, last }: { title: string; children: React.ReactNode; last?: boolean }) {
   return (
-    <div className={`p-8 md:p-10 ${!last ? "border-b border-white/10 md:border-b-0 md:border-r" : ""}`}>
-      <div className="text-[10px] uppercase tracking-[0.14em] text-white/45">{title}</div>
+    <div className={`p-8 md:p-10 ${!last ? "border-b border-[var(--ink-deep)]/10 md:border-b-0 md:border-r" : ""}`}>
+      <div className="text-[10px] uppercase tracking-[0.14em] text-[var(--ink-deep)]/45">{title}</div>
       <div className="mt-4">{children}</div>
     </div>
   );
@@ -609,13 +609,13 @@ function CheckList({
         <li key={item.label}>
           <button
             onClick={() => onToggle(i)}
-            className="flex w-full items-start gap-3 text-left text-sm text-white/75 hover:text-white"
+            className="flex w-full items-start gap-3 text-left text-sm text-[var(--ink-deep)]/75 hover:text-[var(--ink-deep)]"
           >
             <span
               className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border ${
                 item.done
-                  ? "border-[var(--accent-cyan)] bg-[var(--accent-cyan)] text-[var(--ink-deep)]"
-                  : "border-white/25"
+                  ? "border-[var(--accent-cyan)] bg-[var(--accent-cyan)] text-[var(--cream)]"
+                  : "border-[var(--ink-deep)]/25"
               }`}
             >
               {item.done && (
@@ -644,13 +644,13 @@ function CtaCard({
   tone: "cyan" | "amber" | "default";
 }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
+    <div className="rounded-xl border border-[var(--ink-deep)]/10 bg-white/[0.02] p-5">
       <Pill tone={tone}>CTA</Pill>
-      <div className="font-display mt-3 text-lg font-medium text-white">{title}</div>
+      <div className="font-display mt-3 text-lg font-medium text-[var(--ink-deep)]">{title}</div>
       <div className="mt-3 space-y-1.5 text-xs">
-        <div className="text-white/45">Destination</div>
-        <code className="block truncate text-white/75">{href}</code>
-        <div className="pt-2 text-white/45">GA4 event</div>
+        <div className="text-[var(--ink-deep)]/45">Destination</div>
+        <code className="block truncate text-[var(--ink-deep)]/75">{href}</code>
+        <div className="pt-2 text-[var(--ink-deep)]/45">GA4 event</div>
         <code className="block text-[var(--accent-cyan)]">{event}</code>
       </div>
     </div>
@@ -663,13 +663,13 @@ function Cell({ on, tone }: { on: boolean; tone: "cyan" | "amber" | "default" })
       ? "text-[var(--accent-cyan)]"
       : tone === "amber"
       ? "text-[var(--accent-amber)]"
-      : "text-white";
+      : "text-[var(--ink-deep)]";
   return (
     <td className="px-4 py-3 text-center">
       {on ? (
         <span className={`inline-block ${color}`}>●</span>
       ) : (
-        <span className="inline-block text-white/15"> - </span>
+        <span className="inline-block text-[var(--ink-deep)]/15"> - </span>
       )}
     </td>
   );

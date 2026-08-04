@@ -6,16 +6,16 @@ import { openConsentPreferences } from "@/components/consent-banner";
 
 export function SiteHeader() {
   return (
-    <header className="border-b border-white/8 bg-[var(--ink-deep)]/95 backdrop-blur sticky top-0 z-40">
+    <header className="border-b border-[var(--ink-deep)]/8 bg-[var(--cream)]/95 backdrop-blur sticky top-0 z-40">
       <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between gap-6">
         <Link to="/" className="flex items-center gap-3 shrink-0">
           <img src={nmLogo} alt="NM Insight" width={44} height={44} fetchPriority="high" decoding="async" className="h-11 w-11 object-contain" />
           <div className="leading-tight">
-            <div className="font-display text-base tracking-[0.08em] text-white">NM INSIGHT</div>
-            <div className="text-[10px] tracking-[0.32em] text-white/60 uppercase">insights</div>
+            <div className="font-display text-base tracking-[0.08em] text-[var(--ink-deep)]">NM INSIGHT</div>
+            <div className="text-[10px] tracking-[0.32em] text-[var(--ink-deep)]/60 uppercase">insights</div>
           </div>
         </Link>
-        <nav className="hidden lg:flex gap-7 text-sm text-white/70">
+        <nav className="hidden lg:flex gap-7 text-sm text-[var(--ink-deep)]/70">
           {categories.map((c) => (
             <Link
               key={c.slug}
@@ -39,14 +39,14 @@ export function SiteHeader() {
           href="https://calendly.com/natalia-marianchyk/strategic-intro-call"
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:inline-flex text-xs uppercase tracking-[0.14em] text-[var(--ink-deep)] bg-[var(--accent-cyan)] rounded-full px-4 py-2 hover:brightness-110"
+          className="hidden md:inline-flex text-xs uppercase tracking-[0.14em] text-[var(--cream)] bg-[var(--accent-cyan)] rounded-full px-4 py-2 hover:brightness-110"
         >
           Clarity Call
         </a>
       </div>
       {/* Mobile category strip */}
-      <div className="lg:hidden border-t border-white/8 overflow-x-auto">
-        <div className="mx-auto max-w-7xl px-6 py-3 flex gap-5 text-xs text-white/60 whitespace-nowrap">
+      <div className="lg:hidden border-t border-[var(--ink-deep)]/8 overflow-x-auto">
+        <div className="mx-auto max-w-7xl px-6 py-3 flex gap-5 text-xs text-[var(--ink-deep)]/60 whitespace-nowrap">
           {categories.map((c) => (
             <Link
               key={c.slug}
@@ -66,20 +66,20 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[var(--ink-deep)] border-t border-white/8">
+    <footer className="bg-[var(--cream)] border-t border-[var(--ink-deep)]/8">
       <div className="mx-auto max-w-6xl px-6 py-14 grid grid-cols-1 md:grid-cols-4 gap-10 text-sm">
         <div>
-          <p className="font-display text-[var(--paper)] text-lg">
+          <p className="font-display text-[var(--ink-deep)] text-lg">
             NM <span className="text-[var(--accent-cyan)]">Insight</span>
           </p>
-          <p className="mt-3 text-white/55 leading-relaxed">
+          <p className="mt-3 text-[var(--ink-deep)]/55 leading-relaxed">
             Insights from the operational side of performance marketing - where acquisition,
             attribution, content and systems connect.
           </p>
         </div>
         <div>
           <p className="eyebrow mb-3">Sections</p>
-          <ul className="space-y-2 text-white/65">
+          <ul className="space-y-2 text-[var(--ink-deep)]/65">
             {categories.slice(0, 4).map((c) => (
               <li key={c.slug}>
                 <Link
@@ -95,7 +95,7 @@ export function SiteFooter() {
         </div>
         <div>
           <p className="eyebrow mb-3">Company</p>
-          <ul className="space-y-2 text-white/65">
+          <ul className="space-y-2 text-[var(--ink-deep)]/65">
             <li>
               <a
                 href="https://nm-insight.com"
@@ -143,17 +143,17 @@ export function SiteFooter() {
         </div>
         <div>
           <p className="eyebrow mb-3">Subscribe</p>
-          <p className="text-white/55 mb-3">One insight per week. No noise.</p>
+          <p className="text-[var(--ink-deep)]/55 mb-3">One insight per week. No noise.</p>
           <FooterSubscribeForm />
         </div>
       </div>
-      <div className="border-t border-white/8">
-        <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-white/65 flex justify-between">
+      <div className="border-t border-[var(--ink-deep)]/8">
+        <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-[var(--ink-deep)]/65 flex justify-between">
           <span>© 2026 NM Insight · Berlin</span>
           <span>
-            <Link to="/impressum" className="hover:text-white/70">Imprint</Link>
+            <Link to="/impressum" className="hover:text-[var(--ink-deep)]/70">Imprint</Link>
             <span className="mx-2">·</span>
-            <Link to="/privacy" className="hover:text-white/70">Privacy</Link>
+            <Link to="/privacy" className="hover:text-[var(--ink-deep)]/70">Privacy</Link>
             <span className="mx-2">·</span>
             <CookieSettingsButton />
           </span>
@@ -192,7 +192,7 @@ function FooterSubscribeForm() {
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="flex-1 bg-white/5 border border-white/10 px-3 py-2 text-sm text-[var(--paper)] focus:outline-none focus:border-[var(--accent-cyan)]"
+          className="flex-1 bg-[var(--ink-deep)]/5 border border-[var(--ink-deep)]/10 px-3 py-2 text-sm text-[var(--ink-deep)] focus:outline-none focus:border-[var(--accent-cyan)]"
           placeholder="you@company.com"
           disabled={state === "loading" || state === "ok"}
         />
@@ -200,7 +200,7 @@ function FooterSubscribeForm() {
           type="submit"
           disabled={state === "loading" || state === "ok"}
           aria-label="Subscribe"
-          className="bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-4 text-sm font-medium disabled:opacity-60"
+          className="bg-[var(--accent-cyan)] text-[var(--cream)] px-4 text-sm font-medium disabled:opacity-60"
         >
           {state === "loading" ? "…" : state === "ok" ? "✓" : "→"}
         </button>
@@ -224,7 +224,7 @@ function CookieSettingsButton() {
     <button
       type="button"
       onClick={openConsentPreferences}
-      className="hover:text-white/70"
+      className="hover:text-[var(--ink-deep)]/70"
     >
       Cookie settings
     </button>

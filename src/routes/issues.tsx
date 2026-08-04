@@ -33,17 +33,17 @@ function IssuesArchive() {
   const upcoming = insights.filter((i) => i.status === "upcoming");
 
   return (
-    <div className="min-h-screen bg-[var(--ink-deep)]">
+    <div className="min-h-screen bg-[var(--cream)]">
       <SiteHeader />
       <main>
         {/* Masthead */}
-        <section className="border-b border-white/8">
+        <section className="border-b border-[var(--ink-deep)]/8">
           <div className="mx-auto max-w-5xl px-6 pt-20 pb-14">
             <p className="eyebrow">The archive</p>
-            <h1 className="font-display mt-4 text-5xl md:text-6xl text-[var(--paper)] leading-[1.05]">
+            <h1 className="font-display mt-4 text-5xl md:text-6xl text-[var(--ink-deep)] leading-[1.05]">
               Every issue, in order.
             </h1>
-            <p className="mt-6 text-white/60 text-lg leading-relaxed max-w-2xl">
+            <p className="mt-6 text-[var(--ink-deep)]/60 text-lg leading-relaxed max-w-2xl">
               One issue per week. Each one written from the operational side of B2B performance
               marketing - never the promotional one.
             </p>
@@ -51,10 +51,10 @@ function IssuesArchive() {
         </section>
 
         {/* Published */}
-        <section className="border-b border-white/8">
+        <section className="border-b border-[var(--ink-deep)]/8">
           <div className="mx-auto max-w-5xl px-6 py-16">
             <p className="eyebrow">Published</p>
-            <div className="mt-6 divide-y divide-white/8">
+            <div className="mt-6 divide-y divide-[var(--ink-deep)]/8">
               {published.map((i) => {
                 const cat = categoryBySlug(i.category)!;
                 return (
@@ -62,10 +62,10 @@ function IssuesArchive() {
                     key={i.slug}
                     className="py-10 grid grid-cols-1 md:grid-cols-[160px_1fr_120px] gap-6 items-start"
                   >
-                    <div className="text-[11px] uppercase tracking-[0.18em] text-white/65">
+                    <div className="text-[11px] uppercase tracking-[0.18em] text-[var(--ink-deep)]/65">
                       <div className="text-[var(--accent-cyan)]">{i.issue}</div>
-                      <div className="mt-1 text-white/60">{i.date}</div>
-                      <div className="mt-1 text-white/60">{i.read} read</div>
+                      <div className="mt-1 text-[var(--ink-deep)]/60">{i.date}</div>
+                      <div className="mt-1 text-[var(--ink-deep)]/60">{i.read} read</div>
                     </div>
                     <div>
                       <div className="text-[11px] uppercase tracking-[0.18em] text-[var(--accent-cyan)]">
@@ -74,24 +74,24 @@ function IssuesArchive() {
                       <Link
                         to="/$category/$articleSlug"
                         params={{ category: i.category, articleSlug: i.slug }}
-                        className="block mt-2 font-display text-2xl md:text-3xl text-[var(--paper)] leading-snug hover:text-[var(--accent-cyan)]"
+                        className="block mt-2 font-display text-2xl md:text-3xl text-[var(--ink-deep)] leading-snug hover:text-[var(--accent-cyan)]"
                       >
                         {i.title}
                         {i.titleItalicSub && (
-                          <span className="italic text-white/55 font-normal">
+                          <span className="italic text-[var(--ink-deep)]/55 font-normal">
                             {" "}
                             {i.titleItalicSub}
                           </span>
                         )}
                       </Link>
-                      <p className="mt-3 text-white/60 max-w-2xl leading-relaxed">{i.dek}</p>
-                      <div className="mt-3 text-xs text-white/65">{i.author}</div>
+                      <p className="mt-3 text-[var(--ink-deep)]/60 max-w-2xl leading-relaxed">{i.dek}</p>
+                      <div className="mt-3 text-xs text-[var(--ink-deep)]/65">{i.author}</div>
                     </div>
                     <div className="md:text-right">
                       <Link
                         to="/$category/$articleSlug"
                         params={{ category: i.category, articleSlug: i.slug }}
-                        className="inline-block rounded-full bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-5 py-2 text-sm font-medium hover:brightness-110"
+                        className="inline-block rounded-full bg-[var(--accent-cyan)] text-[var(--cream)] px-5 py-2 text-sm font-medium hover:brightness-110"
                       >
                         Read →
                       </Link>
@@ -105,10 +105,10 @@ function IssuesArchive() {
 
         {/* Upcoming */}
         {upcoming.length > 0 && (
-          <section className="border-b border-white/8">
+          <section className="border-b border-[var(--ink-deep)]/8">
             <div className="mx-auto max-w-5xl px-6 py-16">
               <p className="eyebrow">Upcoming</p>
-              <div className="mt-6 divide-y divide-white/8">
+              <div className="mt-6 divide-y divide-[var(--ink-deep)]/8">
                 {upcoming.map((i) => {
                   const cat = categoryBySlug(i.category)!;
                   return (
@@ -116,18 +116,18 @@ function IssuesArchive() {
                       key={i.slug}
                       className="py-8 grid grid-cols-1 md:grid-cols-[160px_1fr] gap-6"
                     >
-                      <div className="text-[11px] uppercase tracking-[0.18em] text-white/50">
+                      <div className="text-[11px] uppercase tracking-[0.18em] text-[var(--ink-deep)]/50">
                         <div className="text-[var(--accent-amber)]">Upcoming</div>
-                        <div className="mt-1 text-white/50">{i.read} read</div>
+                        <div className="mt-1 text-[var(--ink-deep)]/50">{i.read} read</div>
                       </div>
                       <div>
-                        <div className="text-[11px] uppercase tracking-[0.18em] text-white/55">
+                        <div className="text-[11px] uppercase tracking-[0.18em] text-[var(--ink-deep)]/55">
                           {cat.name}
                         </div>
-                        <h2 className="mt-2 font-display text-2xl md:text-3xl text-white/55 leading-snug">
+                        <h2 className="mt-2 font-display text-2xl md:text-3xl text-[var(--ink-deep)]/55 leading-snug">
                           {i.title}
                         </h2>
-                        <p className="mt-3 text-white/50 max-w-2xl leading-relaxed">{i.dek}</p>
+                        <p className="mt-3 text-[var(--ink-deep)]/50 max-w-2xl leading-relaxed">{i.dek}</p>
                       </div>
                     </article>
                   );

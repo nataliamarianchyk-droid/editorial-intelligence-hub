@@ -40,17 +40,17 @@ function Unlock() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[var(--ink-deep)] px-6 py-16 text-white">
+    <div className="flex min-h-screen items-center justify-center bg-[var(--cream)] px-6 py-16 text-[var(--ink-deep)]">
       <div className="w-full max-w-sm">
         <div className="mb-8 flex items-center gap-3">
           <img src={nmLogo} alt="NM Insight" className="h-10 w-10 object-contain" />
           <div className="leading-tight">
-            <div className="font-display text-sm tracking-[0.08em] text-white">NM INSIGHT</div>
-            <div className="text-[10px] tracking-[0.28em] text-white/60 uppercase">Internal</div>
+            <div className="font-display text-sm tracking-[0.08em] text-[var(--ink-deep)]">NM INSIGHT</div>
+            <div className="text-[10px] tracking-[0.28em] text-[var(--ink-deep)]/60 uppercase">Internal</div>
           </div>
         </div>
-        <h1 className="font-display text-3xl font-medium text-white">Restricted area</h1>
-        <p className="mt-3 text-sm leading-relaxed text-white/60">
+        <h1 className="font-display text-3xl font-medium text-[var(--ink-deep)]">Restricted area</h1>
+        <p className="mt-3 text-sm leading-relaxed text-[var(--ink-deep)]/60">
           This page is for the NM Insight team. Enter the access password to continue.
         </p>
 
@@ -58,7 +58,7 @@ function Unlock() {
           <div>
             <label
               htmlFor="password"
-              className="block text-[11px] uppercase tracking-[0.16em] text-white/60"
+              className="block text-[11px] uppercase tracking-[0.16em] text-[var(--ink-deep)]/60"
             >
               Access password
             </label>
@@ -70,7 +70,7 @@ function Unlock() {
               autoFocus
               required
               disabled={busy}
-              className="mt-2 w-full rounded-md border border-white/15 bg-white/[0.04] px-3 py-2.5 text-sm text-white placeholder-white/30 outline-none focus:border-[var(--accent-cyan)]/60 focus:ring-1 focus:ring-[var(--accent-cyan)]/40"
+              className="mt-2 w-full rounded-md border border-[var(--ink-deep)]/15 bg-white/[0.04] px-3 py-2.5 text-sm text-[var(--ink-deep)] placeholder-white/30 outline-none focus:border-[var(--accent-cyan)]/60 focus:ring-1 focus:ring-[var(--accent-cyan)]/40"
             />
           </div>
           {error && (

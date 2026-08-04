@@ -73,16 +73,16 @@ export const Route = createFileRoute("/$category/$articleSlug")({
 
 function ArticleNotFound() {
   return (
-    <div className="min-h-screen bg-[var(--ink-deep)]">
+    <div className="min-h-screen bg-[var(--cream)]">
       <SiteHeader />
       <div className="mx-auto max-w-3xl px-6 py-32 text-center">
         <p className="eyebrow">404</p>
-        <h1 className="font-display text-4xl text-[var(--paper)] mt-4">
+        <h1 className="font-display text-4xl text-[var(--ink-deep)] mt-4">
           That article doesn't exist.
         </h1>
         <Link
           to="/"
-          className="inline-block mt-8 rounded-full bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-6 py-2.5 text-sm"
+          className="inline-block mt-8 rounded-full bg-[var(--accent-cyan)] text-[var(--cream)] px-6 py-2.5 text-sm"
         >
           Back to Insights
         </Link>
@@ -131,7 +131,7 @@ function ArticlePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--ink-deep)]">
+    <div className="min-h-screen bg-[var(--cream)]">
       <SiteHeader />
       <main>
         {/* Article hero on dark */}
@@ -140,15 +140,15 @@ function ArticlePage() {
             {category.name}
             {article.issue ? ` · ${article.issue}` : ""}
           </span>
-          <h1 className="font-display mt-6 text-5xl md:text-6xl leading-[1.05] text-[var(--paper)]">
+          <h1 className="font-display mt-6 text-5xl md:text-6xl leading-[1.05] text-[var(--ink-deep)]">
             {article.title}
             {article.titleItalicSub ? (
-              <span className="block text-white/55 italic font-normal mt-3 text-3xl md:text-4xl">
+              <span className="block text-[var(--ink-deep)]/55 italic font-normal mt-3 text-3xl md:text-4xl">
                 {article.titleItalicSub}
               </span>
             ) : null}
           </h1>
-          <p className="mt-8 text-white/60 text-sm tracking-wide">
+          <p className="mt-8 text-[var(--ink-deep)]/60 text-sm tracking-wide">
             By {article.author} · {article.date} · {article.read} read
           </p>
         </section>
@@ -203,7 +203,7 @@ function ArticlePage() {
 
               {/* Byline block */}
               <div className="mt-16 border-t border-black/10 pt-10 grid grid-cols-[64px_1fr] gap-5">
-                <div className="h-16 w-16 rounded-full bg-[var(--ink-navy)] text-[var(--accent-cyan)] flex items-center justify-center font-display text-xl border border-[var(--accent-cyan)]/40">
+                <div className="h-16 w-16 rounded-full bg-[var(--cream-deep)] text-[var(--accent-cyan)] flex items-center justify-center font-display text-xl border border-[var(--accent-cyan)]/40">
                   NM
                 </div>
                 <div>
@@ -237,13 +237,13 @@ function ArticlePage() {
         </div>
 
         {/* End CTA on dark */}
-        <section className="bg-[var(--ink-navy)]">
+        <section className="bg-[var(--cream-deep)]">
           <div className="mx-auto max-w-5xl px-6 py-24 text-center">
             <p className="eyebrow">Next step</p>
-            <h2 className="font-display text-4xl md:text-5xl text-[var(--paper)] mt-4 leading-tight">
+            <h2 className="font-display text-4xl md:text-5xl text-[var(--ink-deep)] mt-4 leading-tight">
               Find where your system is breaking down.
             </h2>
-            <p className="mt-5 text-white/65 max-w-xl mx-auto">
+            <p className="mt-5 text-[var(--ink-deep)]/65 max-w-xl mx-auto">
               A 30-minute Clarity Call mapping the exact gap between your marketing activity and
               your pipeline - no pitch, no follow-up sequence.
             </p>
@@ -252,7 +252,7 @@ function ArticlePage() {
                 href="https://calendly.com/natalia-marianchyk/strategic-intro-call"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full bg-[var(--accent-cyan)] text-[var(--ink-deep)] px-7 py-3 text-sm font-medium hover:brightness-110"
+                className="rounded-full bg-[var(--accent-cyan)] text-[var(--cream)] px-7 py-3 text-sm font-medium hover:brightness-110"
               >
                 Book a Clarity Call
               </a>
@@ -260,7 +260,7 @@ function ArticlePage() {
                 href="https://nm-insight.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-white/25 text-[var(--paper)] px-7 py-3 text-sm hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)]"
+                className="rounded-full border border-[var(--ink-deep)]/25 text-[var(--ink-deep)] px-7 py-3 text-sm hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)]"
               >
                 Explore NM Insight Services
               </a>
@@ -268,7 +268,7 @@ function ArticlePage() {
                 href="https://www.linkedin.com/company/nm-insight/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-transparent text-white/60 px-7 py-3 text-sm hover:text-[var(--accent-cyan)]"
+                className="rounded-full border border-transparent text-[var(--ink-deep)]/60 px-7 py-3 text-sm hover:text-[var(--accent-cyan)]"
               >
                 Follow NM Insight on LinkedIn →
               </a>
@@ -277,12 +277,12 @@ function ArticlePage() {
         </section>
 
         {/* Related insights */}
-        <section className="bg-[var(--ink-deep)] border-t border-white/8">
+        <section className="bg-[var(--cream)] border-t border-[var(--ink-deep)]/8">
           <div className="mx-auto max-w-6xl px-6 py-20">
             <div className="flex items-end justify-between mb-10">
               <div>
                 <p className="eyebrow">Continue reading</p>
-                <h3 className="font-display text-3xl text-[var(--paper)] mt-2">
+                <h3 className="font-display text-3xl text-[var(--ink-deep)] mt-2">
                   Related insights
                 </h3>
               </div>
