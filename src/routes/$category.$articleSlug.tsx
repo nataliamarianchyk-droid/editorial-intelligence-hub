@@ -239,23 +239,21 @@ function ArticlePage() {
         {/* End CTA on dark */}
         <section className="bg-[var(--cream-deep)]">
           <div className="mx-auto max-w-5xl px-6 py-24 text-center">
-            <p className="eyebrow">Next step</p>
+            <p className="eyebrow">Keep reading</p>
             <h2 className="font-display text-4xl md:text-5xl text-[var(--ink-deep)] mt-4 leading-tight">
-              Find where your system is breaking down.
+              One editorial email per week. No noise.
             </h2>
             <p className="mt-5 text-[var(--ink-deep)]/65 max-w-xl mx-auto">
-              A 30-minute Clarity Call mapping the exact gap between your marketing activity and
-              your pipeline - no pitch, no follow-up sequence.
+              If this was useful, you can get each new issue by email as it publishes.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-3">
-              <a
-                href="https://calendly.com/natalia-marianchyk/strategic-intro-call"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/"
+                hash="updates"
                 className="rounded-full bg-[var(--accent-cyan)] text-[var(--cream)] px-7 py-3 text-sm font-medium hover:brightness-110"
               >
-                Book a Clarity Call
-              </a>
+                Subscribe to Insights
+              </Link>
               <a
                 href="https://nm-insight.com"
                 target="_blank"
@@ -275,6 +273,7 @@ function ArticlePage() {
             </div>
           </div>
         </section>
+
 
         {/* Related insights */}
         <section className="bg-[var(--cream)] border-t border-[var(--ink-deep)]/8">
