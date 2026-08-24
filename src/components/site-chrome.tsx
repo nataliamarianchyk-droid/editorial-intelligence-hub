@@ -129,11 +129,8 @@ export function SiteFooter() {
               <a href="mailto:hello@nm-insight.com" className="hover:text-[var(--accent-cyan)]">
                 Contact
               </a>
-            <li>
-              <Link to="/" hash="updates" className="hover:text-[var(--accent-cyan)]">
-                Subscribe to Insights
-              </Link>
             </li>
+
 
           </ul>
         </div>
