@@ -283,7 +283,7 @@ function UpdatesSection() {
   }
 
   return (
-    <section className="border-b border-[var(--ink-deep)]/8 bg-[var(--cream-deep)]/40">
+    <section id="updates" className="border-b border-[var(--ink-deep)]/8 bg-[var(--cream-deep)]/40">
       <div className="mx-auto max-w-6xl px-6 py-20 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-14 items-start">
         <div>
           <p className="eyebrow">Get every issue</p>
