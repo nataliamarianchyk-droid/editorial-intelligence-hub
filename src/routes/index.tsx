@@ -224,25 +224,26 @@ function InsightsHome() {
             When the reading is done, the work begins.
           </h2>
           <p className="mt-5 text-[var(--ink-deep)]/65 max-w-xl mx-auto">
-            NM Insight is a Berlin-based B2B performance marketing consultancy. If your marketing
-            is active but your pipeline is inconsistent, a Clarity Call maps the exact gap.
+            NM Insight is a Berlin-based B2B performance marketing consultancy, writing about where
+            acquisition, attribution, content and systems connect.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <a
-              href="https://calendly.com/natalia-marianchyk/strategic-intro-call"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#updates"
               className="rounded-full bg-[var(--accent-cyan)] text-[var(--cream)] px-7 py-3 text-sm font-medium hover:brightness-110"
             >
-              Book a Clarity Call
+              Get every issue by email
             </a>
             <a
-              href="https://nm-insight.com/services"
+              href="https://nm-insight.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-full border border-[var(--ink-deep)]/25 text-[var(--ink-deep)] px-7 py-3 text-sm hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)]"
             >
               Explore NM Insight Services
             </a>
           </div>
+
         </div>
       </section>
 
