@@ -129,17 +129,12 @@ export function SiteFooter() {
               <a href="mailto:hello@nm-insight.com" className="hover:text-[var(--accent-cyan)]">
                 Contact
               </a>
-            </li>
             <li>
-              <a
-                href="https://calendly.com/natalia-marianchyk/strategic-intro-call"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[var(--accent-cyan)]"
-              >
-                Clarity Call
-              </a>
+              <Link to="/" hash="updates" className="hover:text-[var(--accent-cyan)]">
+                Subscribe to Insights
+              </Link>
             </li>
+
           </ul>
         </div>
         <div>
