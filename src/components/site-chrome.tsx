@@ -36,14 +36,14 @@ export function SiteHeader() {
           </Link>
         </nav>
 
-        <a
-          href="https://calendly.com/natalia-marianchyk/strategic-intro-call"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          to="/"
+          hash="updates"
           className="hidden md:inline-flex text-xs uppercase tracking-[0.14em] text-[var(--cream)] bg-[var(--accent-cyan)] rounded-full px-4 py-2 hover:brightness-110"
         >
-          Clarity Call
-        </a>
+          Subscribe
+        </Link>
+
       </div>
       {/* Mobile category strip */}
       <div className="lg:hidden border-t border-[var(--ink-deep)]/8 overflow-x-auto">
