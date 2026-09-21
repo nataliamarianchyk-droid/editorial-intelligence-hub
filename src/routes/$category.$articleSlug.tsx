@@ -203,9 +203,25 @@ function ArticlePage() {
 
               {/* Byline block */}
               <div className="mt-16 border-t border-black/10 pt-10 grid grid-cols-[64px_1fr] gap-5">
-                <div className="h-16 w-16 rounded-full bg-[var(--cream-deep)] text-[var(--accent-cyan)] flex items-center justify-center font-display text-xl border border-[var(--accent-cyan)]/40">
-                  NM
-                </div>
+                {author.image ? (
+                  <a
+                    href={author.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View ${author.name} on LinkedIn`}
+                    className="block h-16 w-16 overflow-hidden rounded-full border border-[var(--accent-cyan)]/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-cyan)] focus-visible:ring-offset-2"
+                  >
+                    <img
+                      src={author.image}
+                      alt={author.name}
+                      className="h-full w-full object-cover"
+                    />
+                  </a>
+                ) : (
+                  <div className="h-16 w-16 rounded-full bg-[var(--cream-deep)] text-[var(--accent-cyan)] flex items-center justify-center font-display text-xl border border-[var(--accent-cyan)]/40">
+                    NM
+                  </div>
+                )}
                 <div>
                   <p className="font-display text-lg text-[var(--ink-navy)]">{author.name}</p>
                   <p className="mt-1 text-sm text-black/65 font-sans leading-relaxed">

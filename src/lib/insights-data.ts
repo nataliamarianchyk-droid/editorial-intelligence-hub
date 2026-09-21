@@ -1,3 +1,5 @@
+import nataliaPortrait from "@/assets/authors/natalia-marianchyk.jpeg.asset.json";
+
 export type Category = {
   name: string;
   slug: string;
@@ -57,6 +59,7 @@ export type Author = {
   name: string;
   bio: string;
   linkedin: string;
+  image?: string;
 };
 
 export const authors: Record<AuthorKey, Author> = {
@@ -65,6 +68,7 @@ export const authors: Record<AuthorKey, Author> = {
     name: "Natalia Marianchyk",
     bio: "Founder of NM Insight - a Berlin-based B2B performance marketing consultancy focused on the infrastructure between acquisition and revenue.",
     linkedin: "https://www.linkedin.com/in/nmarianchyk/",
+    image: nataliaPortrait.url,
   },
   editorial: {
     key: "editorial",
@@ -96,8 +100,8 @@ export const insights: Insight[] = [
     titleItalicSub: "Where Germany's advertising market is actually heading.",
     dek: "Germany's ad market crossed €50 billion for the first time. The growth is real - but where the money flows tells a more uncomfortable story about concentration, measurement, and what survives.",
     category: "growth-systems",
-    authorKey: "editorial",
-    author: "NM Editorial Team",
+    authorKey: "natalia",
+    author: "Natalia Marianchyk",
     date: "June 2026",
     read: "10 min",
     issue: "Issue 02",
