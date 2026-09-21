@@ -219,12 +219,12 @@ function InsightsHome() {
       {/* CTA band */}
       <section className="bg-[var(--cream-deep)]">
         <div className="mx-auto max-w-5xl px-6 py-24 text-center">
-          <p className="eyebrow">The consultancy behind Insight</p>
+          <p className="eyebrow">From the NM Insight blog</p>
           <h2 className="font-display text-4xl md:text-5xl text-[var(--ink-deep)] mt-4 leading-tight">
             When the reading is done, the work begins.
           </h2>
           <p className="mt-5 text-[var(--ink-deep)]/65 max-w-xl mx-auto">
-            NM Insight is a Berlin-based B2B performance marketing consultancy, writing about where
+            NM Insight is a Berlin-based B2B performance marketing blog, writing about where
             acquisition, attribution, content and systems connect.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">

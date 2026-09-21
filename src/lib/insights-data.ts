@@ -73,7 +73,7 @@ export const authors: Record<AuthorKey, Author> = {
   editorial: {
     key: "editorial",
     name: "NM Editorial Team",
-    bio: "Analysis and market intelligence from NM Insight - a Berlin-based B2B performance marketing consultancy.",
+    bio: "Analysis and market intelligence from the NM Insight blog - focused on the infrastructure between acquisition and revenue.",
     linkedin: "https://www.linkedin.com/company/nm-insight/",
   },
 };
