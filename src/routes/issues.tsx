@@ -44,7 +44,7 @@ function IssuesArchive() {
               Every issue, in order.
             </h1>
             <p className="mt-6 text-[var(--ink-deep)]/60 text-lg leading-relaxed max-w-2xl">
-              One issue per week. Each one written from the operational side of B2B performance
+              One issue per month. Each one written from the operational side of B2B performance
               marketing - never the promotional one.
             </p>
           </div>

@@ -257,7 +257,7 @@ function ArticlePage() {
           <div className="mx-auto max-w-5xl px-6 py-24 text-center">
             <p className="eyebrow">Keep reading</p>
             <h2 className="font-display text-4xl md:text-5xl text-[var(--ink-deep)] mt-4 leading-tight">
-              One editorial email per week. No noise.
+              One editorial email per month. No noise.
             </h2>
             <p className="mt-5 text-[var(--ink-deep)]/65 max-w-xl mx-auto">
               If this was useful, you can get each new issue by email as it publishes.

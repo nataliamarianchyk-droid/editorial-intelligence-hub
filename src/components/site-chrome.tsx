@@ -136,7 +136,7 @@ export function SiteFooter() {
         </div>
         <div>
           <p className="eyebrow mb-3">Subscribe</p>
-          <p className="text-[var(--ink-deep)]/55 mb-3">One insight per week. No noise.</p>
+          <p className="text-[var(--ink-deep)]/55 mb-3">One insight per month. No noise.</p>
           <FooterSubscribeForm />
         </div>
       </div>
