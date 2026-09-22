@@ -51,7 +51,8 @@ function InsightsHome() {
             <span className="italic text-[var(--ink-deep)]/60"> infrastructure between marketing and revenue.</span>
           </h1>
           <p className="mt-8 text-[var(--ink-deep)]/60 max-w-2xl mx-auto text-base leading-relaxed">
-            A weekly, editorial-grade publication on B2B performance marketing - analysis,
+            A monthly, editorial-grade publication on B2B performance marketing - analysis,
+
             frameworks and field notes from the operational side of the discipline.
           </p>
           <div className="mt-8 text-xs uppercase tracking-[0.22em] text-[var(--ink-deep)]/65">
@@ -289,7 +290,7 @@ function UpdatesSection() {
         <div>
           <p className="eyebrow">Get every issue</p>
           <h2 className="font-display text-3xl md:text-4xl text-[var(--ink-deep)] mt-3 leading-tight">
-            One editorial email per week. No noise.
+            One editorial email per month. No noise.
           </h2>
           <p className="mt-5 text-[var(--ink-deep)]/65 max-w-md leading-relaxed">
             Analysis, frameworks and field notes from the operational side of B2B performance

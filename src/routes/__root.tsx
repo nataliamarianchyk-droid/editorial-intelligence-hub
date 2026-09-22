@@ -141,7 +141,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               name: "NM Insight",
               url: "https://nm-insight.com",
               description:
-                "Berlin-based B2B performance marketing blog publishing weekly editorial insights for operators building the infrastructure between marketing and revenue.",
+                "Berlin-based B2B performance marketing blog publishing monthly editorial insights for operators building the infrastructure between marketing and revenue.",
               sameAs: [
                 "https://www.linkedin.com/company/nm-insight/",
                 "https://nm-insight.com",
