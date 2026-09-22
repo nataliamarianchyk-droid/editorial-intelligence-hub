@@ -8,6 +8,6 @@ export default defineMcp({
   title: "NM Insight",
   version: "0.1.0",
   instructions:
-    "Read-only access to NM Insight's editorial catalog on B2B performance marketing. Use `list_categories` to see topic areas, `list_insights` to browse articles (optionally filtered by category or status), and `get_insight` to fetch metadata and the canonical URL for a specific article by slug.",
+    "Read-only access to NM Insight's editorial catalog on marketing and growth. Use `list_categories` to see topic areas, `list_insights` to browse articles (optionally filtered by category or status), and `get_insight` to fetch metadata and the canonical URL for a specific article by slug.",
   tools: [listCategoriesTool, listInsightsTool, getInsightTool],
 });

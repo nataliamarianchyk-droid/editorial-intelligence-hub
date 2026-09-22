@@ -66,7 +66,7 @@ export const authors: Record<AuthorKey, Author> = {
   natalia: {
     key: "natalia",
     name: "Natalia Marianchyk",
-    bio: "Founder of NM Insight - a Berlin-based B2B performance marketing professional focused on the infrastructure between acquisition and revenue.",
+    bio: "Founder of NM Insight - a Berlin-based marketing professional focused on the infrastructure between acquisition and revenue.",
     linkedin: "https://www.linkedin.com/in/nmarianchyk/",
     image: nataliaPortrait.url,
   },

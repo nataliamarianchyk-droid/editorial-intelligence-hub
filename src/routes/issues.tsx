@@ -10,13 +10,13 @@ export const Route = createFileRoute("/issues")({
       {
         name: "description",
         content:
-          "Every issue of NM Insight - the editorial archive of analysis, frameworks and field notes on B2B performance marketing.",
+          "Every issue of NM Insight - the editorial archive of analysis, frameworks and field notes on marketing.",
       },
       { property: "og:title", content: "Issues Archive - NM Insight" },
       {
         property: "og:description",
         content:
-          "Every issue of NM Insight - the editorial archive of analysis, frameworks and field notes on B2B performance marketing.",
+          "Every issue of NM Insight - the editorial archive of analysis, frameworks and field notes on marketing.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://insights.nm-insight.com/issues" },
@@ -44,8 +44,8 @@ function IssuesArchive() {
               Every issue, in order.
             </h1>
             <p className="mt-6 text-[var(--ink-deep)]/60 text-lg leading-relaxed max-w-2xl">
-              One issue per month. Each one written from the operational side of B2B performance
-              marketing - never the promotional one.
+              One issue per month. Each one written from the operational side of marketing -
+              never the promotional one.
             </p>
           </div>
         </section>
