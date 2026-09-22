@@ -7,17 +7,17 @@ export const Route = createFileRoute("/")({
   component: InsightsHome,
   head: () => ({
     meta: [
-      { title: "NM Insight - Insights on B2B Performance Marketing" },
+      { title: "NM Insight - Marketing Insights" },
       {
         name: "description",
         content:
-          "Editorial insights from the operational side of B2B performance marketing - acquisition, attribution, content and the systems that connect them.",
+          "Editorial insights from the operational side of marketing - acquisition, attribution, content and the systems that connect them.",
       },
-      { property: "og:title", content: "NM Insight - Insights on B2B Performance Marketing" },
+      { property: "og:title", content: "NM Insight - Marketing Insights" },
       {
         property: "og:description",
         content:
-          "Editorial insights from the operational side of B2B performance marketing - acquisition, attribution, content and the systems that connect them.",
+          "Editorial insights from the operational side of marketing - acquisition, attribution, content and the systems that connect them.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://insights.nm-insight.com/" },
@@ -51,7 +51,7 @@ function InsightsHome() {
             <span className="italic text-[var(--ink-deep)]/60"> infrastructure between marketing and revenue.</span>
           </h1>
           <p className="mt-8 text-[var(--ink-deep)]/60 max-w-2xl mx-auto text-base leading-relaxed">
-            A monthly, editorial-grade publication on B2B performance marketing - analysis,
+            A monthly, editorial-grade publication on marketing - analysis,
 
             frameworks and field notes from the operational side of the discipline.
           </p>
@@ -225,7 +225,7 @@ function InsightsHome() {
             When the reading is done, the work begins.
           </h2>
           <p className="mt-5 text-[var(--ink-deep)]/65 max-w-xl mx-auto">
-            NM Insight is a Berlin-based B2B performance marketing blog, writing about where
+            NM Insight is a Berlin-based marketing blog, writing about where
             acquisition, attribution, content and systems connect.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
@@ -293,7 +293,7 @@ function UpdatesSection() {
             One editorial email per month. No noise.
           </h2>
           <p className="mt-5 text-[var(--ink-deep)]/65 max-w-md leading-relaxed">
-            Analysis, frameworks and field notes from the operational side of B2B performance
+            Analysis, frameworks and field notes from the operational side of
             marketing - delivered the moment each new issue publishes.
           </p>
           <form onSubmit={onSubmit} className="mt-8 flex max-w-md">
