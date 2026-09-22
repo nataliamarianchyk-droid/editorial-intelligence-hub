@@ -56,7 +56,7 @@ function InsightsHome() {
             frameworks and field notes from the operational side of the discipline.
           </p>
           <div className="mt-8 text-xs uppercase tracking-[0.22em] text-[var(--ink-deep)]/65">
-            One issue per week · No noise
+            One issue per month · No noise
           </div>
         </div>
       </section>
