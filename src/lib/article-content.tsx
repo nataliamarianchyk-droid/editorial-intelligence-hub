@@ -1431,6 +1431,208 @@ function AiOutboundBody() {
   );
 }
 
+
+/* --------------------------- DTC Attribution ---------------------------- */
+
+function DataTable({ head, rows }: { head: string[]; rows: string[][] }) {
+  return (
+    <div className="my-10 overflow-x-auto rounded-sm border border-black/10 bg-white/60 font-sans">
+      <table className="w-full text-left text-sm md:text-base">
+        <thead>
+          <tr className="border-b border-black/10 bg-[var(--cream)]">
+            {head.map((h, i) => (
+              <th key={i} className="px-5 py-3 text-xs uppercase tracking-[0.14em] text-[var(--ink-navy)] font-semibold">
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r, i) => (
+            <tr key={i} className="border-b border-black/5 last:border-0">
+              {r.map((c, j) => (
+                <td key={j} className={`px-5 py-3 ${j === 0 ? "font-medium text-[var(--ink-navy)]" : "text-black/75"}`}>
+                  {c}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+const dtcToc: TocItem[] = [
+  { id: "illusion", label: "The illusion was already there" },
+  { id: "replaced", label: "What actually replaced attribution" },
+  { id: "operating-model", label: "The new operating model" },
+  { id: "pattern", label: "The pattern, again" },
+];
+
+function DtcAttributionBody() {
+  return (
+    <>
+      <p className="text-xl md:text-2xl leading-relaxed text-[#0f172a]">
+        Five years on, marketers are still quoting the wrong number. The familiar "15-25% ATT
+        opt-in" statistic comes from 2021-2022, and it survived because it fit the industry's
+        preferred narrative: users rejected tracking, attribution broke, and performance marketing
+        became less measurable. The data has changed. According to Adjust's Q1 2026 benchmark,
+        global opt-in has recovered to roughly 38%, up from 35% a year earlier, continuing a steady
+        upward trend as apps became better at explaining the value exchange behind permission
+        requests.
+      </p>
+      <div className="mt-6 space-y-5">
+        <P>
+          For European brands, however, the picture is less optimistic. Opt-in rates remain around
+          22% across the EU, compared with roughly 31% in the US, leaving DACH advertisers with
+          materially less deterministic signal to work with. At the same time, the regulatory
+          picture has kept moving on two fronts. France's Autorité de la concurrence fined Apple
+          €150 million over ATT in March 2025 - the first antitrust penalty anywhere specifically
+          targeting the framework - finding it unfairly disadvantaged smaller publishers and rivals.
+          Germany's own Bundeskartellamt opened a parallel case the same year, charging Apple with
+          giving its own apps preferential treatment under the same system. Privacy is no longer
+          just a technical constraint for European brands. It's an active legal battleground on two
+          fronts.
+        </P>
+      </div>
+      <PullQuote>
+        But ATT was never the real story. It simply exposed a measurement problem that had existed
+        for years.
+      </PullQuote>
+
+      <H2 id="illusion">The illusion was already there</H2>
+      <div className="space-y-5">
+        <P>Long before ATT, platform attribution was systematically over-crediting itself.</P>
+        <P>
+          Geo-holdout experiments from the past two years consistently reach the same conclusion.
+          In one Common Thread Collective (CTC) study, a premium fashion retailer paused Google
+          branded search across test regions. Platform reporting predicted catastrophic losses. The
+          actual result was seven fewer orders. Those campaigns had been claiming roughly five
+          times more value than they were creating. The brand ultimately reduced branded search
+          spend by 84%, cut overall media investment by 46%, and retained 99% of total orders.
+        </P>
+        <P>
+          Similar patterns appear elsewhere. Stella's 2025 benchmarks estimate that
+          platform-reported ROAS often exceeds true incremental ROAS by 2-3×, while Haus found Meta
+          retargeting commonly overstates performance by 40-70%. A typical example illustrates the
+          gap:
+        </P>
+      </div>
+      <DataTable
+        head={["Metric", "Platform report", "Incrementality result"]}
+        rows={[
+          ["Meta retargeting spend", "€50,000", "€50,000"],
+          ["Attributed revenue", "€380,000", "€90,000"],
+          ["ROAS", "7.6×", "1.8×"],
+        ]}
+      />
+      <div className="space-y-5">
+        <P>
+          Meta and Google are not fabricating revenue. They're answering a different question.
+          Attribution asks which ad was seen before the purchase. Incrementality asks whether the
+          purchase would have happened anyway. Those are fundamentally different measurements, and
+          confusing them is what inflated ROAS for a decade.
+        </P>
+      </div>
+
+      <H2 id="replaced">What actually replaced attribution</H2>
+      <div className="space-y-5">
+        <P>
+          The post-ATT measurement stack isn't a new tool. It's two complementary disciplines.
+        </P>
+        <P>
+          Marketing Mix Modeling (MMM) estimates channel contribution using aggregated data - media
+          spend, seasonality, promotions, pricing, and revenue over time - rather than following
+          individuals. Triple Whale's Moby, Northbeam, Recast, Measured, and Haus all approach this
+          differently, but share the same premise: causality emerges from patterns, not user-level
+          tracking.
+        </P>
+        <P>
+          Incrementality testing does the opposite. Instead of modeling everything continuously, it
+          isolates one question through controlled experiments - pausing Meta in selected regions,
+          holding out branded search, running ghost ads - to measure what actually changes.
+        </P>
+      </div>
+      <DataTable
+        head={["", "MMM", "Incrementality"]}
+        rows={[
+          ["Method", "Continuous estimation", "Ground-truth experiments"],
+          ["Best for", "Budget allocation, long-term planning", "Validating one channel at a time"],
+        ]}
+      />
+      <div className="space-y-5">
+        <P>
+          One predicts. The other verifies. That distinction is reflected in how executives now
+          evaluate evidence. Enalitica's 2026 research found 60% of senior decision-makers place the
+          highest trust in independent incrementality tests, while 40% rank MMM highest. Almost
+          nobody considers platform dashboards sufficient on their own.
+        </P>
+      </div>
+      <PullQuote>The dashboard wasn't replaced. It was demoted.</PullQuote>
+
+      <H2 id="operating-model">The new operating model</H2>
+      <div className="space-y-5">
+        <P>This changes how high-performing DTC teams make budget decisions.</P>
+        <P>
+          A platform may report 4.2× ROAS. An MMM model might estimate that Meta generated 35% of
+          incremental revenue, with a confidence interval of ±8%. At first glance, the second number
+          looks worse - less precise, less satisfying, harder to present in a board meeting. It's
+          also considerably more useful. False precision encourages overconfidence. Honest
+          uncertainty tells you how aggressively you should bet next quarter's budget.
+        </P>
+        <P>
+          For lean DTC teams, the practical implications are straightforward: watch blended CAC and
+          MER first, since total spend against total revenue is far harder to manipulate than
+          channel-level attribution; use platform ROAS for optimization, not strategy - valuable for
+          creative testing and bidding, weak evidence for reallocating budget; and run one
+          incrementality experiment each quarter, testing the two largest channels, which is
+          usually enough to recalibrate every other number in the reporting stack.
+        </P>
+        <P>
+          You don't need an enterprise measurement budget to adopt this discipline. Brands spending
+          under €1 million annually can already access lightweight MMM platforms and affordable
+          incrementality tools. The competitive advantage isn't buying more software. It's changing
+          which evidence deserves the final word.
+        </P>
+      </div>
+
+      <H2 id="pattern">The pattern, again</H2>
+      <div className="space-y-5">
+        <P>
+          This is the same lesson that appeared in the CRM conversation, just in a different form.
+          For years, deterministic attribution allowed marketers to substitute tracking for
+          causality. The pixel appeared to answer the hardest question in marketing, so very few
+          teams asked whether it actually did.
+        </P>
+        <PullQuote>
+          ATT didn't destroy measurement. It removed the illusion that measurement had already been
+          solved.
+        </PullQuote>
+        <P>
+          What replaces a dashboard that lies with confidence isn't another dashboard that promises
+          certainty. It's a decision-making discipline that accepts imperfect information, measures
+          causality wherever possible, and is willing to act despite the remaining uncertainty.
+        </P>
+      </div>
+
+      <div className="mt-14 border-t border-black/10 pt-6 text-sm text-black/55 font-sans leading-relaxed">
+        <p>
+          <span className="uppercase tracking-[0.14em] text-black/45 text-xs">Sources</span>
+          <br />
+          Adjust, Global ATT Opt-In Benchmark (Q1 2026) · Digital Applied, "Mobile App Marketing
+          Statistics 2026" · Autorité de la concurrence, Apple ATT decision (March 2025) ·
+          Bundeskartellamt, Apple ATT proceeding (2025) · Common Thread Collective (CTC), DTC
+          geo-holdout case studies (2026) · Stella, "2025 DTC Digital Advertising Incrementality
+          Benchmarks" · Haus (2025) · Enalitica, decision-maker trust in MMM vs. incrementality
+          testing (2026) · Northbeam, Triple Whale (Moby), Recast, Measured, Haus - current DTC
+          measurement tooling (2026)
+        </p>
+      </div>
+    </>
+  );
+}
+
 /* ------------------------------- Registry -------------------------------- */
 
 export const articleContent: Record<string, ArticleContent> = {
@@ -1439,6 +1641,7 @@ export const articleContent: Record<string, ArticleContent> = {
   "your-crm-is-the-real-marketing-tool": { toc: crmToc, Body: CrmBody },
   "b2b-performance-marketing-infrastructure-audit": { toc: auditToc, Body: AuditBody },
   "ai-found-66000-buyers": { toc: aiOutboundToc, Body: AiOutboundBody },
+  "dtc-attribution-after-att": { toc: dtcToc, Body: DtcAttributionBody },
 };
 
 

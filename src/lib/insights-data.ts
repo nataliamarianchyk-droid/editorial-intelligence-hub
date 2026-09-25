@@ -204,15 +204,16 @@ export const insights: Insight[] = [
   },
   {
     slug: "dtc-attribution-after-att",
-    title: "DTC Attribution After ATT.",
-    dek: "Deterministic attribution is gone. What replaces it is not another dashboard - it is a different way of deciding.",
+    title: "DTC Attribution After ATT",
+    dek: "Deterministic attribution is gone. What replaces it is not another dashboard. It's a different way of making decisions.",
     category: "ecommerce",
     authorKey: "natalia",
     author: "Natalia Marianchyk",
-    date: "Upcoming",
-    read: "7 min",
-    href: "#",
-    status: "upcoming",
+    date: "September 2026",
+    read: "5 min",
+    issue: "Issue 06",
+    href: "/ecommerce/dtc-attribution-after-att",
+    status: "published",
   },
 ];
 
