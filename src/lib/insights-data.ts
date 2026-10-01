@@ -91,6 +91,8 @@ export type Insight = {
   issue?: string;
   href: string;
   status: "published" | "upcoming";
+  metaTitle?: string;
+  metaDescription?: string;
 };
 
 export const insights: Insight[] = [
@@ -107,6 +109,9 @@ export const insights: Insight[] = [
     issue: "Issue 02",
     href: "/growth-systems/german-advertising-market-2026",
     status: "published",
+    metaTitle: "Germany Ad Spend 2026: The €51 Billion Question - NM Insight",
+    metaDescription:
+      "Germany's ad spend crossed €51 billion in 2026. Where the money is flowing, why growth is concentrating, and what it means for marketers.",
   },
   {
     slug: "visibility-is-not-pipeline",
