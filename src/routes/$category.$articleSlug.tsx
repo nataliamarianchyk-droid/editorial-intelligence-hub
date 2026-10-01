@@ -49,12 +49,14 @@ export const Route = createFileRoute("/$category/$articleSlug")({
       },
       mainEntityOfPage: { "@type": "WebPage", "@id": url },
     };
+    const metaTitle = article.metaTitle ?? `${article.title} - NM Insight`;
+    const metaDescription = article.metaDescription ?? article.dek;
     return {
       meta: [
-        { title: `${article.title} - NM Insight` },
-        { name: "description", content: article.dek },
-        { property: "og:title", content: article.title },
-        { property: "og:description", content: article.dek },
+        { title: metaTitle },
+        { name: "description", content: metaDescription },
+        { property: "og:title", content: metaTitle },
+        { property: "og:description", content: metaDescription },
         { property: "og:type", content: "article" },
         { property: "og:url", content: url },
       ],
