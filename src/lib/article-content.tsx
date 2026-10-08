@@ -5,6 +5,7 @@ import crmOperationalFlow from "@/assets/insights/crm/operational-flow.png.asset
 import crmLeadScoring from "@/assets/insights/crm/lead-scoring.png.asset.json";
 import crmFeedbackLoop from "@/assets/insights/crm/feedback-loop.png.asset.json";
 import crmExecutiveScoreboard from "@/assets/insights/crm/executive-scoreboard.png.asset.json";
+import { germanMarketFaq } from "@/lib/german-market-faq";
 
 export type TocItem = { id: string; label: string };
 
@@ -196,7 +197,44 @@ const germanMarketToc: TocItem[] = [
   { id: "privacy", label: "Privacy Rewired Measurement" },
   { id: "ai", label: "AI: The Shift Not Yet Shipped" },
   { id: "implications", label: "What This Means for Budgets" },
+  { id: "german-market-faq", label: "Germany Ad Spend: FAQ" },
 ];
+
+function GermanMarketShare() {
+  const platforms = [
+    { name: "Google", spend: "€8.175B", growth: "+4.7%", share: "35.9%", bar: "w-[35.9%] bg-ink-navy" },
+    { name: "Meta", spend: "€5.161B", growth: "+9.1%", share: "22.7%", bar: "w-[22.7%] bg-accent-cyan" },
+    { name: "Amazon", spend: "€2.966B", growth: "+10%", share: "13.0%", bar: "w-[13%] bg-accent-amber" },
+  ];
+
+  return (
+    <figure aria-labelledby="german-market-share-title" className="my-8 rounded-lg border border-border bg-cream px-5 py-6 sm:p-8 font-sans text-ink-navy">
+      <figcaption>
+        <p className="eyebrow">2026 forecast · Germany</p>
+        <h3 id="german-market-share-title" className="mt-2 font-display text-xl">Three platforms. Most of the digital budget.</h3>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Share of approximately €22.8B in digital spend, implied by digital’s 72% share of the €31.6B net media market.</p>
+      </figcaption>
+      <div className="mt-6 space-y-5">
+        {platforms.map((platform) => (
+          <div key={platform.name}>
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm">
+              <span className="font-semibold">{platform.name}</span>
+              <span className="tabular-nums"><strong>{platform.spend}</strong><span className="ml-3 text-muted-foreground">{platform.growth} YoY</span></span>
+            </div>
+            <div aria-hidden="true" className="mt-2 h-2 w-full overflow-hidden rounded-sm bg-ink-navy/10"><div className={`h-full ${platform.bar}`} /></div>
+            <p className="mt-1 text-xs tabular-nums text-muted-foreground">{platform.share} of digital spend</p>
+          </div>
+        ))}
+      </div>
+      <div className="mt-6 border-t border-border pt-5 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div><p className="text-xs text-muted-foreground">Big Three combined</p><p className="mt-1 font-display text-2xl tabular-nums">€16.302B</p></div>
+        <div><p className="text-xs text-muted-foreground">Of all net media spend</p><p className="mt-1 font-display text-2xl tabular-nums">51.6%</p></div>
+        <div><p className="text-xs text-muted-foreground">Of digital spend</p><p className="mt-1 font-display text-2xl tabular-nums">71.7%</p></div>
+      </div>
+      <p className="mt-5 text-xs leading-relaxed text-muted-foreground">Source: Die Mediaagenturen, 2026 forecasts. Digital total and digital platform shares calculated from the article’s figures; rounded. Platform revenues are estimates, not reported country-level results.</p>
+    </figure>
+  );
+}
 
 function GermanMarketBody() {
   return (
@@ -247,6 +285,8 @@ function GermanMarketBody() {
         </P>
         <P>The split within the trio is worth knowing precisely:</P>
       </div>
+
+      <GermanMarketShare />
 
       <ol className="mt-8 space-y-6">
         {[
@@ -450,6 +490,11 @@ function GermanMarketBody() {
         </P>
       </div>
 
+      <aside aria-label="Acquisition systems" className="my-10 border-l-4 border-accent-cyan bg-cream px-5 py-6 font-sans">
+        <p className="text-sm leading-relaxed text-ink-navy">Where budgets go is only half the question. The other half is whether your acquisition system can connect that spend to revenue.</p>
+        <a href="https://nm-insight.com/systems" target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-sm font-medium text-accent-cyan underline underline-offset-4 decoration-accent-cyan/40 hover:decoration-accent-cyan focus-visible:outline-2 focus-visible:outline-accent-cyan focus-visible:outline-offset-4">See how we structure and measure acquisition systems <span aria-hidden="true">↗</span></a>
+      </aside>
+
       <H2 id="implications">What This Means If You Own a Budget</H2>
       <P>Four implications, in order of urgency:</P>
 
@@ -505,6 +550,16 @@ function GermanMarketBody() {
           projections rather than reported results. The direction and scale of the shift are not
           in dispute; the decimal points are.
         </p>
+      </div>
+
+      <H2 id="german-market-faq">Germany Ad Spend: Frequently Asked Questions</H2>
+      <div className="divide-y divide-border font-sans">
+        {germanMarketFaq.map(({ question, answer }) => (
+          <section key={question} className="py-6 first:pt-0">
+            <h3 className="font-display text-lg leading-snug text-ink-navy">{question}</h3>
+            <p className="mt-3 text-[16px] leading-[1.8] text-foreground/80">{answer}</p>
+          </section>
+        ))}
       </div>
     </>
   );

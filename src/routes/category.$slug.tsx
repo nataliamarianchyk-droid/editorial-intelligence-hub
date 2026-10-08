@@ -66,6 +66,7 @@ export const Route = createFileRoute("/category/$slug")({
         { property: "og:title", content: `${category.name} - NM Insight` },
         { property: "og:description", content: category.description },
         { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary" },
         { property: "og:url", content: url },
       ],
       links: [{ rel: "canonical", href: url }],

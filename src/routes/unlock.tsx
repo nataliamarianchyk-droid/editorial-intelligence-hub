@@ -9,6 +9,11 @@ export const Route = createFileRoute("/unlock")({
   head: () => ({
     meta: [
       { title: "Unlock - NM Insight" },
+      { name: "description", content: "Access the private NM Insight editorial workspace." },
+      { property: "og:title", content: "Unlock - NM Insight" },
+      { property: "og:description", content: "Access the private NM Insight editorial workspace." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
