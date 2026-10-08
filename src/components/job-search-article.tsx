@@ -4,6 +4,18 @@ import { useEffect, useState } from "react";
 import { Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import markdown from "@/content/job-search-funnel.md?raw";
+import heroImage from "@/assets/insights/job-search/1_hero_funnel.png.asset.json";
+import funnelImage from "@/assets/insights/job-search/2_funnel_table_v2.png.asset.json";
+import leaksImage from "@/assets/insights/job-search/3_where_it_leaked_v2.png.asset.json";
+import changesImage from "@/assets/insights/job-search/4_five_changes.png.asset.json";
+import playbookImage from "@/assets/insights/job-search/5_operators_playbook.png.asset.json";
+
+function ArticleImage({ src, alt, width, height, experimental = false }: { src: string; alt: string; width: number; height: number; experimental?: boolean }) {
+  return <figure className="my-10 mx-auto max-w-2xl">
+    <img src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" className="block h-auto w-full rounded-sm" />
+    {experimental ? <figcaption className="mt-3 font-sans text-sm leading-relaxed text-ink-navy">The positioning line is being tested within this experiment, not adopted as a permanent CV or LinkedIn rebrand.</figcaption> : null}
+  </figure>;
+}
 
 export const jobSearchToc = [
   { id: "the-funnel-stated-plainly", label: "The Funnel, Stated Plainly" },
@@ -17,7 +29,11 @@ const components: Components = {
   h2: ({ children }) => {
     const label = String(children);
     const id = jobSearchToc.find((item) => item.label === label)?.id;
-    return <h2 id={id} className="font-display text-3xl md:text-4xl mt-14 mb-5 text-ink-navy scroll-mt-40">{children}</h2>;
+    return <>
+      <h2 id={id} className="font-display text-3xl md:text-4xl mt-14 mb-5 text-ink-navy scroll-mt-40">{children}</h2>
+      {id === "where-it-leaked" ? <ArticleImage src={leaksImage.url} alt="Three funnel leaks: wrong channel at the top, weak positioning in the message, and under-preparation at the interview stage." width={768} height={991} /> : null}
+      {id === "five-changes-same-system" ? <ArticleImage src={changesImage.url} alt="Five changes: test one positioning line, stop the generic channel, apply to a role shape, run outbound on myself, and rehearse the numbers." width={434} height={454} experimental /> : null}
+    </>;
   },
   h3: ({ children }) => <h2 id="operators-playbook" className="font-display text-2xl mb-3 text-ink-navy scroll-mt-40">{children}</h2>,
   p: ({ children }) => <p className="my-5 font-sans text-[17px] leading-[1.85] text-ink-navy">{children}</p>,
@@ -39,18 +55,23 @@ export function JobSearchBody() {
     <aside aria-label="TL;DR" className="border-l-4 border-accent-cyan bg-cream px-5 py-2">
       <ReactMarkdown components={components}>{summary}</ReactMarkdown>
     </aside>
+    <ArticleImage src={heroImage.url} alt="Natalia's job-search funnel: 58 closed processes, 42 rejected at CV screen, 14 reaching interview stage, and zero offers." width={630} height={994} />
     <div>
       <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ ...components,
         p: ({ children, node }) => {
           const text = JSON.stringify(node?.children ?? []);
           const isFootnote = text.includes("Of the 14 processes recorded");
-          return <p id={isFootnote ? "funnel-footnote" : undefined} className={`my-5 font-sans leading-[1.85] text-ink-navy ${isFootnote ? "text-sm" : "text-[17px]"}`}>{children}</p>;
+          return <>
+            <p id={isFootnote ? "funnel-footnote" : undefined} className={`my-5 font-sans leading-[1.85] text-ink-navy ${isFootnote ? "text-sm" : "text-[17px]"}`}>{children}</p>
+            {isFootnote ? <ArticleImage src={funnelImage.url} alt="Funnel at a glance: 58 closed processes; 42 CV-screen rejections (72%); 14 interview-stage processes (24%); zero offers. Eight interview-stage processes were confirmed through calendar entries only, with no separate outcome recorded." width={768} height={944} /> : null}
+          </>;
         },
       }}>{body}</ReactMarkdown>
     </div>
     <aside aria-labelledby="operators-playbook" className="my-10 rounded-lg border border-border bg-cream p-5 sm:p-8">
       <ReactMarkdown components={components}>{`### The Operator's Playbook${playbook?.split("\n---")[0] ?? ""}`}</ReactMarkdown>
     </aside>
+    <ArticleImage src={playbookImage.url} alt="The Operator's Playbook: write the funnel down, read rejections as a set, measure conversion by channel, test one positioning line, use your own skill as the method, and rehearse numbers out loud." width={422} height={454} experimental />
     <p className="text-sm italic text-ink-navy">NM Insight · Issue 07</p>
     <div id="job-search-reading-end" />
   </>;
