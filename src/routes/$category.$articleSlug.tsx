@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { categoryBySlug, insights, authors } from "@/lib/insights-data";
 import { articleContent, type TocItem } from "@/lib/article-content";
+import { germanMarketFaq } from "@/lib/german-market-faq";
 
 export const Route = createFileRoute("/$category/$articleSlug")({
   loader: ({ params }) => {
@@ -59,6 +60,7 @@ export const Route = createFileRoute("/$category/$articleSlug")({
         { property: "og:description", content: metaDescription },
         { property: "og:type", content: "article" },
         { property: "og:url", content: url },
+        { name: "twitter:card", content: "summary" },
       ],
       links: [{ rel: "canonical", href: url }],
       scripts: [
@@ -66,6 +68,20 @@ export const Route = createFileRoute("/$category/$articleSlug")({
           type: "application/ld+json",
           children: JSON.stringify(jsonLd),
         },
+        ...(article.slug === "german-advertising-market-2026"
+          ? [{
+              type: "application/ld+json",
+              children: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: germanMarketFaq.map(({ question, answer }) => ({
+                  "@type": "Question",
+                  name: question,
+                  acceptedAnswer: { "@type": "Answer", text: answer },
+                })),
+              }),
+            }]
+          : []),
       ],
     };
   },
