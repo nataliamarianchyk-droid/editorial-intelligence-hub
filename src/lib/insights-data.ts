@@ -93,9 +93,30 @@ export type Insight = {
   status: "published" | "upcoming";
   metaTitle?: string;
   metaDescription?: string;
+  datePublished?: string;
+  dateModified?: string;
+  wordCount?: number;
 };
 
 export const insights: Insight[] = [
+  {
+    slug: "job-search-funnel",
+    title: "I Ran My Job Search Like a B2B Funnel. The Leak Wasn't Where I Expected.",
+    dek: "Six months, 58 closed processes, and one uncomfortable lesson: a job search is a pipeline, and most people only measure the top of it.",
+    category: "growth-systems",
+    authorKey: "natalia",
+    author: "Natalia Marianchyk",
+    date: "October 2026",
+    read: "7 min",
+    issue: "Issue 07",
+    href: "/growth-systems/job-search-funnel",
+    status: "published",
+    datePublished: "2026-10-08",
+    dateModified: "2026-10-08",
+    wordCount: 1285,
+    metaTitle: "Job Search as a B2B Funnel: Five Changes - NM Insight",
+    metaDescription: "Natalia Marianchyk analyzes 58 closed job processes as a B2B funnel: channel, positioning and interview leaks, five changes, and an operator's playbook.",
+  },
   {
     slug: "german-advertising-market-2026",
     title: "The €51 Billion Question",

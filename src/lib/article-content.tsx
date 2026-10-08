@@ -6,6 +6,7 @@ import crmLeadScoring from "@/assets/insights/crm/lead-scoring.png.asset.json";
 import crmFeedbackLoop from "@/assets/insights/crm/feedback-loop.png.asset.json";
 import crmExecutiveScoreboard from "@/assets/insights/crm/executive-scoreboard.png.asset.json";
 import { germanMarketFaq } from "@/lib/german-market-faq";
+import { JobSearchBody, jobSearchToc } from "@/components/job-search-article";
 
 export type TocItem = { id: string; label: string };
 
@@ -1691,6 +1692,7 @@ function DtcAttributionBody() {
 /* ------------------------------- Registry -------------------------------- */
 
 export const articleContent: Record<string, ArticleContent> = {
+  "job-search-funnel": { toc: jobSearchToc, Body: JobSearchBody },
   "visibility-is-not-pipeline": { toc: visibilityToc, Body: VisibilityBody },
   "german-advertising-market-2026": { toc: germanMarketToc, Body: GermanMarketBody },
   "your-crm-is-the-real-marketing-tool": { toc: crmToc, Body: CrmBody },

@@ -4,6 +4,7 @@ import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { categoryBySlug, insights, authors } from "@/lib/insights-data";
 import { articleContent, type TocItem } from "@/lib/article-content";
 import { germanMarketFaq } from "@/lib/german-market-faq";
+import { JobSearchReadingTools } from "@/components/job-search-article";
 
 export const Route = createFileRoute("/$category/$articleSlug")({
   loader: ({ params }) => {
@@ -34,10 +35,12 @@ export const Route = createFileRoute("/$category/$articleSlug")({
       "@context": "https://schema.org",
       "@type": "Article",
       headline: article.title,
-      description: article.dek,
+      description: article.slug === "job-search-funnel" ? article.metaDescription : article.dek,
       articleSection: category.name,
       inLanguage: "en",
-      datePublished: article.date,
+      datePublished: article.datePublished ?? article.date,
+      ...(article.dateModified ? { dateModified: article.dateModified } : {}),
+      ...(article.wordCount ? { wordCount: article.wordCount } : {}),
       author: {
         "@type": "Person",
         name: author?.name ?? article.author,
@@ -61,6 +64,10 @@ export const Route = createFileRoute("/$category/$articleSlug")({
         { property: "og:type", content: "article" },
         { property: "og:url", content: url },
         { name: "twitter:card", content: "summary" },
+        ...(article.slug === "job-search-funnel" ? [
+          { name: "twitter:title", content: metaTitle },
+          { name: "twitter:description", content: metaDescription },
+        ] : []),
       ],
       links: [{ rel: "canonical", href: url }],
       scripts: [
@@ -113,6 +120,7 @@ function ArticleNotFound() {
 function ArticlePage() {
   const { category, article, author } = Route.useLoaderData();
   const content = articleContent[article.slug];
+  const isJobSearch = article.slug === "job-search-funnel";
   const [active, setActive] = useState(content.toc[0]?.id ?? "");
 
   useEffect(() => {
@@ -158,7 +166,7 @@ function ArticlePage() {
             {category.name}
             {article.issue ? ` · ${article.issue}` : ""}
           </span>
-          <h1 className="font-display mt-6 text-5xl md:text-6xl leading-[1.05] text-[var(--ink-deep)]">
+          <h1 className={`font-display mt-6 ${isJobSearch ? "text-4xl md:text-6xl text-ink-deep" : "text-5xl md:text-6xl text-[var(--ink-deep)]"} leading-[1.05]`}>
             {article.title}
             {article.titleItalicSub ? (
               <span className="block text-[var(--ink-deep)]/55 italic font-normal mt-3 text-3xl md:text-4xl">
@@ -166,10 +174,12 @@ function ArticlePage() {
               </span>
             ) : null}
           </h1>
-          <p className="mt-8 text-[var(--ink-deep)]/60 text-sm tracking-wide">
+          {isJobSearch && <p className="mt-6 text-lg leading-relaxed text-ink-navy">{article.dek}</p>}
+          <p className={`mt-8 text-sm tracking-wide ${isJobSearch ? "text-ink-navy" : "text-[var(--ink-deep)]/60"}`}>
             By {article.author} · {article.date} · {article.read} read
           </p>
         </section>
+        {isJobSearch && <JobSearchReadingTools />}
 
         {/* Paper article body */}
         <div className="bg-[var(--paper)] text-[#0f172a]">
@@ -216,7 +226,7 @@ function ArticlePage() {
             </aside>
 
             {/* Body */}
-            <article className="font-serif">
+            <article id={isJobSearch ? "job-search-article-body" : undefined} aria-label={isJobSearch ? article.title : undefined} className="font-serif min-w-0">
               <content.Body />
 
               {/* Byline block */}
