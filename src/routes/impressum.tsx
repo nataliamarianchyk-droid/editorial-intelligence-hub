@@ -16,6 +16,8 @@ export const Route = createFileRoute("/impressum")({
         content: "Anbieterkennzeichnung und Kontakt von NM Insight, Berlin.",
       },
       { property: "og:url", content: "https://insights.nm-insight.com/impressum" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "robots", content: "index,follow" },
     ],
     links: [{ rel: "canonical", href: "https://insights.nm-insight.com/impressum" }],

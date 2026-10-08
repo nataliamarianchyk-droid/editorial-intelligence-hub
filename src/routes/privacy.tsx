@@ -17,6 +17,8 @@ export const Route = createFileRoute("/privacy")({
           "Wie NM Insight personenbezogene Daten verarbeitet: Hosting, Server-Logs, Consent, Analytics und Ihre Betroffenenrechte.",
       },
       { property: "og:url", content: "https://insights.nm-insight.com/privacy" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
     links: [{ rel: "canonical", href: "https://insights.nm-insight.com/privacy" }],
   }),

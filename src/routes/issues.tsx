@@ -19,6 +19,7 @@ export const Route = createFileRoute("/issues")({
           "Every issue of NM Insight - the editorial archive of analysis, frameworks and field notes on marketing.",
       },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { property: "og:url", content: "https://insights.nm-insight.com/issues" },
     ],
     links: [{ rel: "canonical", href: "https://insights.nm-insight.com/issues" }],

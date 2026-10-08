@@ -11,7 +11,12 @@ export const Route = createFileRoute("/control-room")({
   component: ControlRoom,
   head: () => ({
     meta: [
-      { title: "Control Room - Internal" },
+      { title: "Editorial Control Room - NM Insight" },
+      { name: "description", content: "Private editorial planning and publishing workspace for NM Insight." },
+      { property: "og:title", content: "Editorial Control Room - NM Insight" },
+      { property: "og:description", content: "Private editorial planning and publishing workspace for NM Insight." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
