@@ -1,6 +1,6 @@
-# German advertising article enhancements
+# Issue 07 final article
 
-- [x] Add the platform comparison with clear spending definitions.
-- [x] Add the contextual acquisition-systems link.
-- [x] Add visible FAQs and matching article-specific structured data.
-- [x] Verify the article, link, metadata, and narrow-screen layout.
+- [ ] Render final Markdown, funnel table, five changes, pull quotes and playbook.
+- [ ] Add scoped reading progress and sticky LinkedIn sharing.
+- [ ] Add Issue 07 metadata and archive entry without changing brand copy.
+- [ ] Verify article and archive on desktop and narrow screens.
