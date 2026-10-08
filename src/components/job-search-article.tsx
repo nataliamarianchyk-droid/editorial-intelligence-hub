@@ -39,13 +39,12 @@ export function JobSearchBody() {
     <aside aria-label="TL;DR" className="border-l-4 border-accent-cyan bg-cream px-5 py-2">
       <ReactMarkdown components={components}>{summary}</ReactMarkdown>
     </aside>
-    <div className="[&_p:has(>#funnel-note)]:text-sm">
+    <div>
       <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ ...components,
         p: ({ children, node }) => {
-          const isFootnote = node?.children[0]?.type === "element" && node.children[0].tagName === "em" && node.position?.start.line === 19;
-          // Identify the note by content rather than relying on Markdown line numbers.
           const text = JSON.stringify(node?.children ?? []);
-          return <p id={text.includes("Of the 14 processes recorded") ? "funnel-footnote" : undefined} className={`my-5 font-sans leading-[1.85] text-ink-navy ${text.includes("Of the 14 processes recorded") || isFootnote ? "text-sm" : "text-[17px]"}`}>{children}</p>;
+          const isFootnote = text.includes("Of the 14 processes recorded");
+          return <p id={isFootnote ? "funnel-footnote" : undefined} className={`my-5 font-sans leading-[1.85] text-ink-navy ${isFootnote ? "text-sm" : "text-[17px]"}`}>{children}</p>;
         },
       }}>{body}</ReactMarkdown>
     </div>
