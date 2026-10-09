@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { categoryBySlug, insights, authors } from "@/lib/insights-data";
@@ -8,6 +8,9 @@ import { JobSearchReadingTools } from "@/components/job-search-article";
 
 export const Route = createFileRoute("/$category/$articleSlug")({
   loader: ({ params }) => {
+    if (params.category === "growth-systems" && params.articleSlug === "job-search-funnel") {
+      throw redirect({ to: "/$category/$articleSlug", params: { category: "ai-marketing-operations", articleSlug: "job-search-funnel" }, statusCode: 301 });
+    }
     const category = categoryBySlug(params.category);
     if (!category) throw notFound();
     const article = insights.find(
@@ -163,7 +166,7 @@ function ArticlePage() {
         {/* Article hero on dark */}
         <section className="mx-auto max-w-3xl px-6 pt-20 pb-12 text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-[var(--accent-cyan)]/40 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-[var(--accent-cyan)]">
-            {category.name}
+            {isJobSearch ? `NM INSIGHT · ${category.name.toUpperCase()}` : category.name}
             {article.issue ? ` · ${article.issue}` : ""}
           </span>
           <h1 className={`font-display mt-6 ${isJobSearch ? "text-4xl md:text-6xl text-ink-deep" : "text-5xl md:text-6xl text-[var(--ink-deep)]"} leading-[1.05]`}>
