@@ -1,9 +1,11 @@
+import { shareImageMeta } from "@/lib/share-images";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
+      ...shareImageMeta("privacy"),
       { title: "Datenschutzerklärung — NM Insight" },
       {
         name: "description",
@@ -18,7 +20,7 @@ export const Route = createFileRoute("/privacy")({
       },
       { property: "og:url", content: "https://insights.nm-insight.com/privacy" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://insights.nm-insight.com/privacy" }],
   }),

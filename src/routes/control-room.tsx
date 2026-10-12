@@ -1,3 +1,4 @@
+import { shareImageMeta } from "@/lib/share-images";
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import nmLogo from "@/assets/nm-insight-logo.png";
@@ -11,12 +12,13 @@ export const Route = createFileRoute("/control-room")({
   component: ControlRoom,
   head: () => ({
     meta: [
+      ...shareImageMeta("control-room"),
       { title: "Editorial Control Room - NM Insight" },
       { name: "description", content: "Private editorial planning and publishing workspace for NM Insight." },
       { property: "og:title", content: "Editorial Control Room - NM Insight" },
       { property: "og:description", content: "Private editorial planning and publishing workspace for NM Insight." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),

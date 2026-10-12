@@ -1,3 +1,4 @@
+import { shareImageMeta } from "@/lib/share-images";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
@@ -7,6 +8,7 @@ export const Route = createFileRoute("/")({
   component: InsightsHome,
   head: () => ({
     meta: [
+      ...shareImageMeta("home"),
       { title: "NM Insight - Marketing Insights" },
       {
         name: "description",

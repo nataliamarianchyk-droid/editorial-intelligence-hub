@@ -1,3 +1,4 @@
+import { shareImageMeta } from "@/lib/share-images";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { insights, categoryBySlug } from "@/lib/insights-data";
@@ -6,6 +7,7 @@ export const Route = createFileRoute("/issues")({
   component: IssuesArchive,
   head: () => ({
     meta: [
+      ...shareImageMeta("issues"),
       { title: "Issues Archive - NM Insight" },
       {
         name: "description",
@@ -19,7 +21,7 @@ export const Route = createFileRoute("/issues")({
           "Every issue of NM Insight - the editorial archive of analysis, frameworks and field notes on marketing.",
       },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "https://insights.nm-insight.com/issues" },
     ],
     links: [{ rel: "canonical", href: "https://insights.nm-insight.com/issues" }],
