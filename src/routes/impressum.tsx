@@ -1,9 +1,11 @@
+import { shareImageMeta } from "@/lib/share-images";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 
 export const Route = createFileRoute("/impressum")({
   head: () => ({
     meta: [
+      ...shareImageMeta("impressum"),
       { title: "Impressum — NM Insight" },
       {
         name: "description",
@@ -17,7 +19,7 @@ export const Route = createFileRoute("/impressum")({
       },
       { property: "og:url", content: "https://insights.nm-insight.com/impressum" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "index,follow" },
     ],
     links: [{ rel: "canonical", href: "https://insights.nm-insight.com/impressum" }],

@@ -1,3 +1,4 @@
+import { shareImageMeta } from "@/lib/share-images";
 import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
@@ -60,13 +61,14 @@ export const Route = createFileRoute("/$category/$articleSlug")({
     const metaDescription = article.metaDescription ?? article.dek;
     return {
       meta: [
+        ...shareImageMeta(article.slug),
         { title: metaTitle },
         { name: "description", content: metaDescription },
         { property: "og:title", content: metaTitle },
         { property: "og:description", content: metaDescription },
         { property: "og:type", content: "article" },
         { property: "og:url", content: url },
-        { name: "twitter:card", content: "summary" },
+        { name: "twitter:card", content: "summary_large_image" },
         ...(article.slug === "job-search-funnel" ? [
           { name: "twitter:title", content: metaTitle },
           { name: "twitter:description", content: metaDescription },

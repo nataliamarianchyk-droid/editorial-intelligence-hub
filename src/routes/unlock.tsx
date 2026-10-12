@@ -1,3 +1,4 @@
+import { shareImageMeta } from "@/lib/share-images";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
@@ -8,12 +9,13 @@ export const Route = createFileRoute("/unlock")({
   component: Unlock,
   head: () => ({
     meta: [
+      ...shareImageMeta("unlock"),
       { title: "Unlock - NM Insight" },
       { name: "description", content: "Access the private NM Insight editorial workspace." },
       { property: "og:title", content: "Unlock - NM Insight" },
       { property: "og:description", content: "Access the private NM Insight editorial workspace." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),

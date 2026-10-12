@@ -1,3 +1,4 @@
+import { shareImageMeta } from "@/lib/share-images";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { categoryBySlug, insightsByCategory, categories, type Insight } from "@/lib/insights-data";
@@ -61,12 +62,13 @@ export const Route = createFileRoute("/category/$slug")({
     };
     return {
       meta: [
+        ...shareImageMeta(`category-${category.slug}`),
         { title: `${category.name} - NM Insight` },
         { name: "description", content: category.description },
         { property: "og:title", content: `${category.name} - NM Insight` },
         { property: "og:description", content: category.description },
         { property: "og:type", content: "website" },
-        { name: "twitter:card", content: "summary" },
+        { name: "twitter:card", content: "summary_large_image" },
         { property: "og:url", content: url },
       ],
       links: [{ rel: "canonical", href: url }],
