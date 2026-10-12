@@ -1,6 +1,6 @@
 # Issue 07 final article
 
-- [ ] Replace old sharing thumbnails with current-brand images for all public pages and articles; verify image sizes and rendered sharing tags.
+- [x] Replace old sharing thumbnails with current-brand images for all public pages and articles; verify image sizes and rendered sharing tags.
 
 - [x] Move Issue 07 to AI & Marketing Operations with an old-path redirect, remove TL;DR, and consolidate images into an end carousel; verify controls and preserved content.
 
