@@ -2,7 +2,7 @@ import { shareImageMeta } from "@/lib/share-images";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
-import { categories, insights, categoryBySlug } from "@/lib/insights-data";
+import { categories, insights, categoryBySlug, publishedInsightsNewestFirst } from "@/lib/insights-data";
 
 export const Route = createFileRoute("/")({
   component: InsightsHome,
@@ -30,15 +30,11 @@ export const Route = createFileRoute("/")({
 });
 
 function InsightsHome() {
-  const featured = insights.find((i) => i.slug === "dtc-attribution-after-att")!;
-  const issue1 = insights.find((i) => i.slug === "visibility-is-not-pipeline")!;
-  const issue2 = insights.find((i) => i.slug === "german-advertising-market-2026")!;
-  const issue3 = insights.find((i) => i.slug === "your-crm-is-the-real-marketing-tool")!;
-  const issue4 = insights.find((i) => i.slug === "b2b-performance-marketing-infrastructure-audit")!;
-  const issue5 = insights.find((i) => i.slug === "ai-found-66000-buyers")!;
+  const [featured, ...olderIssues] = publishedInsightsNewestFirst();
   const upcoming = insights.filter((i) => i.status === "upcoming" && i.slug !== "utm-governance");
-  const rest = [issue5, issue3, issue4, issue2, issue1, ...upcoming];
-  const featuredCat = categoryBySlug(featured.category)!;
+  const rest = [...olderIssues, ...upcoming];
+  if (!featured) return null;
+  const featuredCat = categoryBySlug(featured.category);
 
   return (
     <div className="min-h-screen bg-[var(--cream)]">
@@ -75,9 +71,9 @@ function InsightsHome() {
               </h2>
             </Link>
             <p className="mt-6 text-[var(--ink-deep)]/65 text-lg leading-relaxed max-w-xl">{featured.dek}</p>
-            <div className="mt-8 flex items-center gap-4 text-sm text-[var(--ink-deep)]/50">
+            <div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-[var(--ink-deep)]/50">
               <span className="text-[var(--accent-cyan)] uppercase tracking-[0.18em] text-[11px]">
-                {featuredCat.name}
+                {featuredCat?.name}
               </span>
               <span>·</span>
               <span>{featured.author}</span>
@@ -92,7 +88,9 @@ function InsightsHome() {
               Read the issue →
             </Link>
           </div>
-          <div className="aspect-[4/5] w-full rounded-md overflow-hidden border border-[var(--ink-deep)]/10 bg-gradient-to-br from-[var(--cream-deep)] to-[var(--cream)] relative p-10 flex flex-col justify-between">
+          {featured.cover ? <Link to="/$category/$articleSlug" params={{ category: featured.category, articleSlug: featured.slug }} aria-label={`Read ${featured.issue}: ${featured.title}`} className="block">
+            <img src={featured.cover.src} alt={featured.cover.alt} width={featured.cover.width} height={featured.cover.height} className="w-full aspect-video object-cover rounded-md" />
+          </Link> : <div className="aspect-[4/5] w-full rounded-md overflow-hidden border border-[var(--ink-deep)]/10 bg-gradient-to-br from-[var(--cream-deep)] to-[var(--cream)] relative p-10 flex flex-col justify-between">
             <div className="flex items-center justify-between">
               <span className="font-display text-[var(--ink-deep)] text-lg">
                 NM <span className="text-[var(--accent-cyan)]">Insight</span>
@@ -115,7 +113,7 @@ function InsightsHome() {
               insights.nm-insight.com
             </p>
             <div className="absolute inset-y-0 right-0 w-1 bg-[var(--accent-cyan)]" />
-          </div>
+          </div>}
         </div>
       </section>
 
@@ -258,10 +256,7 @@ function InsightsHome() {
 }
 
 function UpdatesSection() {
-  const published = insights
-    .filter((i) => i.status === "published")
-    .slice()
-    .sort((a, b) => (a.issue && b.issue ? b.issue.localeCompare(a.issue) : 0));
+  const published = publishedInsightsNewestFirst();
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "ok" | "error">("idle");
   const [message, setMessage] = useState("");

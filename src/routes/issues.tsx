@@ -1,7 +1,7 @@
 import { shareImageMeta } from "@/lib/share-images";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
-import { insights, categoryBySlug } from "@/lib/insights-data";
+import { insights, categoryBySlug, publishedInsightsNewestFirst } from "@/lib/insights-data";
 
 export const Route = createFileRoute("/issues")({
   component: IssuesArchive,
@@ -29,10 +29,7 @@ export const Route = createFileRoute("/issues")({
 });
 
 function IssuesArchive() {
-  const published = insights
-    .filter((i) => i.status === "published")
-    .slice()
-    .sort((a, b) => (a.issue && b.issue ? b.issue.localeCompare(a.issue) : 0));
+  const published = publishedInsightsNewestFirst();
   const upcoming = insights.filter((i) => i.status === "upcoming");
 
   return (
@@ -59,7 +56,7 @@ function IssuesArchive() {
             <p className="eyebrow">Published</p>
             <div className="mt-6 divide-y divide-[var(--ink-deep)]/8">
               {published.map((i) => {
-                const cat = categoryBySlug(i.category)!;
+                const cat = categoryBySlug(i.category);
                 return (
                   <article
                     key={i.slug}
@@ -71,8 +68,11 @@ function IssuesArchive() {
                       <div className="mt-1 text-[var(--ink-deep)]/60">{i.read} read</div>
                     </div>
                     <div>
+                      {i.cover && <Link to="/$category/$articleSlug" params={{ category: i.category, articleSlug: i.slug }} aria-label={`Read ${i.issue}: ${i.title}`} className="block mb-5">
+                        <img src={i.cover.src} alt={i.cover.alt} width={i.cover.width} height={i.cover.height} loading="lazy" className="w-full aspect-video object-cover rounded-sm" />
+                      </Link>}
                       <div className="text-[11px] uppercase tracking-[0.18em] text-[var(--accent-cyan)]">
-                        {cat.name}
+                        {cat?.name}
                       </div>
                       <Link
                         to="/$category/$articleSlug"

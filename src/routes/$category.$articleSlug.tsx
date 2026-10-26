@@ -56,6 +56,7 @@ export const Route = createFileRoute("/$category/$articleSlug")({
         url: "https://nm-insight.com",
       },
       mainEntityOfPage: { "@type": "WebPage", "@id": url },
+      ...(article.cover ? { image: [article.cover.src] } : {}),
     };
     const metaTitle = article.metaTitle ?? `${article.title} - NM Insight`;
     const metaDescription = article.metaDescription ?? article.dek;
@@ -69,7 +70,7 @@ export const Route = createFileRoute("/$category/$articleSlug")({
         { property: "og:type", content: "article" },
         { property: "og:url", content: url },
         { name: "twitter:card", content: "summary_large_image" },
-        ...(article.slug === "job-search-funnel" ? [
+        ...(["job-search-funnel", "chatgpt-ads-germany-measurement"].includes(article.slug) ? [
           { name: "twitter:title", content: metaTitle },
           { name: "twitter:description", content: metaDescription },
         ] : []),
@@ -126,6 +127,8 @@ function ArticlePage() {
   const { category, article, author } = Route.useLoaderData();
   const content = articleContent[article.slug];
   const isJobSearch = article.slug === "job-search-funnel";
+  const isIssueEight = article.slug === "chatgpt-ads-germany-measurement";
+  const isMarkdownIssue = isJobSearch || isIssueEight;
   const [active, setActive] = useState(content.toc[0]?.id ?? "");
 
   useEffect(() => {
@@ -168,10 +171,10 @@ function ArticlePage() {
         {/* Article hero on dark */}
         <section className="mx-auto max-w-3xl px-6 pt-20 pb-12 text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-[var(--accent-cyan)]/40 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-[var(--accent-cyan)]">
-            {isJobSearch ? `NM INSIGHT · ${category.name.toUpperCase()}` : category.name}
+            {isMarkdownIssue ? `NM INSIGHT · ${category.name.toUpperCase()}` : category.name}
             {article.issue ? ` · ${article.issue}` : ""}
           </span>
-          <h1 className={`font-display mt-6 ${isJobSearch ? "text-4xl md:text-6xl text-ink-deep" : "text-5xl md:text-6xl text-[var(--ink-deep)]"} leading-[1.05]`}>
+          <h1 className={`font-display mt-6 ${isMarkdownIssue ? "text-4xl md:text-6xl text-ink-deep" : "text-5xl md:text-6xl text-[var(--ink-deep)]"} leading-[1.05]`}>
             {article.title}
             {article.titleItalicSub ? (
               <span className="block text-[var(--ink-deep)]/55 italic font-normal mt-3 text-3xl md:text-4xl">
@@ -179,10 +182,15 @@ function ArticlePage() {
               </span>
             ) : null}
           </h1>
-          {isJobSearch && <p className="mt-6 text-lg leading-relaxed text-ink-navy">{article.dek}</p>}
+          {isMarkdownIssue && <p className="mt-6 text-lg leading-relaxed text-ink-navy">{article.dek}</p>}
+          {isIssueEight ? <>
+            <p className="mt-8 text-sm text-ink-navy">NM Insight | AI &amp; Marketing Operations | October 2026 | 9 min read</p>
+            <p className="mt-2 text-sm text-ink-navy">By Natalia Marianchyk</p>
+          </> :
           <p className={`mt-8 text-sm tracking-wide ${isJobSearch ? "text-ink-navy" : "text-[var(--ink-deep)]/60"}`}>
             By {article.author} · {article.date} · {article.read} read
-          </p>
+          </p>}
+          {article.cover && <img src={article.cover.src} alt={article.cover.alt} width={article.cover.width} height={article.cover.height} fetchPriority="high" className="mt-10 w-full aspect-video object-cover rounded-sm" />}
         </section>
         {isJobSearch && <JobSearchReadingTools />}
 
@@ -231,7 +239,7 @@ function ArticlePage() {
             </aside>
 
             {/* Body */}
-            <article id={isJobSearch ? "job-search-article-body" : undefined} aria-label={isJobSearch ? article.title : undefined} className="font-serif min-w-0">
+            <article id={isJobSearch ? "job-search-article-body" : undefined} aria-label={isMarkdownIssue ? article.title : undefined} className="font-serif min-w-0">
               <content.Body />
 
               {/* Byline block */}

@@ -8,6 +8,7 @@ interface SitemapEntry {
   path: string;
   changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
   priority?: string;
+  lastmod?: string;
 }
 
 export const Route = createFileRoute("/sitemap.xml")({
@@ -16,6 +17,7 @@ export const Route = createFileRoute("/sitemap.xml")({
       GET: async () => {
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
+          { path: "/issues", changefreq: "monthly", priority: "0.8" },
           ...categories.map((c) => ({
             path: `/category/${c.slug}`,
             changefreq: "weekly" as const,
@@ -27,6 +29,7 @@ export const Route = createFileRoute("/sitemap.xml")({
               path: `/${i.category}/${i.slug}`,
               changefreq: "monthly" as const,
               priority: "0.9",
+              lastmod: i.dateModified ?? i.datePublished,
             })),
           // Legal pages — low priority, rarely change.
           { path: "/privacy", changefreq: "yearly", priority: "0.2" },
@@ -37,6 +40,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           [
             `  <url>`,
             `    <loc>${BASE_URL}${e.path}</loc>`,
+            e.lastmod ? `    <lastmod>${e.lastmod}</lastmod>` : null,
             e.changefreq ? `    <changefreq>${e.changefreq}</changefreq>` : null,
             e.priority ? `    <priority>${e.priority}</priority>` : null,
             `  </url>`,
