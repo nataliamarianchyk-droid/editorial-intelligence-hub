@@ -2,6 +2,7 @@
 
 - [x] Move Issue 08 checklist after Five Takeaways and before sources; preserve all copy.
 - [x] Restyle Issue 08 artwork in the earlier light editorial system and verify article/homepage/archive/social thumbnail.
+- [x] Remove the Issue 08 TL;DR from the rendered article and contents list; keep source Markdown verbatim.
 
 - [x] Add Issue 08 verbatim with TL;DR, readiness checklist, premium shared cover and existing editorial layout.
 - [x] Update latest ordering, archive, metadata, internal links and sitemap; verify desktop/mobile and prior Issue 07.
