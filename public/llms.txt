@@ -1,14 +1,17 @@
 # NM Insight - Insights
 
-> Editorial insights from the operational side of B2B performance marketing - acquisition, attribution, content and the systems that connect them. Published by NM Insight, a Berlin-based B2B performance marketing consultancy.
+> Editorial insights from the operational side of marketing - acquisition, attribution, content and the systems that connect them. Published by the NM Insight blog.
 
-NM Insight publishes one editorial-grade issue per week for operators building the infrastructure between marketing and revenue. Content is organised into six sections: Performance, Analytics & Tracking, Growth Systems, B2B SaaS, AI & Marketing Operations, and E-commerce.
+NM Insight publishes one editorial-grade issue per month for operators building the infrastructure between marketing and revenue. Content is organised into six sections: Performance, Analytics & Tracking, Growth Systems, B2B SaaS, AI & Marketing Operations, and E-commerce.
 
 ## Pages
 
 - [Insights homepage](/): Featured issue, section index and upcoming editorial calendar.
 
 ## Articles
+
+- [ChatGPT Ads Are Live in Germany. Your Measurement Stack Probably Isn't Ready](/ai-marketing-operations/chatgpt-ads-germany-measurement): Issue 08 - Conversational advertising, consent, measurement and incremental pipeline.
+- [I Ran My Job Search Like a B2B Funnel. The Leak Wasn't Where I Expected.](/ai-marketing-operations/job-search-funnel): Issue 07 - A job-search measurement experiment.
 
 - [Visibility Is Not Pipeline](/performance/visibility-is-not-pipeline): Issue 01 - Why marketing activity rarely converts to revenue in specialist markets, and the four structural gaps that close the loop.
 
