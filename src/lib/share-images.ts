@@ -17,6 +17,7 @@ import image15 from "@/assets/share/b2b-performance-marketing-infrastructure-aud
 import image16 from "@/assets/share/ai-found-66000-buyers.jpg.asset.json";
 import image17 from "@/assets/share/your-crm-is-the-real-marketing-tool.jpg.asset.json";
 import image18 from "@/assets/share/dtc-attribution-after-att.jpg.asset.json";
+import { issueEightCover } from "@/lib/issue-eight-cover";
 
 const images: Record<string, string> = {
   "home": image0.url,
@@ -41,6 +42,17 @@ const images: Record<string, string> = {
 };
 
 export function shareImageMeta(key: string = "home") {
+  if (key === "chatgpt-ads-germany-measurement") {
+    return [
+      { property: "og:image", content: issueEightCover.src },
+      { property: "og:image:width", content: String(issueEightCover.width) },
+      { property: "og:image:height", content: String(issueEightCover.height) },
+      { property: "og:image:type", content: "image/jpeg" },
+      { property: "og:image:alt", content: issueEightCover.alt },
+      { name: "twitter:image", content: issueEightCover.src },
+      { name: "twitter:image:alt", content: issueEightCover.alt },
+    ];
+  }
   const path = images[key] ?? images.home;
   const url = new URL(path, "https://insights.nm-insight.com").href;
   return [

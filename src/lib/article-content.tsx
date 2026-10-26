@@ -7,6 +7,7 @@ import crmFeedbackLoop from "@/assets/insights/crm/feedback-loop.png.asset.json"
 import crmExecutiveScoreboard from "@/assets/insights/crm/executive-scoreboard.png.asset.json";
 import { germanMarketFaq } from "@/lib/german-market-faq";
 import { JobSearchBody, jobSearchToc } from "@/components/job-search-article";
+import { ChatgptAdsBody, chatgptAdsToc } from "@/components/chatgpt-ads-article";
 
 export type TocItem = { id: string; label: string };
 
@@ -1692,6 +1693,7 @@ function DtcAttributionBody() {
 /* ------------------------------- Registry -------------------------------- */
 
 export const articleContent: Record<string, ArticleContent> = {
+  "chatgpt-ads-germany-measurement": { toc: chatgptAdsToc, Body: ChatgptAdsBody },
   "job-search-funnel": { toc: jobSearchToc, Body: JobSearchBody },
   "visibility-is-not-pipeline": { toc: visibilityToc, Body: VisibilityBody },
   "german-advertising-market-2026": { toc: germanMarketToc, Body: GermanMarketBody },

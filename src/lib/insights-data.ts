@@ -1,4 +1,5 @@
 import nataliaPortrait from "@/assets/authors/natalia-marianchyk.jpeg.asset.json";
+import { issueEightCover } from "@/lib/issue-eight-cover";
 
 export type Category = {
   name: string;
@@ -96,9 +97,29 @@ export type Insight = {
   datePublished?: string;
   dateModified?: string;
   wordCount?: number;
+  cover?: typeof issueEightCover;
 };
 
 export const insights: Insight[] = [
+  {
+    slug: "chatgpt-ads-germany-measurement",
+    title: "ChatGPT Ads Are Live in Germany. Your Measurement Stack Probably Isn't Ready",
+    dek: "OpenAI has brought ChatGPT Ads to Germany. The hard part is not buying the impression - it is knowing who can see them, what consent allows you to measure, and whether conversational attention becomes revenue.",
+    category: "ai-marketing-operations",
+    authorKey: "natalia",
+    author: "Natalia Marianchyk",
+    date: "October 2026",
+    read: "9 min",
+    issue: "Issue 08",
+    href: "/ai-marketing-operations/chatgpt-ads-germany-measurement",
+    status: "published",
+    datePublished: "2026-10-26",
+    dateModified: "2026-10-26",
+    wordCount: 3160,
+    metaTitle: "ChatGPT Ads Are Live in Germany. Your Measurement Stack Probably Isn't Ready - NM Insight",
+    metaDescription: "OpenAI has brought ChatGPT Ads to Germany. The hard part is not buying the impression - it is knowing who can see them, what consent allows you to measure, and whether conversational attention becomes revenue.",
+    cover: issueEightCover,
+  },
   {
     slug: "job-search-funnel",
     title: "I Ran My Job Search Like a B2B Funnel. The Leak Wasn't Where I Expected.",
@@ -249,4 +270,10 @@ export function categoryBySlug(slug: string) {
 
 export function insightsByCategory(slug: string) {
   return insights.filter((i) => i.category === slug);
+}
+
+export function publishedInsightsNewestFirst() {
+  return insights.filter((i) => i.status === "published").sort((a, b) =>
+    Number(b.issue?.replace("Issue ", "") ?? 0) - Number(a.issue?.replace("Issue ", "") ?? 0),
+  );
 }
