@@ -37,7 +37,7 @@ export const Route = createFileRoute("/category/$slug")({
               "@type": "Article",
               headline: i.title,
               url: `https://insights.nm-insight.com${i.href}`,
-              datePublished: i.date,
+              datePublished: i.datePublished ?? i.date,
               author: { "@type": "Person", name: i.author },
             })),
         },
