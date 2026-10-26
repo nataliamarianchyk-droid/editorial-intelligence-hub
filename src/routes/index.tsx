@@ -32,7 +32,7 @@ export const Route = createFileRoute("/")({
 function InsightsHome() {
   const [featured, ...olderIssues] = publishedInsightsNewestFirst();
   const upcoming = insights.filter((i) => i.status === "upcoming" && i.slug !== "utm-governance");
-  const rest = [...olderIssues, ...upcoming].filter((i) => i.slug !== "job-search-funnel");
+  const rest = [...olderIssues, ...upcoming];
   if (!featured) return null;
   const featuredCat = categoryBySlug(featured.category);
 
