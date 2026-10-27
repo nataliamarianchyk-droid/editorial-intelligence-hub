@@ -10,8 +10,8 @@ const sourceHeadings = [...markdown.matchAll(/^## (.+)$/gm)].map((match) => ({
   id: editorialHeadingId(match[1]), label: match[1],
 }));
 export const chatgptAdsToc = [
-  ...sourceHeadings.filter((heading) => heading.id !== "the-nm-insight-readiness-checklist" && heading.id !== "tl-dr"),
   ...sourceHeadings.filter((heading) => heading.id === "the-nm-insight-readiness-checklist"),
+  ...sourceHeadings.filter((heading) => heading.id !== "the-nm-insight-readiness-checklist" && heading.id !== "tl-dr"),
 ];
 
 const components: Components = {
@@ -29,10 +29,10 @@ export function ChatgptAdsBody() {
   const mainStart = body.indexOf("## Germany Has a New Advertising Environment");
   const sourcesStart = body.indexOf("### Editorial source base");
   return <>
-    <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>{body.slice(mainStart, sourcesStart)}</ReactMarkdown>
     <aside aria-labelledby="the-nm-insight-readiness-checklist" className="my-10 border border-border border-l-4 border-l-accent-cyan rounded-lg bg-cream p-5 sm:p-8 [&_h2]:mt-0">
       <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>{body.slice(checklistStart, mainStart)}</ReactMarkdown>
     </aside>
+    <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>{body.slice(mainStart, sourcesStart)}</ReactMarkdown>
     <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>{body.slice(sourcesStart)}</ReactMarkdown>
   </>;
 }
