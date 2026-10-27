@@ -10,8 +10,8 @@ const sourceHeadings = [...markdown.matchAll(/^## (.+)$/gm)].map((match) => ({
   id: editorialHeadingId(match[1]), label: match[1],
 }));
 export const chatgptAdsToc = [
-  ...sourceHeadings.filter((heading) => heading.id !== "the-nm-insight-readiness-checklist" && heading.id !== "tl-dr"),
   ...sourceHeadings.filter((heading) => heading.id === "the-nm-insight-readiness-checklist"),
+  ...sourceHeadings.filter((heading) => heading.id !== "the-nm-insight-readiness-checklist" && heading.id !== "tl-dr"),
 ];
 
 const components: Components = {
