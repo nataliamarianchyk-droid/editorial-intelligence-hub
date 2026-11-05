@@ -197,7 +197,7 @@ const germanMarketToc: TocItem[] = [
   { id: "measurable", label: "Measurable vs. Not" },
   { id: "ooh", label: "Where Creative Still Counts" },
   { id: "privacy", label: "Privacy Rewired Measurement" },
-  { id: "ai", label: "AI: The Shift Not Yet Shipped" },
+  { id: "ai", label: "AI: The Ad Layer Has Arrived" },
   { id: "implications", label: "What This Means for Budgets" },
   { id: "german-market-faq", label: "Germany Ad Spend: FAQ" },
 ];
@@ -469,26 +469,30 @@ function GermanMarketBody() {
         </P>
       </div>
 
-      <H2 id="ai">AI: The Shift That Has Not Shipped Yet</H2>
+      <H2 id="ai">AI: The Ad Layer Has Arrived</H2>
       <div className="space-y-5">
         <P>
-          Conversational AI advertising exists - ChatGPT ads are live in the US, UK, Canada,
-          Japan and other markets - but not in Germany, and analysts do not expect meaningful
-          German AI ad revenue before 2027. WPP projects AI-driven search could capture close to
+          Conversational AI advertising is now live in Germany. OpenAI announced its European
+          expansion in August 2026, including Germany, and confirmed self-service access through
+          Ads Manager on 31 August in its{" "}
+          <a href="https://openai.com/index/chatgpt-ads-expands-across-europe/" target="_blank" rel="noopener noreferrer" className="text-accent-cyan underline underline-offset-4 hover:decoration-accent-cyan focus-visible:outline-2 focus-visible:outline-accent-cyan focus-visible:outline-offset-4">European launch announcement</a>.
+          Ads are shown to Free and Go users; the launch does not by itself establish the size of
+          German AI ad revenue. WPP projects AI-driven search could capture close to
           40% of global search ad revenue by 2031; in 2026 it is barely 2%.
         </P>
         <P>
-          But one shift is already real, ahead of any ad product: visibility inside AI answers.
+          A separate shift is already real: visibility inside AI answers.
           When a potential customer asks an AI assistant a question, whether your company is
-          cited in the answer is already a discovery channel - one with no ad slot to buy yet.
+          cited in the answer is already a discovery channel - distinct from paid ad placements.
           The early discipline forming around this is Generative Engine Optimization: structured,
           authoritative content built so that AI systems use it as a source.
         </P>
         <P>
           The practical version of "AI strategy" in 2026 is unglamorous: make your expertise
-          machine-readable before the ad layer arrives. Companies doing that now will find the
-          eventual paid placements amplifying an existing presence rather than compensating for a
-          missing one.
+          machine-readable alongside the new ad layer. Companies doing that now can use paid
+          placements to amplify an existing presence rather than compensate for a missing one.
+          For the audience, consent and measurement implications, read{" "}
+          <a href="/ai-marketing-operations/chatgpt-ads-germany-measurement" className="text-accent-cyan underline underline-offset-4 hover:decoration-accent-cyan focus-visible:outline-2 focus-visible:outline-accent-cyan focus-visible:outline-offset-4">Issue 08: ChatGPT Ads Are Live in Germany. Your Measurement Stack Probably Isn't Ready</a>.
         </P>
       </div>
 

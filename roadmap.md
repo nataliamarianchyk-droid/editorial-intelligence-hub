@@ -1,5 +1,7 @@
 # Publication updates
 
+- [x] Correct the German article search description’s 2025/2026 distinction and outdated ChatGPT Ads statement; link OpenAI’s verified announcement and Issue 08, preserving unrelated content.
+
 - [x] Move Issue 08 checklist after Five Takeaways and before sources; preserve all copy.
 - [x] Restyle Issue 08 artwork in the earlier light editorial system and verify article/homepage/archive/social thumbnail.
 - [x] Remove the Issue 08 TL;DR from the rendered article and contents list; keep source Markdown verbatim.

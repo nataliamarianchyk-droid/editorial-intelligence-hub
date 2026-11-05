@@ -153,7 +153,7 @@ export const insights: Insight[] = [
     status: "published",
     metaTitle: "Germany Ad Spend 2026: The €51 Billion Question - NM Insight",
     metaDescription:
-      "Germany's ad spend crossed €51 billion in 2026. Where the money is flowing, why growth is concentrating, and what it means for marketers.",
+      "Germany's advertising market exceeded €50B in 2025. The 2026 forecast is €31.6B in net media spend - different measures, with growth concentrated in digital.",
   },
   {
     slug: "visibility-is-not-pipeline",
