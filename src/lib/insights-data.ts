@@ -116,7 +116,7 @@ export const insights: Insight[] = [
     datePublished: "2026-10-26",
     dateModified: "2026-10-26",
     wordCount: 3160,
-    metaTitle: "ChatGPT Ads Are Live in Germany. Your Measurement Stack Probably Isn't Ready - NM Insight",
+    metaTitle: "ChatGPT Ads in Deutschland: Messung & Consent - NM Insight",
     metaDescription: "OpenAI has brought ChatGPT Ads to Germany. The hard part is not buying the impression - it is knowing who can see them, what consent allows you to measure, and whether conversational attention becomes revenue.",
     cover: issueEightCover,
   },
