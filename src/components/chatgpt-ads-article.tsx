@@ -27,12 +27,18 @@ export function ChatgptAdsBody() {
   const body = markdown.slice(markdown.indexOf("## The NM Insight Readiness Checklist"));
   const checklistStart = 0;
   const mainStart = body.indexOf("## Germany Has a New Advertising Environment");
+  const marketContextEnd = body.indexOf("## This Is Not Another Google Ads");
   const sourcesStart = body.indexOf("### Editorial source base");
   return <>
     <aside aria-labelledby="the-nm-insight-readiness-checklist" className="my-10 border border-border border-l-4 border-l-accent-cyan rounded-lg bg-cream p-5 sm:p-8 [&_h2]:mt-0">
       <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>{body.slice(checklistStart, mainStart)}</ReactMarkdown>
     </aside>
-    <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>{body.slice(mainStart, sourcesStart)}</ReactMarkdown>
+    <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>{body.slice(mainStart, marketContextEnd)}</ReactMarkdown>
+    <p className="my-5 font-sans text-[17px] leading-[1.85] text-ink-navy">
+      For the wider picture of Germany's advertising budgets, platform concentration and measurement pressures, read{" "}
+      <a href="/growth-systems/german-advertising-market-2026" className="text-accent-cyan underline underline-offset-4 hover:decoration-accent-cyan focus-visible:outline-2 focus-visible:outline-accent-cyan focus-visible:outline-offset-4">Issue 02: The €51 Billion Question - Where Germany's Advertising Market Is Actually Heading</a>.
+    </p>
+    <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>{body.slice(marketContextEnd, sourcesStart)}</ReactMarkdown>
     <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>{body.slice(sourcesStart)}</ReactMarkdown>
   </>;
 }

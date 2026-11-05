@@ -1,5 +1,7 @@
 # Publication updates
 
+- [x] Cross-link the German advertising market article and Issue 08 with contextual mentions, preserving existing article copy.
+
 - [x] Correct the German article search description’s 2025/2026 distinction and outdated ChatGPT Ads statement; link OpenAI’s verified announcement and Issue 08, preserving unrelated content.
 
 - [x] Move Issue 08 checklist after Five Takeaways and before sources; preserve all copy.
