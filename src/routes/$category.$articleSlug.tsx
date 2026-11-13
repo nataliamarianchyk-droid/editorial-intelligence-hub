@@ -6,6 +6,7 @@ import { categoryBySlug, insights, authors } from "@/lib/insights-data";
 import { articleContent, type TocItem } from "@/lib/article-content";
 import { germanMarketFaq } from "@/lib/german-market-faq";
 import { JobSearchReadingTools } from "@/components/job-search-article";
+import { AiTakeaways } from "@/components/ai-takeaways";
 
 export const Route = createFileRoute("/$category/$articleSlug")({
   loader: ({ params }) => {
@@ -194,6 +195,7 @@ function ArticlePage() {
           {article.cover && <img src={article.cover.src} alt={article.cover.alt} width={article.cover.width} height={article.cover.height} fetchPriority="high" className="mt-10 w-full aspect-video object-cover rounded-sm" />}
         </section>
         {isJobSearch && <JobSearchReadingTools />}
+        <AiTakeaways key={article.slug} slug={article.slug} />
 
         {/* Paper article body */}
         <div className="bg-[var(--paper)] text-[#0f172a]">
