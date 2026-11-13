@@ -1,6 +1,6 @@
 # Publication updates
 
-- [ ] Add optional article-only AI takeaways through AI Gateway, preserve all bodies, and verify generation, hide/show, cancellation and failures.
+- [x] Add optional article-only AI takeaways through AI Gateway, preserve all bodies, and verify real generation, cached results, hide/show, Stop and invalid-request errors.
 
 - [x] Write and source all 12 proposed topics as full articles, add them as unnumbered field guides across all six sections, and verify reading links, metadata, tables and mobile layouts; ready for site publication.
 
