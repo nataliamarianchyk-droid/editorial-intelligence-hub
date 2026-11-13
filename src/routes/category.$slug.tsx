@@ -2,7 +2,6 @@ import { shareImageMeta } from "@/lib/share-images";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { categoryBySlug, insightsByCategory, categories, type Insight } from "@/lib/insights-data";
-import { articleSuggestionsByCategory } from "@/lib/article-suggestions";
 
 export const Route = createFileRoute("/category/$slug")({
   loader: ({ params }) => {
@@ -111,7 +110,6 @@ export const Route = createFileRoute("/category/$slug")({
 function CategoryPage() {
   const { category, items } = Route.useLoaderData();
   const publishedItems = items.filter((item) => item.status === "published");
-  const suggestions = articleSuggestionsByCategory(category.slug);
 
   return (
     <div className="min-h-screen bg-[var(--cream)]">
@@ -144,6 +142,7 @@ function CategoryPage() {
             {publishedItems.map((i: Insight) => (
               <article key={i.slug} className="py-10 grid grid-cols-1 md:grid-cols-[140px_1fr] gap-6">
                 <div className="text-[11px] uppercase tracking-[0.18em] text-[var(--ink-deep)]/65">
+                  {i.format === "field-guide" && <div className="mb-2 text-accent-cyan">Field guide</div>}
                   {i.date}
                   <div className="mt-1 text-[var(--ink-deep)]/60">{i.read} read</div>
                 </div>
@@ -174,22 +173,6 @@ function CategoryPage() {
                     )}
                   </div>
                 </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-[var(--ink-deep)]/8">
-        <div className="mx-auto max-w-5xl px-6 py-16">
-          <p className="eyebrow">On the editorial radar</p>
-          <h2 className="font-display mt-3 text-3xl text-[var(--ink-deep)]">Article ideas</h2>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {suggestions.map((suggestion) => (
-              <article key={suggestion.slug} className="border border-[var(--ink-deep)]/10 bg-[var(--paper)] rounded-sm p-7">
-                <p className="eyebrow">Proposed topic</p>
-                <h3 className="font-display mt-4 text-2xl leading-snug text-[var(--ink-deep)]">{suggestion.title}</h3>
-                <p className="mt-4 leading-relaxed text-[var(--ink-deep)]/65">{suggestion.dek}</p>
               </article>
             ))}
           </div>

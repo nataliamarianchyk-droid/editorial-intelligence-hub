@@ -1,5 +1,6 @@
 import nataliaPortrait from "@/assets/authors/natalia-marianchyk.jpeg.asset.json";
 import { issueEightCover } from "@/lib/issue-eight-cover";
+import { fieldGuides } from "@/lib/field-guide-data";
 
 export type Category = {
   name: string;
@@ -98,9 +99,10 @@ export type Insight = {
   dateModified?: string;
   wordCount?: number;
   cover?: typeof issueEightCover;
+  format?: "field-guide";
 };
 
-export const insights: Insight[] = [
+const editorialInsights: Insight[] = [
   {
     slug: "chatgpt-ads-germany-measurement",
     title: "ChatGPT Ads Are Live in Germany. Your Measurement Stack Probably Isn't Ready",
@@ -264,6 +266,26 @@ export const insights: Insight[] = [
   },
 ];
 
+export const insights: Insight[] = [
+  ...editorialInsights.filter((item) => !fieldGuides.some((guide) => guide.slug === item.slug)),
+  ...fieldGuides.map((guide): Insight => ({
+    slug: guide.slug,
+    title: guide.title,
+    dek: guide.dek,
+    category: guide.category,
+    authorKey: "editorial",
+    author: "NM Editorial Team",
+    date: "November 2026",
+    read: guide.read,
+    href: `/${guide.category}/${guide.slug}`,
+    status: "published",
+    format: "field-guide",
+    datePublished: guide.datePublished,
+    dateModified: guide.dateModified,
+    wordCount: guide.wordCount,
+  })),
+];
+
 export function categoryBySlug(slug: string) {
   return categories.find((c) => c.slug === slug);
 }
@@ -273,7 +295,7 @@ export function insightsByCategory(slug: string) {
 }
 
 export function publishedInsightsNewestFirst() {
-  return insights.filter((i) => i.status === "published").sort((a, b) =>
+  return insights.filter((i) => i.status === "published" && i.issue).sort((a, b) =>
     Number(b.issue?.replace("Issue ", "") ?? 0) - Number(a.issue?.replace("Issue ", "") ?? 0),
   );
 }

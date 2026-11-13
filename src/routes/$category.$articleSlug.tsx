@@ -128,7 +128,7 @@ function ArticlePage() {
   const content = articleContent[article.slug];
   const isJobSearch = article.slug === "job-search-funnel";
   const isIssueEight = article.slug === "chatgpt-ads-germany-measurement";
-  const isMarkdownIssue = isJobSearch || isIssueEight;
+  const isMarkdownIssue = isJobSearch || isIssueEight || article.format === "field-guide";
   const [active, setActive] = useState(content.toc[0]?.id ?? "");
 
   useEffect(() => {
@@ -173,6 +173,7 @@ function ArticlePage() {
           <span className="inline-flex items-center gap-2 rounded-full border border-[var(--accent-cyan)]/40 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-[var(--accent-cyan)]">
             {isMarkdownIssue ? `NM INSIGHT · ${category.name.toUpperCase()}` : category.name}
             {article.issue ? ` · ${article.issue}` : ""}
+            {article.format === "field-guide" ? " · Field guide" : ""}
           </span>
           <h1 className={`font-display mt-6 ${isMarkdownIssue ? "text-4xl md:text-6xl text-ink-deep" : "text-5xl md:text-6xl text-[var(--ink-deep)]"} leading-[1.05]`}>
             {article.title}
@@ -348,7 +349,8 @@ function ArticlePage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {related.map((r) => {
-                const cat = categoryBySlug(r.category)!;
+                const cat = categoryBySlug(r.category);
+                if (!cat) return null;
                 const card = (
                   <>
                     <span className="text-[11px] uppercase tracking-[0.18em] text-[#0a8a8d] font-semibold">

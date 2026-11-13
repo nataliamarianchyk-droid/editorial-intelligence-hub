@@ -31,6 +31,7 @@ export const Route = createFileRoute("/issues")({
 function IssuesArchive() {
   const published = publishedInsightsNewestFirst();
   const upcoming = insights.filter((i) => i.status === "upcoming");
+  const guides = insights.filter((i) => i.format === "field-guide");
 
   return (
     <div className="min-h-screen bg-[var(--cream)]">
@@ -102,6 +103,19 @@ function IssuesArchive() {
                   </article>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-border">
+          <div className="mx-auto max-w-5xl px-6 py-16">
+            <p className="eyebrow">Field guides</p>
+            <div className="mt-6 divide-y divide-border">
+              {guides.map((guide) => <article key={guide.slug} className="py-8">
+                <p className="eyebrow">{categoryBySlug(guide.category)?.name} · {guide.read} read</p>
+                <Link to="/$category/$articleSlug" params={{ category: guide.category, articleSlug: guide.slug }} className="block mt-3 font-display text-2xl md:text-3xl leading-snug text-ink-deep hover:text-accent-cyan">{guide.title}</Link>
+                <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">{guide.dek}</p>
+              </article>)}
             </div>
           </div>
         </section>
