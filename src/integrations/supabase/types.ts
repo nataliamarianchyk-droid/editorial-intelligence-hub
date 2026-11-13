@@ -14,13 +14,57 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      article_ai_gateway_state: {
+        Row: {
+          id: string
+          message: string
+          status_code: number
+          updated_at: string
+        }
+        Insert: {
+          id: string
+          message: string
+          status_code: number
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          message?: string
+          status_code?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      article_ai_takeaways: {
+        Row: {
+          content_key: string
+          lease_until: string
+          result: Json | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          content_key: string
+          lease_until?: string
+          result?: Json | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          content_key?: string
+          lease_until?: string
+          result?: Json | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      claim_article_takeaways: { Args: { p_key: string }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
