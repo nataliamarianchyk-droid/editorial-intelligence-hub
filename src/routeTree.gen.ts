@@ -21,6 +21,7 @@ import { Route as UnlockRouteImport } from './routes/unlock'
 import { Route as CategoryArticleSlugRouteImport } from './routes/$category.$articleSlug'
 import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
+import { Route as ApiArticleTakeawaysRouteImport } from './routes/api/article-takeaways'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 import { Route as Char91DotmcpChar93InvokeToolToolRouteImport } from './routes/[.mcp]/invoke-tool/$tool'
 import { Route as ApiPublicSubscribeRouteImport } from './routes/api/public/subscribe'
@@ -87,6 +88,11 @@ const Char91DotwellKnownChar93OauthProtectedResourceRoute =
     path: '/.well-known/oauth-protected-resource',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiArticleTakeawaysRoute = ApiArticleTakeawaysRouteImport.update({
+  id: '/api/article-takeaways',
+  path: '/api/article-takeaways',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategorySlugRoute = CategorySlugRouteImport.update({
   id: '/category/$slug',
   path: '/category/$slug',
@@ -117,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/$category/$articleSlug': typeof CategoryArticleSlugRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/api/article-takeaways': typeof ApiArticleTakeawaysRoute
   '/category/$slug': typeof CategorySlugRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/subscribe': typeof ApiPublicSubscribeRoute
@@ -134,6 +141,7 @@ export interface FileRoutesByTo {
   '/$category/$articleSlug': typeof CategoryArticleSlugRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/api/article-takeaways': typeof ApiArticleTakeawaysRoute
   '/category/$slug': typeof CategorySlugRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/subscribe': typeof ApiPublicSubscribeRoute
@@ -152,6 +160,7 @@ export interface FileRoutesById {
   '/$category/$articleSlug': typeof CategoryArticleSlugRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/api/article-takeaways': typeof ApiArticleTakeawaysRoute
   '/category/$slug': typeof CategorySlugRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/subscribe': typeof ApiPublicSubscribeRoute
@@ -171,6 +180,7 @@ export interface FileRouteTypes {
     | '/$category/$articleSlug'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/api/article-takeaways'
     | '/category/$slug'
     | '/.mcp/invoke-tool/$tool'
     | '/api/public/subscribe'
@@ -188,6 +198,7 @@ export interface FileRouteTypes {
     | '/$category/$articleSlug'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/api/article-takeaways'
     | '/category/$slug'
     | '/.mcp/invoke-tool/$tool'
     | '/api/public/subscribe'
@@ -205,6 +216,7 @@ export interface FileRouteTypes {
     | '/$category/$articleSlug'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/api/article-takeaways'
     | '/category/$slug'
     | '/.mcp/invoke-tool/$tool'
     | '/api/public/subscribe'
@@ -223,6 +235,7 @@ export interface RootRouteChildren {
   CategoryArticleSlugRoute: typeof CategoryArticleSlugRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  ApiArticleTakeawaysRoute: typeof ApiArticleTakeawaysRoute
   CategorySlugRoute: typeof CategorySlugRoute
   Char91DotmcpChar93InvokeToolToolRoute: typeof Char91DotmcpChar93InvokeToolToolRoute
   ApiPublicSubscribeRoute: typeof ApiPublicSubscribeRoute
@@ -314,6 +327,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/article-takeaways': {
+      id: '/api/article-takeaways'
+      path: '/api/article-takeaways'
+      fullPath: '/api/article-takeaways'
+      preLoaderRoute: typeof ApiArticleTakeawaysRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/category/$slug': {
       id: '/category/$slug'
       path: '/category/$slug'
@@ -352,6 +372,7 @@ const rootRouteChildren: RootRouteChildren = {
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,
+  ApiArticleTakeawaysRoute: ApiArticleTakeawaysRoute,
   CategorySlugRoute: CategorySlugRoute,
   Char91DotmcpChar93InvokeToolToolRoute: Char91DotmcpChar93InvokeToolToolRoute,
   ApiPublicSubscribeRoute: ApiPublicSubscribeRoute,
