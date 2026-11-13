@@ -32,7 +32,8 @@ export const Route = createFileRoute("/")({
 function InsightsHome() {
   const [featured, ...olderIssues] = publishedInsightsNewestFirst();
   const upcoming = insights.filter((i) => i.status === "upcoming" && i.slug !== "utm-governance");
-  const rest = [...olderIssues, ...upcoming];
+  const guides = insights.filter((i) => i.format === "field-guide");
+  const rest = [...olderIssues, ...guides, ...upcoming];
   if (!featured) return null;
   const featuredCat = categoryBySlug(featured.category);
 
@@ -162,13 +163,14 @@ function InsightsHome() {
             <div>
               <p className="eyebrow">The editorial calendar</p>
               <h2 className="font-display text-3xl md:text-4xl text-[var(--ink-deep)] mt-2">
-                Latest &amp; upcoming issues
+                Latest issues &amp; field guides
               </h2>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {rest.map((i) => {
-              const cat = categoryBySlug(i.category)!;
+              const cat = categoryBySlug(i.category);
+              if (!cat) return null;
               const inner = (
                 <>
                   <div className="flex items-center justify-between">
@@ -176,7 +178,7 @@ function InsightsHome() {
                       {cat.name}
                     </span>
                     <span className="text-[10px] uppercase tracking-[0.14em] text-[var(--ink-deep)]/60">
-                      {i.status === "published" && i.issue ? i.issue : i.date}
+                      {i.format === "field-guide" ? "Field guide" : i.status === "published" && i.issue ? i.issue : i.date}
                     </span>
                   </div>
                   <h3 className="font-display text-xl mt-4 leading-snug text-[var(--ink-deep)] group-hover:text-[var(--accent-cyan)] transition-colors">
