@@ -8,3 +8,4 @@
 - Preserve Issue 08 as source Markdown with a scoped renderer, splitting its lead sections without rewriting copy, so the checklist and TL;DR remain faithful.
 - Use numeric issue ordering from shared editorial metadata for newest-issue selections, so future issues enter the homepage and archive without manual slot updates.
 - Store editorial covers in shared browser-safe metadata and reuse their absolute CDN URL for rendered covers and social previews, so one image stays consistent across surfaces.
+- Keep proposed article topics in a browser-safe suggestions module that also reuses existing upcoming metadata; render them only on section pages so suggestions cannot change the homepage calendar, archive or published-article schema.
