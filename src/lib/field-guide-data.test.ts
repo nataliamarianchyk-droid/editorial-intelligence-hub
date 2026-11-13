@@ -1,9 +1,17 @@
 import { describe, test } from "node:test";
 import assert from "node:assert/strict";
 import { fieldGuides } from "./field-guide-data";
-import { categories, insights, publishedInsightsNewestFirst } from "./insights-data";
+import { authors, categories, insights, publishedInsightsNewestFirst } from "./insights-data";
 
 describe("Published field guides", () => {
+  test("all twelve guides credit NM Editorial while Natalia retains her existing bylines", () => {
+    const guides = insights.filter((item) => item.format === "field-guide");
+    assert.equal(guides.length, 12);
+    assert.ok(guides.every((item) => item.author === "NM Editorial" && item.authorKey === "editorial"));
+    assert.equal(authors.editorial.name, "NM Editorial");
+    assert.equal(insights.find((item) => item.issue === "Issue 08")?.author, "Natalia Marianchyk");
+    assert.equal(insights.find((item) => item.issue === "Issue 07")?.author, "Natalia Marianchyk");
+  });
   test("all twelve topics are published, with two in every menu section", () => {
     assert.equal(fieldGuides.length, 12);
     for (const category of categories) {
