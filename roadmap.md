@@ -1,5 +1,7 @@
 # Publication updates
 
+- [ ] Add article suggestions to all six menu sections while preserving published articles and the homepage calendar; verify every section on desktop and mobile.
+
 - [x] Remove the word "plumbing" from every article, subtitle and contents entry; verify no page shows it and the renamed section link still scrolls.
 
 - [x] Improve Issue 08’s search title for German ChatGPT Ads searches; preserve the visible headline and article body.
