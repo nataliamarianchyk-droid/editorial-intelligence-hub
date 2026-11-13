@@ -172,7 +172,7 @@ export const insights: Insight[] = [
   {
     slug: "b2b-performance-marketing-infrastructure-audit",
     title: "The B2B Performance Marketing Infrastructure Audit",
-    titleItalicSub: "A field checklist for the plumbing under your pipeline.",
+    titleItalicSub: "A field checklist for the infrastructure under your pipeline.",
     dek: "Before you fix targeting or creative, audit the infrastructure - tracking, attribution, routing, feedback. A 40-point field audit for B2B teams whose marketing is active but whose pipeline is not.",
     category: "growth-systems",
     authorKey: "editorial",

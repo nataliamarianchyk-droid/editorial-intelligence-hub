@@ -1,5 +1,7 @@
 # Publication updates
 
+- [x] Remove the word "plumbing" from every article, subtitle and contents entry; verify no page shows it and the renamed section link still scrolls.
+
 - [x] Improve Issue 08’s search title for German ChatGPT Ads searches; preserve the visible headline and article body.
 
 - [x] Cross-link the German advertising market article and Issue 08 with contextual mentions, preserving existing article copy.
