@@ -465,7 +465,7 @@ function GermanMarketBody() {
           The competitive consequence is real: companies that invested early in first-party data
           infrastructure and consent-based measurement can still answer "which campaign drove
           that sale" - their competitors increasingly cannot. Measurement capability is now a
-          market advantage in itself, not back-office plumbing.
+          market advantage in itself, not back-office housekeeping.
         </P>
       </div>
 
@@ -632,8 +632,8 @@ function CrmBody() {
       </p>
       <p className="mt-6 text-[17px] leading-[1.85] font-sans text-[#1f2937]">
         The instinct is to treat this as a relationship problem - an offsite, shared OKRs, more
-        empathy. That instinct is wrong. Alignment is a definitions-and-plumbing problem, and the
-        plumbing lives in one place: the CRM. The most consequential marketing tool a company
+        empathy. That instinct is wrong. Alignment is a definitions-and-infrastructure problem, and the
+        infrastructure lives in one place: the CRM. The most consequential marketing tool a company
         owns is not its email platform, its ad account or its content engine. It is the system
         that decides what happens in the ninety seconds after a form is submitted.
       </p>
@@ -1098,7 +1098,7 @@ function AuditBody() {
         an infrastructure problem - and they cannot see it, because the dashboards keep loading.
       </p>
       <p className="mt-6 text-xl md:text-2xl leading-relaxed font-medium text-[var(--ink-navy)]">
-        Before you rewrite ads, rebuild the plumbing.
+        Before you rewrite ads, rebuild the infrastructure.
       </p>
 
       <H2 id="premise">The Premise</H2>
@@ -1297,7 +1297,7 @@ function AuditBody() {
           </li>
         </ol>
         <PullQuote>
-          Fix the plumbing before you paint the walls. Every layer above depends on every layer
+          Fix the infrastructure before you paint the walls. Every layer above depends on every layer
           below.
         </PullQuote>
         <P>
@@ -1327,7 +1327,7 @@ const aiOutboundToc: TocItem[] = [
   { id: "promise", label: "The Promise, Stated Plainly" },
   { id: "compressed", label: "What AI Actually Compressed" },
   { id: "bottleneck", label: "Where the Bottleneck Went" },
-  { id: "plumbing", label: "The Plumbing Beats the Prompt" },
+  { id: "system", label: "The System Beats the Prompt" },
   { id: "break", label: "Where the Tools Break" },
   { id: "verdict", label: "The Verdict" },
   { id: "playbook", label: "The Operator's Playbook" },
@@ -1408,7 +1408,7 @@ function AiOutboundBody() {
         </P>
       </div>
 
-      <H2 id="plumbing">The Plumbing Beats the Prompt</H2>
+      <H2 id="system">The System Beats the Prompt</H2>
       <div className="space-y-5">
         <P>
           The least glamorous part of this build mattered more than any AI feature.
@@ -1423,7 +1423,7 @@ function AiOutboundBody() {
         </P>
         <P>
           I've watched marketers - myself included, on a bad day - treat the clever tool as the
-          point and the plumbing as an afterthought. It's backwards. A mediocre email into a clean
+          point and the system as an afterthought. It's backwards. A mediocre email into a clean
           pipeline beats a brilliant email into a black hole. If you connect one thing this
           quarter, connect your prospecting tool to your CRM and define the stages. The AI can
           wait.
