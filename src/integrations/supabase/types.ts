@@ -16,20 +16,26 @@ export type Database = {
     Tables: {
       article_ai_gateway_state: {
         Row: {
+          error_kind: string
           id: string
           message: string
+          revision: string
           status_code: number
           updated_at: string
         }
         Insert: {
+          error_kind?: string
           id: string
           message: string
+          revision?: string
           status_code: number
           updated_at?: string
         }
         Update: {
+          error_kind?: string
           id?: string
           message?: string
+          revision?: string
           status_code?: number
           updated_at?: string
         }
@@ -56,6 +62,24 @@ export type Database = {
           result?: Json | null
           status?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: string
+          user_id?: string
         }
         Relationships: []
       }
