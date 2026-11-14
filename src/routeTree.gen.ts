@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AiAvailabilityRouteImport } from './routes/ai-availability'
 import { Route as ArticleRouteImport } from './routes/article'
 import { Route as ControlRoomRouteImport } from './routes/control-room'
 import { Route as ImpressumRouteImport } from './routes/impressum'
@@ -29,6 +30,11 @@ import { Route as ApiPublicSubscribeRouteImport } from './routes/api/public/subs
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiAvailabilityRoute = AiAvailabilityRouteImport.update({
+  id: '/ai-availability',
+  path: '/ai-availability',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ArticleRoute = ArticleRouteImport.update({
@@ -112,6 +118,7 @@ const ApiPublicSubscribeRoute = ApiPublicSubscribeRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-availability': typeof AiAvailabilityRoute
   '/article': typeof ArticleRoute
   '/control-room': typeof ControlRoomRoute
   '/impressum': typeof ImpressumRoute
@@ -130,6 +137,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-availability': typeof AiAvailabilityRoute
   '/article': typeof ArticleRoute
   '/control-room': typeof ControlRoomRoute
   '/impressum': typeof ImpressumRoute
@@ -149,6 +157,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai-availability': typeof AiAvailabilityRoute
   '/article': typeof ArticleRoute
   '/control-room': typeof ControlRoomRoute
   '/impressum': typeof ImpressumRoute
@@ -169,6 +178,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/ai-availability'
     | '/article'
     | '/control-room'
     | '/impressum'
@@ -187,6 +197,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ai-availability'
     | '/article'
     | '/control-room'
     | '/impressum'
@@ -205,6 +216,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/ai-availability'
     | '/article'
     | '/control-room'
     | '/impressum'
@@ -224,6 +236,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiAvailabilityRoute: typeof AiAvailabilityRoute
   ArticleRoute: typeof ArticleRoute
   ControlRoomRoute: typeof ControlRoomRoute
   ImpressumRoute: typeof ImpressumRoute
@@ -248,6 +261,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-availability': {
+      id: '/ai-availability'
+      path: '/ai-availability'
+      fullPath: '/ai-availability'
+      preLoaderRoute: typeof AiAvailabilityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/article': {
@@ -360,6 +380,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiAvailabilityRoute: AiAvailabilityRoute,
   ArticleRoute: ArticleRoute,
   ControlRoomRoute: ControlRoomRoute,
   ImpressumRoute: ImpressumRoute,
