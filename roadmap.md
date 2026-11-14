@@ -1,5 +1,8 @@
 # Publication updates
 
+- [x] Add AI takeaways recovery controls, durable classified blocks, revision-safe owner recovery, cached reads during pauses, and regression tests; verify a real generation request.
+- [ ] Authorize and verify the requesting takeaways owner: blocked until Natalia signs in at /ai-availability; no app auth account exists yet. Then grant the verified account its owner role and test paused-state recovery end-to-end.
+
 - [x] Add optional article-only AI takeaways through AI Gateway, preserve all bodies, and verify real generation, cached results, hide/show, Stop and invalid-request errors.
 
 - [x] Write and source all 12 proposed topics as full articles, add them as unnumbered field guides across all six sections, and verify reading links, metadata, tables and mobile layouts; ready for site publication.

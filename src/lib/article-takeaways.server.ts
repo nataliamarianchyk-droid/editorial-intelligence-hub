@@ -5,6 +5,7 @@ import { articleContent } from "@/lib/article-content";
 import { insights } from "@/lib/insights-data";
 import { createResponsesCall } from "@/lib/ai/responses.server";
 import { takeawayInput, validateTakeaways } from "@/lib/takeaways-validation";
+import { classifyGatewayBlock, generationGate } from "@/lib/takeaways-recovery";
 
 export async function articleSource(slug: string) {
   const article = insights.find((item) => item.slug === slug && item.status === "published");
@@ -27,15 +28,16 @@ export async function handleTakeaways(request: Request) {
   if (!source) return Response.json({ message: "Article not found." }, { status: 404 });
   // Privileged access is limited to private infrastructure state for a verified public article.
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-  const state = await supabaseAdmin.from("article_ai_gateway_state").select("status_code,message").eq("id", "takeaways").maybeSingle();
-  if (state.error) return Response.json({ message: "AI availability could not be checked." }, { status: 503 });
-  if (state.data) return Response.json({ message: state.data.message }, { status: state.data.status_code });
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(`takeaways-v1:${source.text}`));
   const key = `${input.slug}:${Array.from(new Uint8Array(digest)).map((byte) => byte.toString(16).padStart(2, "0")).join("")}`;
   const cached = await supabaseAdmin.from("article_ai_takeaways").select("status,result").eq("content_key", key).maybeSingle();
   if (cached.error) return Response.json({ message: "AI takeaways are temporarily unavailable." }, { status: 503 });
-  if (cached.data?.status === "ready") return Response.json(validateTakeaways(cached.data.result, source.text));
-  if (cached.data?.status === "refused") return Response.json({ message: "The AI declined to summarise this article." }, { status: 422 });
+  const cacheGate = generationGate(cached.data?.status, false);
+  if (cacheGate === "cached") return Response.json(validateTakeaways(cached.data?.result, source.text));
+  if (cacheGate === "refused") return Response.json({ message: "The AI declined to summarise this article." }, { status: 422 });
+  const state = await supabaseAdmin.from("article_ai_gateway_state").select("status_code,message").eq("id", "takeaways").maybeSingle();
+  if (state.error) return Response.json({ message: "AI availability could not be checked." }, { status: 503 });
+  if (state.data) return Response.json({ message: state.data.message }, { status: state.data.status_code });
   const claim = await supabaseAdmin.rpc("claim_article_takeaways", { p_key: key });
   if (claim.error || !claim.data) return Response.json({ message: "Takeaways are already being generated. Please try again shortly." }, { status: 429 });
   const apiKey = process.env["LOVABLE_API_KEY"];
@@ -44,6 +46,7 @@ export async function handleTakeaways(request: Request) {
     return Response.json({ message: "Lovable AI is not configured." }, { status: 401 });
   }
   let failure: { status: number; message: string } | undefined;
+  let blockSaved = false;
   let resolveHeaders: () => void = () => {};
   const headersReady = new Promise<void>((resolve) => { resolveHeaders = resolve; });
   const controller = new AbortController();
@@ -52,11 +55,13 @@ export async function handleTakeaways(request: Request) {
   const call = createResponsesCall(aiRequest, { baseURL: "https://ai.gateway.lovable.dev/v1", apiKey, model: "openai/gpt-6-astra", onResponse: async (response) => {
     if (!response.ok) {
       let message = "Lovable AI could not complete this request.";
-      try { const payload = await response.clone().json(); message = payload.message ?? payload.error?.message ?? message; } catch {}
+      let payload: unknown;
+      try { const data = await response.clone().json(); payload = data; message = data.message ?? data.error?.message ?? message; } catch {}
       failure = { status: response.status, message };
       if ([402, 403, 404].includes(response.status)) {
-        const saved = await supabaseAdmin.from("article_ai_gateway_state").upsert({ id: "takeaways", status_code: response.status, message });
+        const saved = await supabaseAdmin.from("article_ai_gateway_state").upsert({ id: "takeaways", status_code: response.status, message, error_kind: classifyGatewayBlock(response.status, payload) });
         if (saved.error) throw new Error("The AI availability state could not be saved.");
+        blockSaved = true;
       }
     }
     resolveHeaders();
@@ -85,10 +90,11 @@ export async function handleTakeaways(request: Request) {
       } catch (error) {
         const detail = error as { statusCode?: number; responseBody?: string; message?: string };
         let safeMessage = failure?.message ?? "The AI could not generate verified takeaways. Please read the article for the full context.";
-        if (detail.responseBody) { try { const payload = JSON.parse(detail.responseBody); safeMessage = payload.message ?? payload.error?.message ?? safeMessage; } catch {} }
+        let errorPayload: unknown;
+        if (detail.responseBody) { try { const payload = JSON.parse(detail.responseBody); errorPayload = payload; safeMessage = payload.message ?? payload.error?.message ?? safeMessage; } catch {} }
         const status = controller.signal.aborted ? 499 : failure?.status ?? detail.statusCode ?? 500;
         failure = { status, message: safeMessage };
-        if ([402, 403, 404].includes(status)) await supabaseAdmin.from("article_ai_gateway_state").upsert({ id: "takeaways", status_code: status, message: safeMessage });
+        if (!blockSaved && [402, 403, 404].includes(status)) await supabaseAdmin.from("article_ai_gateway_state").upsert({ id: "takeaways", status_code: status, message: safeMessage, error_kind: classifyGatewayBlock(status, errorPayload) });
         await supabaseAdmin.from("article_ai_takeaways").update({ status: "failed" }).eq("content_key", key);
         send({ type: "error", status, message: safeMessage });
       } finally { resolveHeaders(); try { streamController.close(); } catch {} }
