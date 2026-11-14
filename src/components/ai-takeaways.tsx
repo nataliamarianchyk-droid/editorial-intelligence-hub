@@ -48,7 +48,7 @@ export function AiTakeaways({ slug }: { slug: string }) {
       {open && <div id={`takeaways-${slug}`} className="mt-5">
         <p className="text-xs text-muted-foreground">AI-generated from this article only. Not reviewed by the author; check the original for context.</p>
         {loading && <div role="status" className="mt-5 flex flex-wrap items-center gap-3 text-sm text-ink-navy"><LoaderCircle className="size-4 animate-spin motion-reduce:animate-none" />{progress}<Button variant="ghost" size="sm" onClick={() => { abort.current?.abort(); setLoading(false); }}><Square />Stop</Button></div>}
-        {error && <div className="mt-5"><p role="alert" className="text-sm text-ink-navy">{error}</p><Button variant="outline" size="sm" className="mt-3" onClick={() => void generate()}>Try again</Button></div>}
+        {error && <p role="alert" className="mt-5 text-sm text-ink-navy">{error}</p>}
         {items.length > 0 && <ul className="mt-5 list-disc pl-5 space-y-5 text-sm leading-relaxed text-ink-navy">{items.map((item, index) => <li key={index}>{item.text}<details className="mt-2 text-xs text-muted-foreground"><summary className="cursor-pointer">Article evidence</summary><blockquote className="mt-2 border-l-2 border-accent-cyan pl-3">{item.evidence}</blockquote></details></li>)}</ul>}
       </div>}
     </div>
