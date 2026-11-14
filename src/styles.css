@@ -2,6 +2,20 @@
 @source "../src";
 @import "tw-animate-css";
 
+.google-owner-sign-in {
+  --google-background: #ffffff;
+  --google-border: #747775;
+  --google-foreground: #1f1f1f;
+  background: var(--google-background);
+  border: 1px solid var(--google-border);
+  color: var(--google-foreground);
+  font-size: 14px;
+  font-weight: 500;
+  padding-inline: 12px;
+  gap: 10px;
+}
+.google-owner-sign-in svg { width: 18px; height: 18px; }
+
 #lovable-badge { display: none !important; }
 
 @custom-variant dark (&:is(.dark *));
