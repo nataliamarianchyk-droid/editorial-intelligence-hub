@@ -1,5 +1,7 @@
 # Publication updates
 
+- [x] Limit the homepage editorial calendar to six prominent cards and Start with the latest to three newest issues; preserve the full archive and section listings.
+
 - [x] Add AI takeaways recovery controls, durable classified blocks, revision-safe owner recovery, cached reads during pauses, and regression tests; verify a real generation request.
 - [ ] Authorize and verify the requesting takeaways owner: blocked until Natalia signs in at /ai-availability; no app auth account exists yet. Then grant the verified account its owner role and test paused-state recovery end-to-end.
 

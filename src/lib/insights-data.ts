@@ -299,3 +299,14 @@ export function publishedInsightsNewestFirst() {
     Number(b.issue?.replace("Issue ", "") ?? 0) - Number(a.issue?.replace("Issue ", "") ?? 0),
   );
 }
+
+export function homepageEditorialSelections() {
+  const published = publishedInsightsNewestFirst();
+  const [featured, ...olderIssues] = published;
+  const guides = insights.filter((i) => i.status === "published" && i.format === "field-guide");
+  return {
+    featured,
+    calendar: [...olderIssues, ...guides].slice(0, 6),
+    latest: published.slice(0, 3),
+  };
+}

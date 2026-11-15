@@ -1,6 +1,6 @@
 import { describe, test } from "node:test";
 import assert from "node:assert/strict";
-import { insights, publishedInsightsNewestFirst } from "./insights-data";
+import { insights, publishedInsightsNewestFirst, homepageEditorialSelections } from "./insights-data";
 
 describe("Issue 08 editorial rules", () => {
   test("Issue 08 leads the published issues without replacing Issue 07 or older issues", () => {
@@ -16,5 +16,20 @@ describe("Issue 08 editorial rules", () => {
     assert.equal(issue?.read, "9 min");
     assert.equal(issue?.datePublished, "2026-10-26");
     assert.equal(issue?.wordCount, 3160);
+  });
+});
+
+describe("Homepage editorial limits", () => {
+  test("the calendar contains six prominent published pieces without repeating the featured issue", () => {
+    const { featured, calendar } = homepageEditorialSelections();
+    assert.equal(calendar.length, 6);
+    assert.deepEqual(calendar.map((i) => i.issue), ["Issue 07", "Issue 06", "Issue 05", "Issue 04", "Issue 03", "Issue 02"]);
+    assert.ok(calendar.every((i) => i.status === "published" && i.slug !== featured?.slug));
+  });
+
+  test("Start with the latest contains only the three newest issues", () => {
+    const { latest } = homepageEditorialSelections();
+    assert.equal(latest.length, 3);
+    assert.deepEqual(latest.map((i) => i.issue), ["Issue 08", "Issue 07", "Issue 06"]);
   });
 });
