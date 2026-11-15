@@ -1,5 +1,7 @@
 # Publication updates
 
+- [x] Replace the three top editorial calendar cards with short field guides; keep six calendar cards and the separate latest list unchanged.
+
 - [x] Limit the homepage editorial calendar to six prominent cards and Start with the latest to three newest issues; preserve the full archive and section listings.
 
 - [x] Add AI takeaways recovery controls, durable classified blocks, revision-safe owner recovery, cached reads during pauses, and regression tests; verify a real generation request.
