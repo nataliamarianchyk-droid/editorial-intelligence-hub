@@ -306,7 +306,7 @@ export function homepageEditorialSelections() {
   const guides = insights.filter((i) => i.status === "published" && i.format === "field-guide");
   return {
     featured,
-    calendar: [...olderIssues, ...guides].slice(0, 6),
+    calendar: [...guides.slice(0, 3), ...olderIssues.slice(3), ...guides.slice(3)].slice(0, 6),
     latest: published.slice(0, 3),
   };
 }

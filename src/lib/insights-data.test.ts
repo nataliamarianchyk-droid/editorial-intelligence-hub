@@ -23,7 +23,8 @@ describe("Homepage editorial limits", () => {
   test("the calendar contains six prominent published pieces without repeating the featured issue", () => {
     const { featured, calendar } = homepageEditorialSelections();
     assert.equal(calendar.length, 6);
-    assert.deepEqual(calendar.map((i) => i.issue), ["Issue 07", "Issue 06", "Issue 05", "Issue 04", "Issue 03", "Issue 02"]);
+    assert.deepEqual(calendar.map((i) => i.slug), ["google-ads-offline-conversions", "linkedin-ads-creative-testing", "ga4-consent-mode-measurement", "b2b-performance-marketing-infrastructure-audit", "your-crm-is-the-real-marketing-tool", "german-advertising-market-2026"]);
+    assert.ok(calendar.slice(0, 3).every((i) => i.format === "field-guide"));
     assert.ok(calendar.every((i) => i.status === "published" && i.slug !== featured?.slug));
   });
 
