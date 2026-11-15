@@ -33,4 +33,11 @@ describe("Homepage editorial limits", () => {
     assert.equal(latest.length, 3);
     assert.deepEqual(latest.map((i) => i.issue), ["Issue 08", "Issue 07", "Issue 06"]);
   });
+
+  test("the calendar never repeats an article from Start with the latest", () => {
+    const { latest, calendar } = homepageEditorialSelections();
+    const latestSlugs = new Set(latest.map((i) => i.slug));
+    assert.ok(calendar.length <= 6);
+    assert.ok(calendar.every((i) => !latestSlugs.has(i.slug)));
+  });
 });
