@@ -302,11 +302,14 @@ export function publishedInsightsNewestFirst() {
 
 export function homepageEditorialSelections() {
   const published = publishedInsightsNewestFirst();
-  const [featured, ...olderIssues] = published;
+  const [featured] = published;
+  const latest = published.slice(0, 3);
+  const shown = new Set([featured?.slug, ...latest.map((i) => i.slug)]);
+  const olderIssues = published.filter((i) => !shown.has(i.slug));
   const guides = insights.filter((i) => i.status === "published" && i.format === "field-guide");
   return {
     featured,
-    calendar: [...guides.slice(0, 3), ...olderIssues.slice(3), ...guides.slice(3)].slice(0, 6),
-    latest: published.slice(0, 3),
+    calendar: [...guides.slice(0, 3), ...olderIssues, ...guides.slice(3)].filter((i) => !shown.has(i.slug)).slice(0, 6),
+    latest,
   };
 }

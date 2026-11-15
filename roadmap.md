@@ -1,5 +1,7 @@
 # Publication updates
 
+- [x] Keep the three newest issues in Start with the latest and exclude them and the featured article from the six-card editorial calendar.
+
 - [x] Replace the three top editorial calendar cards with short field guides; keep six calendar cards and the separate latest list unchanged.
 
 - [x] Limit the homepage editorial calendar to six prominent cards and Start with the latest to three newest issues; preserve the full archive and section listings.
