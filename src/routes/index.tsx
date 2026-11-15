@@ -2,7 +2,7 @@ import { shareImageMeta } from "@/lib/share-images";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
-import { categories, insights, categoryBySlug, publishedInsightsNewestFirst } from "@/lib/insights-data";
+import { categories, categoryBySlug, homepageEditorialSelections } from "@/lib/insights-data";
 
 export const Route = createFileRoute("/")({
   component: InsightsHome,
@@ -30,10 +30,7 @@ export const Route = createFileRoute("/")({
 });
 
 function InsightsHome() {
-  const [featured, ...olderIssues] = publishedInsightsNewestFirst();
-  const upcoming = insights.filter((i) => i.status === "upcoming" && i.slug !== "utm-governance");
-  const guides = insights.filter((i) => i.format === "field-guide");
-  const rest = [...olderIssues, ...guides, ...upcoming];
+  const { featured, calendar: rest } = homepageEditorialSelections();
   if (!featured) return null;
   const featuredCat = categoryBySlug(featured.category);
 
@@ -258,7 +255,7 @@ function InsightsHome() {
 }
 
 function UpdatesSection() {
-  const published = publishedInsightsNewestFirst();
+  const { latest: published } = homepageEditorialSelections();
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "ok" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -335,7 +332,8 @@ function UpdatesSection() {
           <p className="eyebrow">Start with the latest</p>
           <ul className="mt-6 space-y-4">
             {published.map((i) => {
-              const cat = categoryBySlug(i.category)!;
+              const cat = categoryBySlug(i.category);
+              if (!cat) return null;
               return (
                 <li key={i.slug}>
                   <Link
