@@ -1,5 +1,7 @@
 # Publication updates
 
+- [ ] Add approval-gated news intake, control-room review, public news, category/sitemap inclusion and security tests; no database example rows.
+
 - [x] Keep the three newest issues in Start with the latest and exclude them and the featured article from the six-card editorial calendar.
 
 - [x] Replace the three top editorial calendar cards with short field guides; keep six calendar cards and the separate latest list unchanged.
