@@ -15,6 +15,13 @@
       "when": 1794673550607,
       "tag": "0001_takeaways_owner_recovery",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794902662739,
+      "tag": "0002_approval_gated_news",
+      "breakpoints": true
     }
   ]
 }

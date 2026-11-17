@@ -16,6 +16,7 @@ import { Route as ControlRoomRouteImport } from './routes/control-room'
 import { Route as ImpressumRouteImport } from './routes/impressum'
 import { Route as IssuesRouteImport } from './routes/issues'
 import { Route as McpRouteImport } from './routes/mcp'
+import { Route as NewsRouteImport } from './routes/news'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as UnlockRouteImport } from './routes/unlock'
@@ -23,7 +24,10 @@ import { Route as CategoryArticleSlugRouteImport } from './routes/$category.$art
 import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
 import { Route as ApiArticleTakeawaysRouteImport } from './routes/api/article-takeaways'
+import { Route as ApiNewsDraftsRouteImport } from './routes/api/news-drafts'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
+import { Route as NewsIndexRouteImport } from './routes/news.index'
+import { Route as NewsSlugRouteImport } from './routes/news.$slug'
 import { Route as Char91DotmcpChar93InvokeToolToolRouteImport } from './routes/[.mcp]/invoke-tool/$tool'
 import { Route as ApiPublicSubscribeRouteImport } from './routes/api/public/subscribe'
 
@@ -60,6 +64,11 @@ const IssuesRoute = IssuesRouteImport.update({
 const McpRoute = McpRouteImport.update({
   id: '/mcp',
   path: '/mcp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -99,10 +108,25 @@ const ApiArticleTakeawaysRoute = ApiArticleTakeawaysRouteImport.update({
   path: '/api/article-takeaways',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiNewsDraftsRoute = ApiNewsDraftsRouteImport.update({
+  id: '/api/news-drafts',
+  path: '/api/news-drafts',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategorySlugRoute = CategorySlugRouteImport.update({
   id: '/category/$slug',
   path: '/category/$slug',
   getParentRoute: () => rootRouteImport,
+} as any)
+const NewsIndexRoute = NewsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => NewsRoute,
+} as any)
+const NewsSlugRoute = NewsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => NewsRoute,
 } as any)
 const Char91DotmcpChar93InvokeToolToolRoute =
   Char91DotmcpChar93InvokeToolToolRouteImport.update({
@@ -124,6 +148,7 @@ export interface FileRoutesByFullPath {
   '/impressum': typeof ImpressumRoute
   '/issues': typeof IssuesRoute
   '/mcp': typeof McpRoute
+  '/news': typeof NewsRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/unlock': typeof UnlockRoute
@@ -131,7 +156,10 @@ export interface FileRoutesByFullPath {
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/api/article-takeaways': typeof ApiArticleTakeawaysRoute
+  '/api/news-drafts': typeof ApiNewsDraftsRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/news/$slug': typeof NewsSlugRoute
+  '/news/': typeof NewsIndexRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/subscribe': typeof ApiPublicSubscribeRoute
 }
@@ -150,7 +178,10 @@ export interface FileRoutesByTo {
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/api/article-takeaways': typeof ApiArticleTakeawaysRoute
+  '/api/news-drafts': typeof ApiNewsDraftsRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/news/$slug': typeof NewsSlugRoute
+  '/news': typeof NewsIndexRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/subscribe': typeof ApiPublicSubscribeRoute
 }
@@ -163,6 +194,7 @@ export interface FileRoutesById {
   '/impressum': typeof ImpressumRoute
   '/issues': typeof IssuesRoute
   '/mcp': typeof McpRoute
+  '/news': typeof NewsRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/unlock': typeof UnlockRoute
@@ -170,7 +202,10 @@ export interface FileRoutesById {
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/api/article-takeaways': typeof ApiArticleTakeawaysRoute
+  '/api/news-drafts': typeof ApiNewsDraftsRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/news/$slug': typeof NewsSlugRoute
+  '/news/': typeof NewsIndexRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/subscribe': typeof ApiPublicSubscribeRoute
 }
@@ -184,6 +219,7 @@ export interface FileRouteTypes {
     | '/impressum'
     | '/issues'
     | '/mcp'
+    | '/news'
     | '/privacy'
     | '/sitemap.xml'
     | '/unlock'
@@ -191,7 +227,10 @@ export interface FileRouteTypes {
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/api/article-takeaways'
+    | '/api/news-drafts'
     | '/category/$slug'
+    | '/news/$slug'
+    | '/news/'
     | '/.mcp/invoke-tool/$tool'
     | '/api/public/subscribe'
   fileRoutesByTo: FileRoutesByTo
@@ -210,7 +249,10 @@ export interface FileRouteTypes {
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/api/article-takeaways'
+    | '/api/news-drafts'
     | '/category/$slug'
+    | '/news/$slug'
+    | '/news'
     | '/.mcp/invoke-tool/$tool'
     | '/api/public/subscribe'
   id:
@@ -222,6 +264,7 @@ export interface FileRouteTypes {
     | '/impressum'
     | '/issues'
     | '/mcp'
+    | '/news'
     | '/privacy'
     | '/sitemap.xml'
     | '/unlock'
@@ -229,7 +272,10 @@ export interface FileRouteTypes {
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/api/article-takeaways'
+    | '/api/news-drafts'
     | '/category/$slug'
+    | '/news/$slug'
+    | '/news/'
     | '/.mcp/invoke-tool/$tool'
     | '/api/public/subscribe'
   fileRoutesById: FileRoutesById
@@ -242,6 +288,7 @@ export interface RootRouteChildren {
   ImpressumRoute: typeof ImpressumRoute
   IssuesRoute: typeof IssuesRoute
   McpRoute: typeof McpRoute
+  NewsRoute: typeof NewsRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   UnlockRoute: typeof UnlockRoute
@@ -249,6 +296,7 @@ export interface RootRouteChildren {
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   ApiArticleTakeawaysRoute: typeof ApiArticleTakeawaysRoute
+  ApiNewsDraftsRoute: typeof ApiNewsDraftsRoute
   CategorySlugRoute: typeof CategorySlugRoute
   Char91DotmcpChar93InvokeToolToolRoute: typeof Char91DotmcpChar93InvokeToolToolRoute
   ApiPublicSubscribeRoute: typeof ApiPublicSubscribeRoute
@@ -305,6 +353,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof McpRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
@@ -354,12 +409,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiArticleTakeawaysRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/news-drafts': {
+      id: '/api/news-drafts'
+      path: '/api/news-drafts'
+      fullPath: '/api/news-drafts'
+      preLoaderRoute: typeof ApiNewsDraftsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/category/$slug': {
       id: '/category/$slug'
       path: '/category/$slug'
       fullPath: '/category/$slug'
       preLoaderRoute: typeof CategorySlugRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/news/': {
+      id: '/news/'
+      path: '/'
+      fullPath: '/news/'
+      preLoaderRoute: typeof NewsIndexRouteImport
+      parentRoute: typeof NewsRoute
+    }
+    '/news/$slug': {
+      id: '/news/$slug'
+      path: '/$slug'
+      fullPath: '/news/$slug'
+      preLoaderRoute: typeof NewsSlugRouteImport
+      parentRoute: typeof NewsRoute
     }
     '/.mcp/invoke-tool/$tool': {
       id: '/.mcp/invoke-tool/$tool'
@@ -378,6 +454,18 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface NewsRouteChildren {
+  NewsSlugRoute: typeof NewsSlugRoute
+  NewsIndexRoute: typeof NewsIndexRoute
+}
+
+const NewsRouteChildren: NewsRouteChildren = {
+  NewsSlugRoute: NewsSlugRoute,
+  NewsIndexRoute: NewsIndexRoute,
+}
+
+const NewsRouteWithChildren = NewsRoute._addFileChildren(NewsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AiAvailabilityRoute: AiAvailabilityRoute,
@@ -386,6 +474,7 @@ const rootRouteChildren: RootRouteChildren = {
   ImpressumRoute: ImpressumRoute,
   IssuesRoute: IssuesRoute,
   McpRoute: McpRoute,
+  NewsRoute: NewsRouteWithChildren,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   UnlockRoute: UnlockRoute,
@@ -394,6 +483,7 @@ const rootRouteChildren: RootRouteChildren = {
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,
   ApiArticleTakeawaysRoute: ApiArticleTakeawaysRoute,
+  ApiNewsDraftsRoute: ApiNewsDraftsRoute,
   CategorySlugRoute: CategorySlugRoute,
   Char91DotmcpChar93InvokeToolToolRoute: Char91DotmcpChar93InvokeToolToolRoute,
   ApiPublicSubscribeRoute: ApiPublicSubscribeRoute,

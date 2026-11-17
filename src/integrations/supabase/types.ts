@@ -7,11 +7,6 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instantiate createClient with right options
-  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
-  __InternalSupabase: {
-    PostgrestVersion: "14.18"
-  }
   public: {
     Tables: {
       article_ai_gateway_state: {
@@ -65,6 +60,69 @@ export type Database = {
         }
         Relationships: []
       }
+      news_items: {
+        Row: {
+          agent_draft_id: string
+          body_md: string
+          category: string
+          created_at: string
+          dek: string
+          id: string
+          published_at: string | null
+          reviewer_notes: string | null
+          slug: string
+          sources: Json
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          agent_draft_id: string
+          body_md: string
+          category: string
+          created_at?: string
+          dek: string
+          id?: string
+          published_at?: string | null
+          reviewer_notes?: string | null
+          slug: string
+          sources: Json
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          agent_draft_id?: string
+          body_md?: string
+          category?: string
+          created_at?: string
+          dek?: string
+          id?: string
+          published_at?: string | null
+          reviewer_notes?: string | null
+          slug?: string
+          sources?: Json
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      news_submission_days: {
+        Row: {
+          day: string
+          submissions: number
+        }
+        Insert: {
+          day: string
+          submissions?: number
+        }
+        Update: {
+          day?: string
+          submissions?: number
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
@@ -89,6 +147,8 @@ export type Database = {
     }
     Functions: {
       claim_article_takeaways: { Args: { p_key: string }; Returns: boolean }
+      ingest_news_draft: { Args: { payload: Json }; Returns: Json }
+      news_slug_withdrawn: { Args: { news_slug: string }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
@@ -221,3 +281,4 @@ export const Constants = {
     Enums: {},
   },
 } as const
+

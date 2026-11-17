@@ -15,7 +15,12 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
+        const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+        const { readPublishedNews } = await import("@/lib/news-repository.server");
+        const news = await readPublishedNews(supabaseAdmin);
         const entries: SitemapEntry[] = [
+          { path: "/news", priority: "0.8" },
+          ...news.map((item) => ({ path: `/news/${item.slug}`, lastmod: item.updated_at, priority: "0.8" })),
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/issues", changefreq: "monthly", priority: "0.8" },
           ...categories.map((c) => ({

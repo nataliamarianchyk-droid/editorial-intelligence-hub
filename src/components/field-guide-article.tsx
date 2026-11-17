@@ -3,7 +3,7 @@ import remarkGfm from "remark-gfm";
 import { fieldGuides, fieldGuideHeadingId } from "@/lib/field-guide-data";
 import fieldGuideCover from "@/assets/insights/field-guides-cover.jpg";
 
-const components: Components = {
+export const editorialMarkdownComponents: Components = {
   h2: ({ children }) => <h2 id={fieldGuideHeadingId(String(children))} className="font-display text-3xl md:text-4xl mt-14 mb-5 text-ink-navy scroll-mt-40">{children}</h2>,
   p: ({ children }) => <p className="my-5 font-sans text-[17px] leading-[1.85] text-ink-navy">{children}</p>,
   a: ({ children, href }) => <a href={href} className="text-accent-cyan underline underline-offset-4 break-words focus-visible:outline-2 focus-visible:outline-accent-cyan">{children}</a>,
@@ -21,7 +21,7 @@ export const fieldGuideContent = Object.fromEntries(fieldGuides.map((guide) => [
     <figure className="mb-10">
       <img src={fieldGuideCover} alt="Editorial notebooks showing acquisition funnels, measurement, workflows and customer cohorts" width={1536} height={864} loading="lazy" className="w-full aspect-video object-cover rounded-sm" />
     </figure>
-    <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>{guide.markdown}</ReactMarkdown>
+    <ReactMarkdown remarkPlugins={[remarkGfm]} components={editorialMarkdownComponents}>{guide.markdown}</ReactMarkdown>
     <p className="mt-10 border-t border-border pt-5 font-sans text-sm text-muted-foreground">Editorial field guide · Sources checked 13 November 2026. Platform settings and eligibility can change; consult the linked documentation before implementation.</p>
   </>,
 }]));
