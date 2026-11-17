@@ -342,7 +342,7 @@ function UpdatesSection() {
                     className="group block rounded-sm border border-[var(--ink-deep)]/10 bg-[var(--ink-deep)]/[0.03] p-6 hover:border-[var(--accent-cyan)]/40 transition-colors"
                   >
                     <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.18em]">
-                      <span className="text-[var(--accent-cyan)]">{i.issue}</span>
+                      <span className="text-[var(--accent-cyan)]">{i.issue ?? "Field guide"}</span>
                       <span className="text-[var(--ink-deep)]/60">{cat.name}</span>
                     </div>
                     <h3 className="mt-3 font-display text-xl md:text-2xl text-[var(--ink-deep)] group-hover:text-[var(--accent-cyan)] leading-snug">
