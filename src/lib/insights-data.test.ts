@@ -1,6 +1,11 @@
 import { describe, test } from "node:test";
 import assert from "node:assert/strict";
-import { insights, publishedInsightsNewestFirst, homepageEditorialSelections } from "./insights-data";
+import {
+  insights,
+  publishedInsightsNewestFirst,
+  publishedPiecesNewestFirst,
+  homepageEditorialSelections,
+} from "./insights-data";
 
 describe("Issue 08 editorial rules", () => {
   test("Issue 08 leads the published issues without replacing Issue 07 or older issues", () => {
