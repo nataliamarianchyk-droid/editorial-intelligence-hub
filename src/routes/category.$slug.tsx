@@ -2,12 +2,15 @@ import { shareImageMeta } from "@/lib/share-images";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { categoryBySlug, insightsByCategory, categories, type Insight } from "@/lib/insights-data";
+import { listPublishedNews } from "@/lib/news.functions";
+import { NewsList } from "@/components/news-list";
 
 export const Route = createFileRoute("/category/$slug")({
-  loader: ({ params }) => {
+  loader: async ({ params }) => {
     const category = categoryBySlug(params.slug);
     if (!category) throw notFound();
-    return { category, items: insightsByCategory(params.slug) };
+    const news = await listPublishedNews({ data: { category: params.slug } });
+    return { category, items: insightsByCategory(params.slug), news };
   },
   head: ({ loaderData, params }) => {
     if (!loaderData) {
@@ -108,7 +111,7 @@ export const Route = createFileRoute("/category/$slug")({
 });
 
 function CategoryPage() {
-  const { category, items } = Route.useLoaderData();
+  const { category, items, news } = Route.useLoaderData();
   const publishedItems = items.filter((item) => item.status === "published");
 
   return (
@@ -180,6 +183,7 @@ function CategoryPage() {
       </section>
 
       {/* Other sections */}
+      {news.length > 0 && <section className="border-b border-border"><div className="mx-auto max-w-5xl px-6 py-16"><p className="eyebrow">News</p><NewsList items={news} /></div></section>}
       <section className="border-b border-[var(--ink-deep)]/8">
         <div className="mx-auto max-w-5xl px-6 py-16">
           <p className="eyebrow">Other sections</p>

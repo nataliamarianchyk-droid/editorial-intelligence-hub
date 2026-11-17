@@ -15,7 +15,7 @@ export function SiteHeader() {
             <div className="text-[10px] tracking-[0.32em] text-[var(--ink-deep)]/60 uppercase">insights</div>
           </div>
         </Link>
-        <nav className="hidden lg:flex items-center gap-4 xl:gap-6 text-[13px] xl:text-sm text-[var(--ink-deep)]/70">
+        <nav className="hidden xl:flex items-center gap-3 text-[13px] text-[var(--ink-deep)]/70">
           {categories.map((c) => (
             <Link
               key={c.slug}
@@ -34,6 +34,7 @@ export function SiteHeader() {
           >
             Issues
           </Link>
+          <Link to="/news" className="whitespace-nowrap hover:text-accent-cyan" activeProps={{ className: "text-accent-cyan" }}>News</Link>
         </nav>
 
         <Link
@@ -46,7 +47,7 @@ export function SiteHeader() {
 
       </div>
       {/* Mobile category strip */}
-      <div className="lg:hidden border-t border-[var(--ink-deep)]/8 overflow-x-auto">
+      <div className="xl:hidden border-t border-[var(--ink-deep)]/8 overflow-x-auto">
         <div className="mx-auto max-w-7xl px-6 py-3 flex gap-5 text-xs text-[var(--ink-deep)]/60 whitespace-nowrap">
           {categories.map((c) => (
             <Link
@@ -59,6 +60,7 @@ export function SiteHeader() {
               {c.name}
             </Link>
           ))}
+          <Link to="/news" className="hover:text-accent-cyan">News</Link>
         </div>
       </div>
     </header>

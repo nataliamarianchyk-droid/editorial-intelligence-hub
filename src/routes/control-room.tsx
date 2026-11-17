@@ -3,8 +3,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import nmLogo from "@/assets/nm-insight-logo.png";
 import { requireControlRoomAccess } from "@/lib/gate.functions";
+import { NewsDrafts } from "@/components/news-drafts";
 
 export const Route = createFileRoute("/control-room")({
+  validateSearch: (search: Record<string, unknown>): { draft?: string } => ({ draft: typeof search.draft === "string" ? search.draft : undefined }),
   // Server-side access gate: throws a redirect to /unlock when the session
   // cookie is missing or not unlocked. Runs before the component or any
   // route data is served.
@@ -175,6 +177,7 @@ function Pill({ children, tone = "default" }: { children: React.ReactNode; tone?
 /* ------------------------------------------------------------------ */
 
 function ControlRoom() {
+  const { draft } = Route.useSearch();
   const [roadmapState, setRoadmapState] = useState(roadmap);
   const [pipeline, setPipeline] = useState(pipelineSeed);
   const [assets, setAssets] = useState(firstArticle.assets);
@@ -223,6 +226,7 @@ function ControlRoom() {
             </div>
           </div>
           <div className="hidden items-center gap-6 text-sm text-[var(--ink-deep)]/60 md:flex">
+            <a href="#news-drafts" className="hover:text-[var(--ink-deep)]">News drafts</a>
             <a href="#roadmap" className="hover:text-[var(--ink-deep)]">Roadmap</a>
             <a href="#pipeline" className="hover:text-[var(--ink-deep)]">Pipeline</a>
             <a href="#categories" className="hover:text-[var(--ink-deep)]">Categories</a>
@@ -255,6 +259,7 @@ function ControlRoom() {
       </section>
 
       <main className="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28">
+        <NewsDrafts selectedId={draft} />
         {/* 1. Roadmap */}
         <section id="roadmap" className="scroll-mt-24">
           <SectionHeader
