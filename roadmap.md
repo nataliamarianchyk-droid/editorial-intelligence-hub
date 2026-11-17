@@ -42,3 +42,5 @@
 - [x] Add scoped reading progress and sticky LinkedIn sharing.
 - [x] Add Issue 07 metadata and archive entry without changing brand copy.
 - [x] Verify article and archive on desktop and narrow screens.
+
+- [x] Rank "Start with the latest" across all published formats by publication date and keep those pieces out of the editorial calendar.
