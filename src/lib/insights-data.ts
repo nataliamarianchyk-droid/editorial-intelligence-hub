@@ -294,22 +294,48 @@ export function insightsByCategory(slug: string) {
   return insights.filter((i) => i.category === slug);
 }
 
+const MONTHS: Record<string, number> = {
+  january: 1, february: 2, march: 3, april: 4, may: 5, june: 6,
+  july: 7, august: 8, september: 9, october: 10, november: 11, december: 12,
+};
+
+/**
+ * Comparable YYYY-MM-DD key for any published piece. Uses the explicit
+ * publication date when the article has one, otherwise the month/year shown
+ * to readers. Used for ordering only - it never feeds structured data.
+ */
+function publishedSortKey(item: Insight): string {
+  if (item.datePublished) return item.datePublished;
+  const match = /^([A-Za-z]+)\s+(\d{4})$/.exec(item.date.trim());
+  const month = match ? MONTHS[match[1].toLowerCase()] : undefined;
+  return match && month ? `${match[2]}-${String(month).padStart(2, "0")}-01` : "0000-00-00";
+}
+
 export function publishedInsightsNewestFirst() {
   return insights.filter((i) => i.status === "published" && i.issue).sort((a, b) =>
     Number(b.issue?.replace("Issue ", "") ?? 0) - Number(a.issue?.replace("Issue ", "") ?? 0),
   );
 }
 
+/** Every published piece, numbered issues and field guides alike, newest first. */
+export function publishedPiecesNewestFirst() {
+  return insights
+    .filter((i) => i.status === "published")
+    .sort((a, b) => publishedSortKey(b).localeCompare(publishedSortKey(a)));
+}
+
 export function homepageEditorialSelections() {
   const published = publishedInsightsNewestFirst();
   const [featured] = published;
-  const latest = published.slice(0, 3);
+  const latest = publishedPiecesNewestFirst().slice(0, 3);
   const shown = new Set([featured?.slug, ...latest.map((i) => i.slug)]);
   const olderIssues = published.filter((i) => !shown.has(i.slug));
-  const guides = insights.filter((i) => i.status === "published" && i.format === "field-guide");
+  const guides = insights.filter(
+    (i) => i.status === "published" && i.format === "field-guide" && !shown.has(i.slug),
+  );
   return {
     featured,
-    calendar: [...guides.slice(0, 3), ...olderIssues, ...guides.slice(3)].filter((i) => !shown.has(i.slug)).slice(0, 6),
+    calendar: [...guides.slice(0, 3), ...olderIssues, ...guides.slice(3)].slice(0, 6),
     latest,
   };
 }
