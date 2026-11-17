@@ -29,7 +29,7 @@ test("intake always forces draft status even when the agent sends published", as
 test("published conflict is returned without changing the approved item", async () => {
   const approved = Object.freeze({ ...input, status: "published" });
   const before = JSON.stringify(approved);
-  const result = await handleNewsIntake(request(), "unit-test-token", async () => ({ code: approved.status !== "draft" ? 409 : 200 }));
+  const result = await handleNewsIntake(request(), "unit-test-token", async () => ({ code: 409 }));
   assert.equal(result.status, 409);
   assert.equal(JSON.stringify(approved), before);
 });
