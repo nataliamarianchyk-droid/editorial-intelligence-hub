@@ -40,7 +40,10 @@ export async function handleNewsIntake(request: Request, secret: string | undefi
     if (result.code === 429) return Response.json({ message: "Daily submission limit reached." }, { status: 429 });
     if (!result.id) throw new Error("No intake result");
     return Response.json({ id: result.id, status: "draft", previewPath: `/control-room?draft=${result.id}` }, { headers: { "Cache-Control": "no-store" } });
-  } catch {
-    return Response.json({ message: "Unable to save draft; check for a duplicate slug." }, { status: 409 });
+  } catch (error) {
+    if (error && typeof error === "object" && "code" in error && error.code === "23505") {
+      return Response.json({ message: "This slug is already in use." }, { status: 409 });
+    }
+    return Response.json({ message: "Unable to save the draft right now." }, { status: 500 });
   }
 }
