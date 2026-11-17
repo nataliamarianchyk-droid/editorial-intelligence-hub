@@ -1,6 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
 import type { PublicNews } from "./news-schema";
+import { newsDraftSchema } from "./news-schema";
 
 // This projection and status filter are the sole public news read path.
 const publicColumns = "id,slug,title,dek,body_md,category,sources,published_at,updated_at";
@@ -12,7 +13,7 @@ export async function readPublishedNews(db: SupabaseClient<Database>, options: {
   for (let offset = 0; ; offset += 500) {
     const { data, error } = await query.range(offset, offset + 499);
     if (error) throw new Error("News is temporarily unavailable.");
-    for (const row of data ?? []) rows.push({ ...row, sources: row.sources as PublicNews["sources"] });
+    for (const row of data ?? []) rows.push({ ...row, category: newsDraftSchema.shape.category.parse(row.category), sources: newsDraftSchema.shape.sources.parse(row.sources) });
     if (!data || data.length < 500) break;
   }
   return rows;
