@@ -3,6 +3,7 @@
 - News items are submitted only as drafts through /api/news-drafts with NEWS_INGEST_SECRET; only the control-room session can publish, withdraw or delete them, and public routes read published rows only.
 - Keep the news intake limit and draft upsert atomic inside a service-role-only database function, so concurrent submissions cannot exceed the Berlin calendar-day quota or overwrite an approved item.
 - News preview and public news share the same article component and the field-guide Markdown renderer, so owner review matches publication without trusting submitted HTML.
+- Validate news publication dates through shared Berlin-calendar rules on intake and inside owner publishing; store 09:00 Europe/Berlin as an absolute timestamp so public ordering and structured dates stay unchanged.
 
 - Keep the German market FAQ in a browser-safe shared data module consumed by both the article body and route head, so visible answers and FAQPage structured data remain identical.
 - Preserve Issue 07's final body as Markdown and render it through a scoped editorial renderer; reading tools must appear only on that article to avoid changing other page layouts.

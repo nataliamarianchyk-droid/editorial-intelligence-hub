@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { listOwnerNews, updateOwnerNews, transitionOwnerNews } from "@/lib/news.functions";
-import { newsEditableSchema, newsDate, type NewsItem } from "@/lib/news-schema";
+import { berlinDay, newsEditableSchema, newsDate, newsPublicationDateBounds, newsPublicationDateSchema, type NewsItem } from "@/lib/news-schema";
 import { categoryBySlug } from "@/lib/insights-data";
 import { NewsArticle } from "./news-article";
 
@@ -14,6 +14,8 @@ export function NewsDrafts({ selectedId }: { selectedId?: string }) {
   const query = useQuery({ queryKey: ["owner-news"], queryFn: () => fetchNews() });
   const [selected, setSelected] = useState<string | undefined>(selectedId);
   const [filter, setFilter] = useState<NewsItem["status"]>("draft");
+  const [publicationDates, setPublicationDates] = useState<Record<string, string>>({});
+  const chosenDate = (entry: NewsItem) => publicationDates[entry.id] ?? entry.suggested_date ?? berlinDay();
   const items = (query.data ?? []).filter((item) => item.status === filter);
   const item = query.data?.find((entry) => entry.id === selected);
   return <section id="news-drafts" className="mb-16 scroll-mt-24 text-foreground">
@@ -27,16 +29,18 @@ export function NewsDrafts({ selectedId }: { selectedId?: string }) {
     <div className="divide-y divide-border">
       {items.map((entry) => <article key={entry.id} className="py-6">
         <p className="text-sm text-muted-foreground">{categoryBySlug(entry.category)?.name} · {newsDate(entry.created_at)}</p>
+        {entry.status === "draft" && <p className="text-sm text-muted-foreground mt-1">Publication date: {chosenDate(entry)}</p>}
         <h3 className="font-display text-2xl mt-2">{entry.title}</h3>
         {entry.reviewer_notes && <aside className="my-4 border-l-4 border-accent-cyan bg-muted p-4"><h4 className="font-semibold text-sm mb-2">Reviewer notes</h4><p className="whitespace-pre-wrap break-words">{entry.reviewer_notes}</p></aside>}
         <Button variant="outline" onClick={() => setSelected(entry.id)}>Review</Button>
       </article>)}
     </div>
-    {item && <NewsReview key={`${item.id}-${item.updated_at}`} item={item} onClose={() => setSelected(undefined)} onSaved={async () => { await query.refetch(); }} />}
+    {item && <NewsReview key={`${item.id}-${item.updated_at}`} item={item} publicationDate={chosenDate(item)} onDateChange={(date) => setPublicationDates((current) => ({ ...current, [item.id]: date }))} onClose={() => setSelected(undefined)} onSaved={async () => { await query.refetch(); }} />}
   </section>;
 }
 
-function NewsReview({ item, onClose, onSaved }: { item: NewsItem; onClose: () => void; onSaved: () => Promise<void> }) {
+function NewsReview({ item, publicationDate, onDateChange, onClose, onSaved }: { item: NewsItem; publicationDate: string; onDateChange: (date: string) => void; onClose: () => void; onSaved: () => Promise<void> }) {
+  const dateBounds = newsPublicationDateBounds();
   const [fields, setFields] = useState({ title: item.title, dek: item.dek, slug: item.slug, body_md: item.body_md });
   const [preview, setPreview] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -47,12 +51,16 @@ function NewsReview({ item, onClose, onSaved }: { item: NewsItem; onClose: () =>
   async function perform(action: "save" | "publish" | "withdraw" | "delete") {
     setMessage(""); setBusy(true);
     try {
+      if (action === "publish") {
+        const date = newsPublicationDateSchema().safeParse(publicationDate);
+        if (!date.success) { setMessage(date.error.issues[0]?.message ?? "Check the publication date."); return; }
+      }
       if (action === "save" || action === "publish") {
         const validated = newsEditableSchema.safeParse(fields);
         if (!validated.success) { setMessage(validated.error.issues[0]?.message ?? "Check the fields."); return; }
         await save({ data: { id: item.id, fields: validated.data } });
       }
-      if (action !== "save") await transition({ data: { id: item.id, action, confirmDelete: action === "delete" && confirmDelete } });
+      if (action !== "save") await transition({ data: { id: item.id, action, confirmDelete: action === "delete" && confirmDelete, ...(action === "publish" ? { publication_date: publicationDate } : {}) } });
       await onSaved();
       if (action !== "save") onClose();
       else setMessage("Draft saved.");
@@ -71,8 +79,11 @@ function NewsReview({ item, onClose, onSaved }: { item: NewsItem; onClose: () =>
       {item.status === "draft" && <Button type="submit" disabled={busy}>Save draft</Button>}
     </form>}
     {message && <p className="my-5 text-sm" role="status">{message}</p>}
-    <div className="flex flex-wrap gap-3 mt-8">
-      {item.status === "draft" && <Button disabled={busy} onClick={() => perform("publish")}>Publish</Button>}
+    <div className="flex flex-wrap items-end gap-3 mt-8">
+      {item.status === "draft" && <>
+        <label className="block text-sm">Publication date<Input type="date" className="mt-2 w-44" value={publicationDate} min={dateBounds.min} max={dateBounds.max} required disabled={busy} onChange={(event) => onDateChange(event.target.value)} /></label>
+        <Button disabled={busy} onClick={() => perform("publish")}>Publish</Button>
+      </>}
       {item.status !== "withdrawn" && <Button variant="outline" disabled={busy} onClick={() => perform("withdraw")}>Withdraw</Button>}
       {item.status === "draft" && <Button variant="destructive" disabled={busy} onClick={() => setConfirmDelete(true)}>Delete draft</Button>}
     </div>

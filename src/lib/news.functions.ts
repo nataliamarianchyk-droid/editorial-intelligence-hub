@@ -49,7 +49,7 @@ export const updateOwnerNews = createServerFn({ method: "POST" })
   });
 
 export const transitionOwnerNews = createServerFn({ method: "POST" })
-  .inputValidator((input: unknown) => z.object({ id: z.uuid(), action: z.enum(["publish", "withdraw", "delete"]), confirmDelete: z.boolean().optional() }).parse(input))
+  .inputValidator((input: unknown) => z.object({ id: z.uuid(), action: z.enum(["publish", "withdraw", "delete"]), confirmDelete: z.boolean().optional(), publication_date: z.string().optional() }).parse(input))
   .handler(async ({ data }) => {
     const { assertControlRoomSession } = await import("./control-room-session.server");
     await assertControlRoomSession();
@@ -59,9 +59,11 @@ export const transitionOwnerNews = createServerFn({ method: "POST" })
       if (!data.confirmDelete) throw new Error("Deletion confirmation is required.");
       const { data: deleted, error } = await supabaseAdmin.from("news_items").delete().eq("id", data.id).eq("status", "draft").select("id").maybeSingle();
       if (error || !deleted) throw new Error("Only drafts can be deleted.");
+    } else if (data.action === "publish") {
+      const { publishNewsDraft } = await import("./news-publication.server");
+      await publishNewsDraft(supabaseAdmin, data.id, data.publication_date);
     } else {
-      const publish = data.action === "publish";
-      const { data: saved, error } = await supabaseAdmin.from("news_items").update({ status: publish ? "published" : "withdrawn", ...(publish ? { published_at: now } : {}), updated_at: now }).eq("id", data.id).in("status", publish ? ["draft"] : ["draft", "published"]).select("id").maybeSingle();
+      const { data: saved, error } = await supabaseAdmin.from("news_items").update({ status: "withdrawn", updated_at: now }).eq("id", data.id).in("status", ["draft", "published"]).select("id").maybeSingle();
       if (error || !saved) throw new Error("This item has changed. Refresh before trying again.");
     }
     return { ok: true };

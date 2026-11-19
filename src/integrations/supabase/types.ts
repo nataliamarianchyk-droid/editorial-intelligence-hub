@@ -7,11 +7,6 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instantiate createClient with right options
-  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
-  __InternalSupabase: {
-    PostgrestVersion: "14.18"
-  }
   public: {
     Tables: {
       article_ai_gateway_state: {
@@ -78,6 +73,7 @@ export type Database = {
           slug: string
           sources: Json
           status: string
+          suggested_date: string | null
           title: string
           updated_at: string
         }
@@ -93,6 +89,7 @@ export type Database = {
           slug: string
           sources: Json
           status?: string
+          suggested_date?: string | null
           title: string
           updated_at?: string
         }
@@ -108,6 +105,7 @@ export type Database = {
           slug?: string
           sources?: Json
           status?: string
+          suggested_date?: string | null
           title?: string
           updated_at?: string
         }
@@ -286,3 +284,4 @@ export const Constants = {
     Enums: {},
   },
 } as const
+
