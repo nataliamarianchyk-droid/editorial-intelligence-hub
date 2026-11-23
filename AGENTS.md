@@ -1,6 +1,7 @@
 # Architecture rules
 
 - News items are submitted only as drafts through /api/news-drafts with NEWS_INGEST_SECRET; only the control-room session can publish, withdraw or delete them, and public routes read published rows only.
+- Serve public news headlines only through GET /api/news-feed, which reuses readPublishedNews and copies only slug, title, dek, category and published_at, so no public path exposes news body text, sources or reviewer metadata.
 - Keep the news intake limit and draft upsert atomic inside a service-role-only database function, so concurrent submissions cannot exceed the Berlin calendar-day quota or overwrite an approved item.
 - News preview and public news share the same article component and the field-guide Markdown renderer, so owner review matches publication without trusting submitted HTML.
 - Validate news publication dates through shared Berlin-calendar rules on intake and inside owner publishing; store 09:00 Europe/Berlin as an absolute timestamp so public ordering and structured dates stay unchanged.

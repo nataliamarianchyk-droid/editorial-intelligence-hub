@@ -46,3 +46,4 @@
 - [x] Verify article and archive on desktop and narrow screens.
 
 - [x] Rank "Start with the latest" across all published formats by publication date and keep those pieces out of the editorial calendar.
+- [x] Add public read-only GET /api/news-feed with up to ten latest published headlines, whitelisted fields, cache headers, empty-feed error fallback and 405 for other methods.
