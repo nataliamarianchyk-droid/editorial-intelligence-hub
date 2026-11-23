@@ -25,6 +25,7 @@ import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
 import { Route as ApiArticleTakeawaysRouteImport } from './routes/api/article-takeaways'
 import { Route as ApiNewsDraftsRouteImport } from './routes/api/news-drafts'
+import { Route as ApiNewsFeedRouteImport } from './routes/api/news-feed'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 import { Route as NewsIndexRouteImport } from './routes/news.index'
 import { Route as NewsSlugRouteImport } from './routes/news.$slug'
@@ -113,6 +114,11 @@ const ApiNewsDraftsRoute = ApiNewsDraftsRouteImport.update({
   path: '/api/news-drafts',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiNewsFeedRoute = ApiNewsFeedRouteImport.update({
+  id: '/api/news-feed',
+  path: '/api/news-feed',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategorySlugRoute = CategorySlugRouteImport.update({
   id: '/category/$slug',
   path: '/category/$slug',
@@ -157,6 +163,7 @@ export interface FileRoutesByFullPath {
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/api/article-takeaways': typeof ApiArticleTakeawaysRoute
   '/api/news-drafts': typeof ApiNewsDraftsRoute
+  '/api/news-feed': typeof ApiNewsFeedRoute
   '/category/$slug': typeof CategorySlugRoute
   '/news/$slug': typeof NewsSlugRoute
   '/news/': typeof NewsIndexRoute
@@ -179,6 +186,7 @@ export interface FileRoutesByTo {
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/api/article-takeaways': typeof ApiArticleTakeawaysRoute
   '/api/news-drafts': typeof ApiNewsDraftsRoute
+  '/api/news-feed': typeof ApiNewsFeedRoute
   '/category/$slug': typeof CategorySlugRoute
   '/news/$slug': typeof NewsSlugRoute
   '/news': typeof NewsIndexRoute
@@ -203,6 +211,7 @@ export interface FileRoutesById {
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/api/article-takeaways': typeof ApiArticleTakeawaysRoute
   '/api/news-drafts': typeof ApiNewsDraftsRoute
+  '/api/news-feed': typeof ApiNewsFeedRoute
   '/category/$slug': typeof CategorySlugRoute
   '/news/$slug': typeof NewsSlugRoute
   '/news/': typeof NewsIndexRoute
@@ -228,6 +237,7 @@ export interface FileRouteTypes {
     | '/.well-known/oauth-protected-resource'
     | '/api/article-takeaways'
     | '/api/news-drafts'
+    | '/api/news-feed'
     | '/category/$slug'
     | '/news/$slug'
     | '/news/'
@@ -250,6 +260,7 @@ export interface FileRouteTypes {
     | '/.well-known/oauth-protected-resource'
     | '/api/article-takeaways'
     | '/api/news-drafts'
+    | '/api/news-feed'
     | '/category/$slug'
     | '/news/$slug'
     | '/news'
@@ -273,6 +284,7 @@ export interface FileRouteTypes {
     | '/.well-known/oauth-protected-resource'
     | '/api/article-takeaways'
     | '/api/news-drafts'
+    | '/api/news-feed'
     | '/category/$slug'
     | '/news/$slug'
     | '/news/'
@@ -297,6 +309,7 @@ export interface RootRouteChildren {
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   ApiArticleTakeawaysRoute: typeof ApiArticleTakeawaysRoute
   ApiNewsDraftsRoute: typeof ApiNewsDraftsRoute
+  ApiNewsFeedRoute: typeof ApiNewsFeedRoute
   CategorySlugRoute: typeof CategorySlugRoute
   Char91DotmcpChar93InvokeToolToolRoute: typeof Char91DotmcpChar93InvokeToolToolRoute
   ApiPublicSubscribeRoute: typeof ApiPublicSubscribeRoute
@@ -416,6 +429,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiNewsDraftsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/news-feed': {
+      id: '/api/news-feed'
+      path: '/api/news-feed'
+      fullPath: '/api/news-feed'
+      preLoaderRoute: typeof ApiNewsFeedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/category/$slug': {
       id: '/category/$slug'
       path: '/category/$slug'
@@ -484,6 +504,7 @@ const rootRouteChildren: RootRouteChildren = {
     Char91DotwellKnownChar93OauthProtectedResourceRoute,
   ApiArticleTakeawaysRoute: ApiArticleTakeawaysRoute,
   ApiNewsDraftsRoute: ApiNewsDraftsRoute,
+  ApiNewsFeedRoute: ApiNewsFeedRoute,
   CategorySlugRoute: CategorySlugRoute,
   Char91DotmcpChar93InvokeToolToolRoute: Char91DotmcpChar93InvokeToolToolRoute,
   ApiPublicSubscribeRoute: ApiPublicSubscribeRoute,
