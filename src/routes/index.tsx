@@ -38,216 +38,156 @@ function InsightsHome() {
     <div className="min-h-screen bg-[var(--cream)]">
       <SiteHeader />
       <main>
-
-      {/* Masthead */}
-      <section className="border-b border-[var(--ink-deep)]/8">
-        <div className="mx-auto max-w-6xl px-6 pt-20 pb-14 text-center">
-          <p className="eyebrow">NM Insight · Editorial</p>
-          <h1 className="font-display mt-5 text-5xl md:text-7xl text-[var(--ink-deep)] leading-[1.02]">
-            Insights for operators building the
-            <span className="italic text-[var(--ink-deep)]/60"> infrastructure between marketing and revenue.</span>
-          </h1>
-          <p className="mt-8 text-[var(--ink-deep)]/60 max-w-2xl mx-auto text-base leading-relaxed">
-            A monthly, editorial-grade publication on marketing - analysis,
-
-            frameworks and field notes from the operational side of the discipline.
-          </p>
-          <div className="mt-8 text-xs uppercase tracking-[0.22em] text-[var(--ink-deep)]/65">
-            One issue per month · No noise
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Issue */}
-      <section className="border-b border-[var(--ink-deep)]/8">
-        <div className="mx-auto max-w-6xl px-6 py-20 grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-14 items-center">
-          <div>
-            <p className="eyebrow">{featured.issue} · Featured</p>
-            <Link to="/$category/$articleSlug" params={{ category: featured.category, articleSlug: featured.slug }}>
-              <h2 className="font-display text-4xl md:text-6xl text-[var(--ink-deep)] leading-[1.05] mt-4 hover:text-[var(--accent-cyan)] transition-colors">
-                {featured.title}
-              </h2>
-            </Link>
-            <p className="mt-6 text-[var(--ink-deep)]/65 text-lg leading-relaxed max-w-xl">{featured.dek}</p>
-            <div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-[var(--ink-deep)]/50">
-              <span className="text-[var(--accent-cyan)] uppercase tracking-[0.18em] text-[11px]">
-                {featuredCat?.name}
-              </span>
-              <span>·</span>
-              <span>{featured.author}</span>
-              <span>·</span>
-              <span>{featured.read}</span>
-            </div>
-            <Link
-              to="/$category/$articleSlug"
-              params={{ category: featured.category, articleSlug: featured.slug }}
-              className="inline-block mt-10 rounded-full bg-[var(--accent-cyan)] text-[var(--cream)] px-7 py-3 text-sm font-medium hover:brightness-110"
-            >
-              Read the issue →
-            </Link>
-          </div>
-          {featured.cover ? <Link to="/$category/$articleSlug" params={{ category: featured.category, articleSlug: featured.slug }} aria-label={`Read ${featured.issue}: ${featured.title}`} className="block">
-            <img src={featured.cover.src} alt={featured.cover.alt} width={featured.cover.width} height={featured.cover.height} className="w-full aspect-video object-cover rounded-md" />
-          </Link> : <div className="aspect-[4/5] w-full rounded-md overflow-hidden border border-[var(--ink-deep)]/10 bg-gradient-to-br from-[var(--cream-deep)] to-[var(--cream)] relative p-10 flex flex-col justify-between">
-            <div className="flex items-center justify-between">
-              <span className="font-display text-[var(--ink-deep)] text-lg">
-                NM <span className="text-[var(--accent-cyan)]">Insight</span>
-              </span>
-              <span className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-cyan)]">
-                {featured.issue}
-              </span>
-            </div>
+        {/* Featured issue - the page opens straight into the reading */}
+        <section className="border-b border-[var(--ink-deep)]/8">
+          <div className="mx-auto max-w-6xl px-6 pt-14 pb-20 grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-14 items-center">
             <div>
-              <h3 className="font-display text-[var(--ink-deep)] text-3xl md:text-5xl leading-[1.05]">
-                {featured.title}
-              </h3>
-              {featured.titleItalicSub && (
-                <p className="font-display italic text-[var(--ink-deep)]/55 text-xl md:text-2xl mt-2">
-                  {featured.titleItalicSub}
-                </p>
-              )}
-            </div>
-            <p className="text-[var(--ink-deep)]/65 text-xs uppercase tracking-[0.22em]">
-              insights.nm-insight.com
-            </p>
-            <div className="absolute inset-y-0 right-0 w-1 bg-[var(--accent-cyan)]" />
-          </div>}
-        </div>
-      </section>
-
-      {/* Category grid */}
-      <section className="border-b border-[var(--ink-deep)]/8">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
-            <div>
-              <p className="eyebrow">The six sections</p>
-              <h2 className="font-display text-3xl md:text-4xl text-[var(--ink-deep)] mt-2">
-                What we cover
-              </h2>
-            </div>
-            <p className="text-sm text-[var(--ink-deep)]/50 max-w-md">
-              Six editorial verticals - each written from the operational side, not the promotional one.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {categories.map((c) => (
-              <Link
-                key={c.slug}
-                to="/category/$slug"
-                params={{ slug: c.slug }}
-                className="group bg-[var(--paper)] text-[#0f172a] rounded-sm p-7 flex flex-col min-h-[190px] hover:-translate-y-0.5 transition-transform"
-              >
-                <span className="text-[11px] uppercase tracking-[0.18em] text-[#0a8a8d] font-semibold">
-                  {c.short}
-                </span>
-                <h3 className="font-display text-2xl mt-3 leading-snug text-[var(--ink-navy)] group-hover:text-[#0a8a8d]">
-                  {c.name}
-                </h3>
-                <p className="mt-3 text-sm text-black/60 leading-relaxed">{c.description}</p>
-                <span className="mt-auto pt-6 text-xs text-black/45 group-hover:text-[#0a8a8d]">
-                  Explore section →
-                </span>
+              <p className="eyebrow">{featured.issue ? `${featured.issue} · Featured` : "Featured"}</p>
+              <Link to="/$category/$articleSlug" params={{ category: featured.category, articleSlug: featured.slug }}>
+                <h1 className="font-display text-4xl md:text-6xl text-[var(--ink-deep)] leading-[1.05] mt-4 hover:text-[var(--accent-cyan)] transition-colors">
+                  {featured.title}
+                </h1>
               </Link>
-            ))}
+              <p className="mt-6 text-[var(--ink-deep)]/65 text-lg leading-relaxed max-w-xl">{featured.dek}</p>
+              <div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-[var(--ink-deep)]/50">
+                <span className="text-[var(--accent-cyan)] uppercase tracking-[0.18em] text-[11px]">
+                  {featuredCat?.name}
+                </span>
+                <span>·</span>
+                <span>{featured.author}</span>
+                <span>·</span>
+                <span>{featured.read}</span>
+              </div>
+              <Link
+                to="/$category/$articleSlug"
+                params={{ category: featured.category, articleSlug: featured.slug }}
+                className="inline-block mt-10 rounded-full bg-[var(--accent-cyan)] text-[var(--cream)] px-7 py-3 text-sm font-medium hover:brightness-110"
+              >
+                Read the issue →
+              </Link>
+            </div>
+            {featured.cover ? <Link to="/$category/$articleSlug" params={{ category: featured.category, articleSlug: featured.slug }} aria-label={`Read ${featured.issue}: ${featured.title}`} className="block">
+              <img src={featured.cover.src} alt={featured.cover.alt} width={featured.cover.width} height={featured.cover.height} className="w-full aspect-video object-cover rounded-md" />
+            </Link> : <div className="aspect-[4/5] w-full rounded-md overflow-hidden border border-[var(--ink-deep)]/10 bg-gradient-to-br from-[var(--cream-deep)] to-[var(--cream)] relative p-10 flex flex-col justify-between">
+              <div className="flex items-center justify-between">
+                <span className="font-display text-[var(--ink-deep)] text-lg">
+                  NM <span className="text-[var(--accent-cyan)]">Insight</span>
+                </span>
+                <span className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-cyan)]">
+                  {featured.issue}
+                </span>
+              </div>
+              <div>
+                <h2 className="font-display text-[var(--ink-deep)] text-3xl md:text-5xl leading-[1.05]">
+                  {featured.title}
+                </h2>
+                {featured.titleItalicSub && (
+                  <p className="font-display italic text-[var(--ink-deep)]/55 text-xl md:text-2xl mt-2">
+                    {featured.titleItalicSub}
+                  </p>
+                )}
+              </div>
+              <p className="text-[var(--ink-deep)]/65 text-xs uppercase tracking-[0.22em]">
+                insights.nm-insight.com
+              </p>
+              <div className="absolute inset-y-0 right-0 w-1 bg-[var(--accent-cyan)]" />
+            </div>}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Latest / upcoming issues */}
-      <section className="border-b border-[var(--ink-deep)]/8">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <div className="flex items-end justify-between mb-10">
-            <div>
-              <p className="eyebrow">The editorial calendar</p>
-              <h2 className="font-display text-3xl md:text-4xl text-[var(--ink-deep)] mt-2">
-                Latest issues &amp; field guides
-              </h2>
+        {/* Latest issues & field guides - straight into the reading */}
+        <section className="border-b border-[var(--ink-deep)]/8">
+          <div className="mx-auto max-w-6xl px-6 py-20">
+            <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
+              <div>
+                <p className="eyebrow">The editorial calendar</p>
+                <h2 className="font-display text-3xl md:text-4xl text-[var(--ink-deep)] mt-2">
+                  Latest issues &amp; field guides
+                </h2>
+              </div>
+              <Link
+                to="/issues"
+                className="text-xs uppercase tracking-[0.18em] text-[var(--ink-deep)]/55 hover:text-[var(--accent-cyan)]"
+              >
+                Full archive →
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {rest.map((i) => {
+                const cat = categoryBySlug(i.category);
+                if (!cat) return null;
+                const inner = (
+                  <>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] uppercase tracking-[0.18em] text-[var(--accent-cyan)] font-semibold">
+                        {cat.name}
+                      </span>
+                      <span className="text-[10px] uppercase tracking-[0.14em] text-[var(--ink-deep)]/60">
+                        {i.format === "field-guide" ? "Field guide" : i.status === "published" && i.issue ? i.issue : i.date}
+                      </span>
+                    </div>
+                    <h3 className="font-display text-xl mt-4 leading-snug text-[var(--ink-deep)] group-hover:text-[var(--accent-cyan)] transition-colors">
+                      {i.title}
+                    </h3>
+                    <p className="mt-3 text-sm text-[var(--ink-deep)]/55 leading-relaxed">{i.dek}</p>
+                    <span className="mt-auto pt-6 text-xs text-[var(--ink-deep)]/65 flex justify-between">
+                      <span>{i.read} read</span>
+                      {i.status === "published" ? (
+                        <span className="text-[var(--accent-cyan)]">Read →</span>
+                      ) : (
+                        <span>Upcoming</span>
+                      )}
+                    </span>
+                  </>
+                );
+                return i.status === "published" ? (
+                  <Link
+                    key={i.slug}
+                    to="/$category/$articleSlug"
+                    params={{ category: i.category, articleSlug: i.slug }}
+                    className="group bg-[var(--ink-deep)]/[0.03] border border-[var(--ink-deep)]/8 rounded-sm p-7 flex flex-col min-h-[220px] hover:border-[var(--accent-cyan)]/40 transition-colors"
+                  >
+                    {inner}
+                  </Link>
+                ) : (
+                  <article
+                    key={i.slug}
+                    className="group bg-[var(--ink-deep)]/[0.03] border border-[var(--ink-deep)]/8 rounded-sm p-7 flex flex-col min-h-[220px]"
+                  >
+                    {inner}
+                  </article>
+                );
+              })}
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {rest.map((i) => {
-              const cat = categoryBySlug(i.category);
-              if (!cat) return null;
-              const inner = (
-                <>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[11px] uppercase tracking-[0.18em] text-[var(--accent-cyan)] font-semibold">
-                      {cat.name}
+        </section>
+
+        {/* Compact topic browse */}
+        <section className="border-b border-[var(--ink-deep)]/8">
+          <div className="mx-auto max-w-6xl px-6 py-14">
+            <p className="eyebrow mb-7">Browse by topic</p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-6">
+              {categories.map((c) => (
+                <li key={c.slug}>
+                  <Link
+                    to="/category/$slug"
+                    params={{ slug: c.slug }}
+                    className="group flex items-baseline justify-between gap-3 border-b border-[var(--ink-deep)]/10 pb-2"
+                  >
+                    <span className="font-display text-lg text-[var(--ink-deep)] group-hover:text-[var(--accent-cyan)] transition-colors">
+                      {c.name}
                     </span>
-                    <span className="text-[10px] uppercase tracking-[0.14em] text-[var(--ink-deep)]/60">
-                      {i.format === "field-guide" ? "Field guide" : i.status === "published" && i.issue ? i.issue : i.date}
-                    </span>
-                  </div>
-                  <h3 className="font-display text-xl mt-4 leading-snug text-[var(--ink-deep)] group-hover:text-[var(--accent-cyan)] transition-colors">
-                    {i.title}
-                  </h3>
-                  <p className="mt-3 text-sm text-[var(--ink-deep)]/55 leading-relaxed">{i.dek}</p>
-                  <span className="mt-auto pt-6 text-xs text-[var(--ink-deep)]/65 flex justify-between">
-                    <span>{i.read} read</span>
-                    {i.status === "published" ? (
-                      <span className="text-[var(--accent-cyan)]">Read →</span>
-                    ) : (
-                      <span>Upcoming</span>
-                    )}
-                  </span>
-                </>
-              );
-              return i.status === "published" ? (
-                <Link
-                  key={i.slug}
-                  to="/$category/$articleSlug"
-                  params={{ category: i.category, articleSlug: i.slug }}
-                  className="group bg-[var(--ink-deep)]/[0.03] border border-[var(--ink-deep)]/8 rounded-sm p-7 flex flex-col min-h-[220px] hover:border-[var(--accent-cyan)]/40 transition-colors"
-                >
-                  {inner}
-                </Link>
-              ) : (
-                <article
-                  key={i.slug}
-                  className="group bg-[var(--ink-deep)]/[0.03] border border-[var(--ink-deep)]/8 rounded-sm p-7 flex flex-col min-h-[220px]"
-                >
-                  {inner}
-                </article>
-              );
-            })}
+                    <span className="text-xs text-[var(--ink-deep)]/40 group-hover:text-[var(--accent-cyan)]">→</span>
+                  </Link>
+                  <p className="mt-2 text-xs text-[var(--ink-deep)]/50 leading-relaxed">{c.short}</p>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Updates prompt with latest issues */}
-      <UpdatesSection />
-
-      {/* CTA band */}
-      <section className="bg-[var(--cream-deep)]">
-        <div className="mx-auto max-w-5xl px-6 py-24 text-center">
-          <p className="eyebrow">From the NM Insight blog</p>
-          <h2 className="font-display text-4xl md:text-5xl text-[var(--ink-deep)] mt-4 leading-tight">
-            When the reading is done, the work begins.
-          </h2>
-          <p className="mt-5 text-[var(--ink-deep)]/65 max-w-xl mx-auto">
-            NM Insight is a Berlin-based marketing blog, writing about where
-            acquisition, attribution, content and systems connect.
-          </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <a
-              href="#updates"
-              className="rounded-full bg-[var(--accent-cyan)] text-[var(--cream)] px-7 py-3 text-sm font-medium hover:brightness-110"
-            >
-              Get every issue by email
-            </a>
-            <a
-              href="https://nm-insight.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full border border-[var(--ink-deep)]/25 text-[var(--ink-deep)] px-7 py-3 text-sm hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)]"
-            >
-              Explore NM Insight Services
-            </a>
-          </div>
-
-        </div>
-      </section>
-
+        {/* Newsletter */}
+        <UpdatesSection />
       </main>
       <SiteFooter />
     </div>
@@ -282,7 +222,7 @@ function UpdatesSection() {
   }
 
   return (
-    <section id="updates" className="border-b border-[var(--ink-deep)]/8 bg-[var(--cream-deep)]/40">
+    <section id="updates" className="bg-[var(--cream-deep)]/40">
       <div className="mx-auto max-w-6xl px-6 py-20 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-14 items-start">
         <div>
           <p className="eyebrow">Get every issue</p>

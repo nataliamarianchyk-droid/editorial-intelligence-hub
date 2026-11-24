@@ -46,4 +46,5 @@
 - [x] Verify article and archive on desktop and narrow screens.
 
 - [x] Rank "Start with the latest" across all published formats by publication date and keep those pieces out of the editorial calendar.
+- [x] Declutter the homepage: open on the featured issue, put the article list directly beneath it, demote the six sections to a compact topic browse below the articles, and drop the masthead and promotional band while keeping the newsletter last.
 - [x] Add public read-only GET /api/news-feed with up to ten latest published headlines, whitelisted fields, cache headers, empty-feed error fallback and 405 for other methods.

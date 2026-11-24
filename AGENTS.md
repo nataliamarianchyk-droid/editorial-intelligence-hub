@@ -13,6 +13,7 @@
 - Keep share-sized CDN thumbnails in a shared browser-safe metadata helper, applied only in leaf route heads, so platform defaults cannot override page-specific previews.
 - Preserve Issue 08 as source Markdown with a scoped renderer, splitting its lead sections without rewriting copy, so the checklist and TL;DR remain faithful.
 - Use numeric issue ordering from shared editorial metadata for newest-issue selections, so future issues enter the homepage and archive without manual slot updates.
+- Keep the homepage reading order as featured issue, then the article list, then a compact topic browse, then the newsletter; no masthead or promotional band may sit above the reading, so the shared selection helper stays the only source of homepage picks.
 - Keep homepage selections in the shared editorial metadata helper: latest contains the three newest published pieces of any format ranked by publication date; calendar leads with three remaining field guides, excludes latest and featured articles, then fills up to six slots with older issues and guides, so the lists stay disjoint and testable.
 - Store editorial covers in shared browser-safe metadata and reuse their absolute CDN URL for rendered covers and social previews, so one image stays consistent across surfaces.
 - Store field guides as source Markdown with browser-safe metadata and a scoped shared renderer; keep them unnumbered and exclude them from newest-issue selection so the monthly editorial sequence remains stable while sections, homepage, archive and sitemap include the full materials.
