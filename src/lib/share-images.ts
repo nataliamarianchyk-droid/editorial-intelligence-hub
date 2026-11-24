@@ -17,7 +17,7 @@ import image15 from "@/assets/share/b2b-performance-marketing-infrastructure-aud
 import image16 from "@/assets/share/ai-found-66000-buyers.jpg.asset.json";
 import image17 from "@/assets/share/your-crm-is-the-real-marketing-tool.jpg.asset.json";
 import image18 from "@/assets/share/dtc-attribution-after-att.jpg.asset.json";
-import { issueEightCover } from "@/lib/issue-eight-cover";
+import { issueCovers } from "@/lib/issue-covers";
 
 const images: Record<string, string> = {
   "home": image0.url,
@@ -42,7 +42,8 @@ const images: Record<string, string> = {
 };
 
 export function shareImageMeta(key: string = "home") {
-  if (key === "chatgpt-ads-germany-measurement") {
+  const issueEightCover = issueCovers[key];
+  if (issueEightCover) {
     return [
       { property: "og:image", content: issueEightCover.src },
       { property: "og:image:width", content: String(issueEightCover.width) },

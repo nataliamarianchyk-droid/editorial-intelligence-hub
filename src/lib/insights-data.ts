@@ -1,5 +1,5 @@
 import nataliaPortrait from "@/assets/authors/natalia-marianchyk.jpeg.asset.json";
-import { issueEightCover } from "@/lib/issue-eight-cover";
+import { issueCovers, type IssueCover } from "@/lib/issue-covers";
 import { fieldGuides } from "@/lib/field-guide-data";
 
 export type Category = {
@@ -98,7 +98,7 @@ export type Insight = {
   datePublished?: string;
   dateModified?: string;
   wordCount?: number;
-  cover?: typeof issueEightCover;
+  cover?: IssueCover;
   format?: "field-guide";
 };
 
@@ -120,7 +120,6 @@ const editorialInsights: Insight[] = [
     wordCount: 3160,
     metaTitle: "ChatGPT Ads in Deutschland: Messung & Consent - NM Insight",
     metaDescription: "OpenAI has brought ChatGPT Ads to Germany. The hard part is not buying the impression - it is knowing who can see them, what consent allows you to measure, and whether conversational attention becomes revenue.",
-    cover: issueEightCover,
   },
   {
     slug: "job-search-funnel",
@@ -267,7 +266,9 @@ const editorialInsights: Insight[] = [
 ];
 
 export const insights: Insight[] = [
-  ...editorialInsights.filter((item) => !fieldGuides.some((guide) => guide.slug === item.slug)),
+  ...editorialInsights
+    .filter((item) => !fieldGuides.some((guide) => guide.slug === item.slug))
+    .map((item) => (issueCovers[item.slug] ? { ...item, cover: issueCovers[item.slug] } : item)),
   ...fieldGuides.map((guide): Insight => ({
     slug: guide.slug,
     title: guide.title,

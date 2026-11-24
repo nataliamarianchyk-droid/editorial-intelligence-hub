@@ -118,6 +118,7 @@ function InsightsHome() {
                 if (!cat) return null;
                 const inner = (
                   <>
+                    {i.cover && <img src={i.cover.src} alt={i.cover.alt} width={i.cover.width} height={i.cover.height} loading="lazy" className="-mx-1 mb-5 w-[calc(100%+0.5rem)] aspect-video object-cover rounded-sm" />}
                     <div className="flex items-center justify-between">
                       <span className="text-[11px] uppercase tracking-[0.18em] text-[var(--accent-cyan)] font-semibold">
                         {cat.name}
