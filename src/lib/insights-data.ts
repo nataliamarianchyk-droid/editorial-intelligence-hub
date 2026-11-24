@@ -1,5 +1,5 @@
 import nataliaPortrait from "@/assets/authors/natalia-marianchyk.jpeg.asset.json";
-import { issueCovers, type IssueCover } from "@/lib/issue-covers";
+import { issueCovers, fieldGuideCovers, type IssueCover } from "@/lib/issue-covers";
 import { fieldGuides } from "@/lib/field-guide-data";
 
 export type Category = {
@@ -281,6 +281,7 @@ export const insights: Insight[] = [
     href: `/${guide.category}/${guide.slug}`,
     status: "published",
     format: "field-guide",
+    ...(fieldGuideCovers[guide.slug] ? { cover: fieldGuideCovers[guide.slug] } : {}),
     datePublished: guide.datePublished,
     dateModified: guide.dateModified,
     wordCount: guide.wordCount,

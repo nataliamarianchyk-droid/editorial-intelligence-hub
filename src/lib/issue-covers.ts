@@ -27,3 +27,18 @@ export const issueCovers: Record<string, IssueCover> = {
   "job-search-funnel": make(c07.url, "Issue 07", "I ran my job search like a funnel."),
   "chatgpt-ads-germany-measurement": make(c08.url, "Issue 08", "ChatGPT Ads are live in Germany."),
 };
+
+const fieldGuideCoverFiles = import.meta.glob<{ url: string }>("@/assets/insights/covers/field-guides/*.jpg.asset.json", { eager: true, import: "default" });
+
+/** Topic-specific field guide covers in the same visual identity, keyed by guide slug. */
+export const fieldGuideCovers: Record<string, IssueCover> = Object.fromEntries(
+  Object.entries(fieldGuideCoverFiles).map(([path, asset]) => {
+    const slug = path.split("/").pop()!.replace(".jpg.asset.json", "");
+    return [slug, {
+      src: new URL(asset.url, "https://insights.nm-insight.com").href,
+      alt: "NM Insight field guide cover: cream editorial diagram in navy, turquoise and warm accent colours illustrating the guide topic.",
+      width: 1600,
+      height: 900,
+    }];
+  }),
+);

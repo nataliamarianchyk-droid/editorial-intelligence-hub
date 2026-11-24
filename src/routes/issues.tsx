@@ -69,7 +69,7 @@ function IssuesArchive() {
                       <div className="mt-1 text-[var(--ink-deep)]/60">{i.read} read</div>
                     </div>
                     <div>
-                      {i.cover && <Link to="/$category/$articleSlug" params={{ category: i.category, articleSlug: i.slug }} aria-label={`Read ${i.issue}: ${i.title}`} className="block mb-5">
+                      {i.cover && <Link to="/$category/$articleSlug" params={{ category: i.category, articleSlug: i.slug }} aria-label={`Read ${i.issue ?? "field guide"}: ${i.title}`} className="block mb-5">
                         <img src={i.cover.src} alt={i.cover.alt} width={i.cover.width} height={i.cover.height} loading="lazy" className="w-full aspect-video object-cover rounded-sm" />
                       </Link>}
                       <div className="text-[11px] uppercase tracking-[0.18em] text-[var(--accent-cyan)]">
