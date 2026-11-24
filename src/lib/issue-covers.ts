@@ -11,7 +11,7 @@ export type IssueCover = { src: string; alt: string; width: number; height: numb
 
 const make = (url: string, issue: string, title: string): IssueCover => ({
   src: new URL(url, "https://insights.nm-insight.com").href,
-  alt: `NM Insight ${issue} cover: ${title} Cream editorial artwork with a colourful halftone signal flow converging into a navy arc.`,
+  alt: `NM Insight ${issue} cover: ${title} Cream editorial diagram in navy, turquoise and warm accent colours illustrating the issue topic.`,
   width: 1600,
   height: 900,
 });
