@@ -1,16 +1,25 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { isValidYoutubeId, youtubeEmbedUrl, youtubeWatchUrl, issueVideoFor, isoDuration, formatDuration } from "./issue-videos";
+import { isValidYoutubeId, youtubeEmbedUrl, youtubeEmbedBaseUrl, youtubeWatchUrl, issueVideoFor, isoDuration, formatDuration } from "./issue-videos";
 
 test("valid 11-char id builds nocookie embed and watch URLs", () => {
+  assert.equal(youtubeEmbedBaseUrl("mZlnyETenXk"), "https://www.youtube-nocookie.com/embed/mZlnyETenXk");
   assert.equal(youtubeEmbedUrl("mZlnyETenXk"), "https://www.youtube-nocookie.com/embed/mZlnyETenXk?autoplay=1&rel=0");
   assert.equal(youtubeWatchUrl("mZlnyETenXk"), "https://www.youtube.com/watch?v=mZlnyETenXk");
+});
+
+test("structured-data embed URL carries no player params", () => {
+  const base = youtubeEmbedBaseUrl("mZlnyETenXk");
+  assert.ok(base);
+  assert.equal(base.includes("autoplay"), false);
+  assert.equal(base.includes("?"), false);
 });
 
 test("invalid ids are rejected and build no URL", () => {
   for (const id of ["", "short", "mZlnyETenXk1", "mZlny/TenXk", "mZlny\"TenX"]) {
     assert.equal(isValidYoutubeId(id), false);
     assert.equal(youtubeEmbedUrl(id), null);
+    assert.equal(youtubeEmbedBaseUrl(id), null);
   }
 });
 

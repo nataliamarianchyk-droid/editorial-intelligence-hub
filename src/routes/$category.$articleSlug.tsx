@@ -8,7 +8,7 @@ import { germanMarketFaq } from "@/lib/german-market-faq";
 import { JobSearchReadingTools } from "@/components/job-search-article";
 import { AiTakeaways } from "@/components/ai-takeaways";
 import { IssueVideo } from "@/components/issue-video";
-import { issueVideoFor, youtubeEmbedUrl, isoDuration } from "@/lib/issue-videos";
+import { issueVideoFor, youtubeEmbedBaseUrl, isoDuration } from "@/lib/issue-videos";
 import { issueCovers } from "@/lib/issue-covers";
 
 export const Route = createFileRoute("/$category/$articleSlug")({
@@ -63,7 +63,7 @@ export const Route = createFileRoute("/$category/$articleSlug")({
       ...(article.cover ? { image: [article.cover.src] } : {}),
     };
     const video = issueVideoFor(article.slug);
-    const videoEmbed = video ? youtubeEmbedUrl(video.youtubeId) : null;
+    const videoEmbed = video ? youtubeEmbedBaseUrl(video.youtubeId) : null;
     const videoLd = video && videoEmbed ? {
       "@context": "https://schema.org",
       "@type": "VideoObject",
@@ -208,7 +208,8 @@ function ArticlePage() {
           <p className={`mt-8 text-sm tracking-wide ${isJobSearch ? "text-ink-navy" : "text-[var(--ink-deep)]/60"}`}>
             By {article.author} · {article.date} · {article.read} read
           </p>}
-          {article.cover && <img src={article.cover.src} alt={article.cover.alt} width={article.cover.width} height={article.cover.height} fetchPriority="high" className="mt-10 w-full aspect-video object-cover rounded-sm" />}
+          {/* The video box shows this cover, so the header omits it when a video exists. */}
+          {article.cover && !issueVideoFor(article.slug) && <img src={article.cover.src} alt={article.cover.alt} width={article.cover.width} height={article.cover.height} fetchPriority="high" className="mt-10 w-full aspect-video object-cover rounded-sm" />}
         </section>
         {isJobSearch && <JobSearchReadingTools />}
         <IssueVideo key={`video-${article.slug}`} slug={article.slug} />

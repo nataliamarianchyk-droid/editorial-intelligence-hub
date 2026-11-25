@@ -20,8 +20,14 @@ const YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/;
 
 export const isValidYoutubeId = (id: string): boolean => YOUTUBE_ID.test(id);
 
+/** Bare embed URL for structured data: VideoObject.embedUrl must not carry player params. */
+export function youtubeEmbedBaseUrl(id: string): string | null {
+  return isValidYoutubeId(id) ? `https://www.youtube-nocookie.com/embed/${id}` : null;
+}
+
 export function youtubeEmbedUrl(id: string): string | null {
-  return isValidYoutubeId(id) ? `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0` : null;
+  const base = youtubeEmbedBaseUrl(id);
+  return base ? `${base}?autoplay=1&rel=0` : null;
 }
 
 export function youtubeWatchUrl(id: string): string | null {
