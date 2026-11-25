@@ -3,7 +3,15 @@ import { Play } from "lucide-react";
 import { issueVideoFor, youtubeEmbedUrl, youtubeWatchUrl, formatDuration } from "@/lib/issue-videos";
 import { issueCovers } from "@/lib/issue-covers";
 
-export function IssueVideo({ slug }: { slug: string }) {
+export function IssueVideo({
+  slug,
+  className = "max-w-3xl mx-auto px-6 mt-0 pb-10",
+  priority = true,
+}: {
+  slug: string;
+  className?: string;
+  priority?: boolean;
+}) {
   const video = issueVideoFor(slug);
   const cover = issueCovers[slug];
   const [playing, setPlaying] = useState(false);
@@ -15,7 +23,7 @@ export function IssueVideo({ slug }: { slug: string }) {
   if (!embed || !watch) return null;
 
   return (
-    <section className="max-w-3xl mx-auto px-6 mt-0 pb-10">
+    <section className={className} aria-label={`Video: ${video.title}`}>
       <div className="relative w-full aspect-video overflow-hidden rounded-sm bg-[var(--ink-deep)]/5">
         {playing ? (
           <iframe
@@ -35,7 +43,7 @@ export function IssueVideo({ slug }: { slug: string }) {
             className="group absolute inset-0 h-full w-full focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--ink-navy)] focus-visible:ring-offset-2"
           >
             {/* The button's aria-label already names the video, so the cover stays decorative here. */}
-            {cover && <img src={cover.src} alt="" width={cover.width} height={cover.height} loading="eager" fetchPriority="high" className="absolute inset-0 h-full w-full object-cover" />}
+            {cover && <img src={cover.src} alt="" width={cover.width} height={cover.height} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} className="absolute inset-0 h-full w-full object-cover" />}
             <span className="absolute inset-0 flex items-center justify-center">
               <span className="flex items-center gap-3 rounded-full bg-[var(--ink-deep)] px-5 py-3 text-sm font-medium text-[var(--paper)] shadow-lg transition-transform group-hover:scale-105">
                 <Play className="h-5 w-5 fill-current" aria-hidden="true" />

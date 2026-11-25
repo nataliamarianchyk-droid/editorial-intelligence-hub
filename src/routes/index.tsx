@@ -2,6 +2,7 @@ import { shareImageMeta } from "@/lib/share-images";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
+import { IssueVideo } from "@/components/issue-video";
 import { categories, categoryBySlug, homepageEditorialSelections } from "@/lib/insights-data";
 
 export const Route = createFileRoute("/")({
@@ -160,6 +161,29 @@ function InsightsHome() {
                 );
               })}
             </div>
+          </div>
+        </section>
+
+        {/* Issue 01 video companion */}
+        <section className="border-b border-[var(--ink-deep)]/8" aria-labelledby="home-video-title">
+          <div className="mx-auto max-w-6xl px-6 py-20 grid grid-cols-1 lg:grid-cols-[0.75fr_1.25fr] gap-12 items-center">
+            <div>
+              <p className="eyebrow">Watch · Issue 01</p>
+              <h2 id="home-video-title" className="font-display text-3xl md:text-4xl text-[var(--ink-deep)] mt-3 leading-tight">
+                Visibility is not pipeline.
+              </h2>
+              <p className="mt-5 text-[var(--ink-deep)]/65 leading-relaxed">
+                A 75-second visual summary of the four structural gaps between marketing activity and revenue.
+              </p>
+              <Link
+                to="/$category/$articleSlug"
+                params={{ category: "performance", articleSlug: "visibility-is-not-pipeline" }}
+                className="inline-block mt-7 text-xs uppercase tracking-[0.18em] text-[var(--accent-cyan)] hover:underline"
+              >
+                Read the full issue →
+              </Link>
+            </div>
+            <IssueVideo slug="visibility-is-not-pipeline" className="w-full min-w-0" priority={false} />
           </div>
         </section>
 

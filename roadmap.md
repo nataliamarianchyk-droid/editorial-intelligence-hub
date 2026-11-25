@@ -49,3 +49,4 @@
 - [x] Declutter the homepage: open on the featured issue, put the article list directly beneath it, demote the six sections to a compact topic browse below the articles, and drop the masthead and promotional band while keeping the newsletter last.
 - [x] Add public read-only GET /api/news-feed with up to ten latest published headlines, whitelisted fields, cache headers, empty-feed error fallback and 405 for other methods.
 - [x] Add a click-to-load YouTube video to Issue 01: cover shown once (header omits it), no YouTube request before the click, bare embed URL in VideoObject, and a two-click privacy section.
+- [x] Add the Issue 01 video player to the homepage and verify both players load only after a click.
