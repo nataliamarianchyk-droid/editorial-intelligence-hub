@@ -1,4 +1,4 @@
-import image0 from "@/assets/share/home.jpg.asset.json";
+import image0 from "@/assets/share/insights-home-share.jpg.asset.json";
 import image1 from "@/assets/share/issues.jpg.asset.json";
 import image2 from "@/assets/share/privacy.jpg.asset.json";
 import image3 from "@/assets/share/impressum.jpg.asset.json";
