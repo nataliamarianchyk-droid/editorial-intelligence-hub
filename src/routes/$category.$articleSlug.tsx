@@ -7,6 +7,9 @@ import { articleContent, type TocItem } from "@/lib/article-content";
 import { germanMarketFaq } from "@/lib/german-market-faq";
 import { JobSearchReadingTools } from "@/components/job-search-article";
 import { AiTakeaways } from "@/components/ai-takeaways";
+import { IssueVideo } from "@/components/issue-video";
+import { issueVideoFor, youtubeEmbedUrl, isoDuration } from "@/lib/issue-videos";
+import { issueCovers } from "@/lib/issue-covers";
 
 export const Route = createFileRoute("/$category/$articleSlug")({
   loader: ({ params }) => {
@@ -59,6 +62,18 @@ export const Route = createFileRoute("/$category/$articleSlug")({
       mainEntityOfPage: { "@type": "WebPage", "@id": url },
       ...(article.cover ? { image: [article.cover.src] } : {}),
     };
+    const video = issueVideoFor(article.slug);
+    const videoEmbed = video ? youtubeEmbedUrl(video.youtubeId) : null;
+    const videoLd = video && videoEmbed ? {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      name: video.title,
+      description: video.description,
+      thumbnailUrl: issueCovers[article.slug]?.src,
+      uploadDate: video.publishedAt,
+      duration: isoDuration(video.durationSeconds),
+      embedUrl: videoEmbed,
+    } : null;
     const metaTitle = article.metaTitle ?? `${article.title} - NM Insight`;
     const metaDescription = article.metaDescription ?? article.dek;
     return {
@@ -82,6 +97,7 @@ export const Route = createFileRoute("/$category/$articleSlug")({
           type: "application/ld+json",
           children: JSON.stringify(jsonLd),
         },
+        ...(videoLd ? [{ type: "application/ld+json", children: JSON.stringify(videoLd) }] : []),
         ...(article.slug === "german-advertising-market-2026"
           ? [{
               type: "application/ld+json",
@@ -195,6 +211,7 @@ function ArticlePage() {
           {article.cover && <img src={article.cover.src} alt={article.cover.alt} width={article.cover.width} height={article.cover.height} fetchPriority="high" className="mt-10 w-full aspect-video object-cover rounded-sm" />}
         </section>
         {isJobSearch && <JobSearchReadingTools />}
+        <IssueVideo key={`video-${article.slug}`} slug={article.slug} />
         <AiTakeaways key={article.slug} slug={article.slug} />
 
         {/* Paper article body */}

@@ -37,7 +37,7 @@ function PrivacyPage() {
           <h1 className="font-display text-3xl md:text-4xl mt-3 mb-2 text-[var(--ink-deep)]">
             Datenschutzerklärung
           </h1>
-          <p className="text-sm text-[var(--ink-deep)]/60 mb-8">Stand: Juli 2026</p>
+          <p className="text-sm text-[var(--ink-deep)]/60 mb-8">Stand: November 2026</p>
 
           <div className="rounded-sm border border-[var(--ink-navy)]/15 bg-[var(--paper-warm)] p-5 text-sm leading-relaxed text-[var(--ink-deep)]/85 mb-10">
             <strong>Hinweis:</strong> Dies ist ein sorgfältig erstellter Entwurf, keine
@@ -175,7 +175,13 @@ function PrivacyPage() {
             <p>Sie können Ihre Einwilligung jederzeit widerrufen (siehe Ziffer 5).</p>
           </Section>
 
-          <Section n="7" title="Kontakt- und Newsletter-Formular (HubSpot)">
+          <Section n="7" title="YouTube-Videos (Zwei-Klick-Lösung)">
+            <p>Auf einzelnen Artikelseiten können Sie Videos von YouTube ansehen. Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Die Videos sind im erweiterten Datenschutzmodus (youtube-nocookie.com) eingebunden und werden erst geladen, wenn Sie auf „Play video“ klicken. Vorher wird keine Verbindung zu YouTube hergestellt.</p>
+            <p>Mit dem Klick werden Daten an Google übermittelt, insbesondere Ihre IP-Adresse und die Information, welche Seite Sie besuchen. Google kann dabei auch Informationen auf Ihrem Endgerät speichern oder auslesen. Sind Sie bei Google angemeldet, kann Google den Aufruf Ihrem Konto zuordnen. Eine Übermittlung in die USA kann nicht ausgeschlossen werden.</p>
+            <p>Rechtsgrundlage ist Ihre Einwilligung durch den Klick (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Ihre Auswahl wird nicht gespeichert; nach dem Neuladen der Seite ist das Video wieder deaktiviert. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-[var(--ink-navy)]">https://policies.google.com/privacy</a></p>
+          </Section>
+
+          <Section n="8" title="Kontakt- und Newsletter-Formular (HubSpot)">
             <p>
               Wenn Sie über ein Formular auf dieser Website mit uns Kontakt aufnehmen oder
               sich für unseren Newsletter anmelden, werden die von Ihnen eingegebenen Daten
@@ -205,7 +211,7 @@ function PrivacyPage() {
             </p>
           </Section>
 
-          <Section n="8" title="Ihre Rechte als betroffene Person">
+          <Section n="9" title="Ihre Rechte als betroffene Person">
             <p>Ihnen stehen nach der DSGVO folgende Rechte zu:</p>
             <ul className="list-disc pl-6 space-y-1 mt-3">
               <li>Auskunft über die zu Ihrer Person gespeicherten Daten (Art. 15 DSGVO)</li>
@@ -237,7 +243,7 @@ function PrivacyPage() {
             </p>
           </Section>
 
-          <Section n="9" title="Änderungen dieser Datenschutzerklärung">
+          <Section n="10" title="Änderungen dieser Datenschutzerklärung">
             <p>
               Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den
               aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer
@@ -319,7 +325,11 @@ function PrivacyPage() {
             </p>
           </Section>
 
-          <Section n="7" title="Contact & newsletter form (HubSpot)" en>
+          <Section n="7" title="YouTube videos (click to load)" en>
+            <p>Some article pages offer YouTube videos (Google Ireland Limited, Dublin), embedded in privacy-enhanced mode (youtube-nocookie.com). They load only after you click "Play video"; before that, no connection to YouTube is made. Clicking transfers data to Google, such as your IP address and the page visited, and Google may store or read information on your device; a transfer to the USA cannot be excluded. Legal basis: your consent by clicking (Art. 6(1)(a) GDPR, § 25(1) TDDDG). Your choice is not stored. Details: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-[var(--ink-navy)]">https://policies.google.com/privacy</a></p>
+          </Section>
+
+          <Section n="8" title="Contact & newsletter form (HubSpot)" en>
             <p>
               Form data (name, email, company, message) is processed to handle your enquiry
               or manage your subscription, using HubSpot as our processor under a DPA (Art. 28
@@ -330,7 +340,7 @@ function PrivacyPage() {
             </p>
           </Section>
 
-          <Section n="8" title="Your rights" en>
+          <Section n="9" title="Your rights" en>
             <p>
               Access, rectification, erasure, restriction, portability, objection, and
               withdrawal of consent (Arts. 15–21, 7(3) GDPR) — email{" "}
@@ -343,7 +353,7 @@ function PrivacyPage() {
             </p>
           </Section>
 
-          <Section n="9" title="Changes" en>
+          <Section n="10" title="Changes" en>
             <p>
               We may update this policy to stay legally compliant; the current version applies
               on each visit.
