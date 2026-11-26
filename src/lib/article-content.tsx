@@ -44,6 +44,28 @@ function P({ children }: { children: ReactNode }) {
   );
 }
 
+function MainSiteCallout({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <aside aria-label={title} className="my-10 border-l-4 border-accent-cyan bg-cream px-5 py-6 md:px-7">
+      <h3 className="font-display text-xl leading-snug text-ink-navy">{title}</h3>
+      <p className="mt-3 font-sans text-base leading-relaxed text-ink-navy">{children}</p>
+      <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-3 font-sans text-sm">
+        {[
+          { href: "https://nm-insight.com/services", label: "Explore marketing services" },
+          { href: "https://nm-insight.com/projects", label: "Browse NM Insight projects" },
+          { href: "https://nm-insight.com/projects/go2puntacana", label: "View the Go2PuntaCana project" },
+        ].map(({ href, label }) => (
+          <li key={href}>
+            <a href={href} target="_blank" rel="noopener noreferrer" className="font-medium text-accent-cyan underline underline-offset-4 decoration-accent-cyan/40 hover:decoration-accent-cyan focus-visible:outline-2 focus-visible:outline-accent-cyan focus-visible:outline-offset-4">
+              {label} <span aria-hidden="true">↗</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  );
+}
+
 /* --------------------------- Visibility article --------------------------- */
 
 const visibilityToc: TocItem[] = [
@@ -152,6 +174,11 @@ function VisibilityBody() {
       <PullQuote>
         This is the difference between running campaigns and building pipeline.
       </PullQuote>
+
+      <MainSiteCallout title="Connecting visibility to a working acquisition system">
+        If the gaps above look familiar, explore NM Insight’s marketing services and project
+        work alongside this framework. The Go2PuntaCana project offers a specific project to explore.
+      </MainSiteCallout>
 
       <H2 id="specialist">Why This Matters More in Specialist Markets</H2>
       <div className="space-y-5">
@@ -497,10 +524,11 @@ function GermanMarketBody() {
         </P>
       </div>
 
-      <aside aria-label="Acquisition systems" className="my-10 border-l-4 border-accent-cyan bg-cream px-5 py-6 font-sans">
-        <p className="text-sm leading-relaxed text-ink-navy">Where budgets go is only half the question. The other half is whether your acquisition system can connect that spend to revenue.</p>
-        <a href="https://nm-insight.com/systems" target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-sm font-medium text-accent-cyan underline underline-offset-4 decoration-accent-cyan/40 hover:decoration-accent-cyan focus-visible:outline-2 focus-visible:outline-accent-cyan focus-visible:outline-offset-4">See how we structure and measure acquisition systems <span aria-hidden="true">↗</span></a>
-      </aside>
+      <MainSiteCallout title="From advertising budgets to acquisition systems">
+        Where budgets go is only half the question. The other half is whether your acquisition
+        system can connect that spend to revenue. Explore NM Insight’s services and project work,
+        including Go2PuntaCana, for a view beyond the market figures.
+      </MainSiteCallout>
 
       <H2 id="implications">What This Means If You Own a Budget</H2>
       <P>Four implications, in order of urgency:</P>
@@ -1002,6 +1030,12 @@ function CrmBody() {
 
       <PullQuote>Your CRM is the real marketing tool. Everything else just fills it.</PullQuote>
 
+      <MainSiteCallout title="Putting the marketing-to-sales system into practice">
+        Lifecycle stages, routing and feedback need to work together, not as isolated tools.
+        Explore NM Insight’s marketing services and projects alongside your CRM review, or take
+        a closer look at the Go2PuntaCana project.
+      </MainSiteCallout>
+
       <H2 id="playbook">Operator's Playbook — 30-minute CRM Audit</H2>
       <ul className="mt-6 space-y-3 font-sans text-[17px] leading-[1.7] text-[#1f2937]">
         {[
@@ -1272,6 +1306,12 @@ function AuditBody() {
           </li>
         </ul>
       </div>
+
+      <MainSiteCallout title="Turning audit findings into the next steps">
+        Use the gaps in your audit to prioritise what needs attention before increasing spend.
+        NM Insight’s services and project portfolio provide further context for that work;
+        the Go2PuntaCana project is available to explore in detail.
+      </MainSiteCallout>
 
       <H2 id="sequence">The Fix Sequence</H2>
       <div className="space-y-5">

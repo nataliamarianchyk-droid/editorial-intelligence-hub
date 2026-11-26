@@ -1,5 +1,7 @@
 # Publication updates
 
+- [x] Add contextual Services, Projects and Go2PuntaCana callouts to the German market, infrastructure audit, CRM and visibility articles; preserve unrelated editorial content.
+
 - [x] Add optional intake dates and owner-selected news publication dates within the Berlin 30-day window; 20 news tests pass and signed-in desktop/mobile controls verified without creating or publishing database rows. Actual publication was not exercised to preserve existing draft data.
 
 - [x] Add approval-gated news intake, control-room review, public news, category/sitemap inclusion and security tests; verified password access and empty public pages without database example rows.
